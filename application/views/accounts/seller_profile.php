@@ -31,8 +31,8 @@
                                 <th>نام</th>
                                 <th>تخلص</th>
                                 <th>شماره تماس</th>
-                                <th>بردگی</th>
-                                <th>رسیدگی</th>
+                                <!--<th>بردگی</th>
+                                <th>رسیدگی</th>-->
                                 <th>بیلانس (الباقی)</th>
                                 <th>تغییرات</th>
                             </tr>
@@ -41,7 +41,7 @@
                             <?php
                             foreach ($account_rows as $key => $value) {
                                 $this->load->model('cash_model');
-                                $single_balance_rows=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $value->id),$get_balance_date);
+                                $single_balance_rows=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $value->id));
 
                                 ?>
                                 <tr class="odd gradeX">
@@ -50,8 +50,8 @@
                                     <td><?php echo $value->lname;?></td>
                                     <td><?php echo $value->phone;?></td>
                                     <?php    foreach ($single_balance_rows as $bkey => $bvalue) {?><?php }?>
-                                    <td class="center"><?php echo (isset($bvalue->debit))? $bvalue->debit : "";?></td>
-                                    <td class="center"><?php echo (isset($bvalue->credit))? $bvalue->credit : "";?></td>
+                                    <!--<td class="center"><?php /*echo (isset($bvalue->debit))? $bvalue->debit : "";*/?></td>
+                                    <td class="center"><?php /*echo (isset($bvalue->credit))? $bvalue->credit : "";*/?></td>-->
                                     <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?></td>
                                     <td class="center">
                                         <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>

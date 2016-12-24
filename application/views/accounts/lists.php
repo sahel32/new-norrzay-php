@@ -41,8 +41,7 @@
                                             <th>نام</th>
                                             <th>تخلص</th>
                                             <th>تلفن</th>
-                                            <th>بردگی</th>
-                                            <th>رسیدگی</th>
+
                                             <th>بیلانس (الباقی)</th>
                                             <th>تغییرات</th>
                                         </tr>
@@ -52,8 +51,8 @@
                                     foreach ($account_rows as $key => $value) {
                                        // $this->load->model('cash_model');
                                         $this->load->model('balance_model');
-                                        $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$value->id,'table_name'=>'account'));
-                                        $single_balance_rows=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $value->id),$get_balance_date);
+                                       // $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$value->id,'table_name'=>'account'));
+                                        $single_balance_rows=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $value->id));
                                        ?>
                                         <tr class="odd gradeX">
                                             <td><?php echo $value->id;?></td>
@@ -61,14 +60,16 @@
                                             <td><?php echo $value->lname;?></td>
                                             <td><?php echo $value->phone;?></td>
                                 <?php    foreach ($single_balance_rows as $bkey => $bvalue) {?><?php }?>
-                                            <td class="center"><?php echo (isset($bvalue->debit))? $bvalue->debit : "";?></td>
-                                            <td class="center"><?php echo (isset($bvalue->credit))? $bvalue->credit : "";?></td>
+                                     <!--       <td class="center"><?php /*echo (isset($bvalue->debit))? $bvalue->debit : "";*/?></td>
+                                            <td class="center"><?php /*echo (isset($bvalue->credit))? $bvalue->credit : "";*/?></td>-->
                                             <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?></td>
 
                                             <td class="center">
                                                 <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                                 <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="<?php echo site_url('account/profile/'.$value->id.'/'.$value->type); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                                <a href="<?php echo site_url('balance/get_single_balance/'.$value->id.'/'.$value->type); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+
                                             </td>
                                         </tr>
                                     <?php }  ?>

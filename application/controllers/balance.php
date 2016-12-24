@@ -30,6 +30,64 @@ class balance extends CI_Controller {
         $data['account_rows'] = $this->account_model->get_where(array('type'=>$type));
         $this->load->template("Accounts/lists", $data);
     }
+
+    public function get_total_balance(){
+        $data['title']="dashboard";
+        $data['account_rows'] = $this->account_model->get();
+        $this->load->template("balance/get_total_balance", $data);
+
+}
+    public function get_single_balance($id,$type){
+        $data['title']="dashboard";
+        switch ($type){
+            case "stuff":
+                $type=array('af'=>'افغانی');
+                break;
+
+            case "driver":
+                $type=array('ir'=>'تومان');
+                break;
+
+            case "exchanger":
+                $type=array(
+                    'usa'=>'دالر',
+                    'af'=>'افغانی',
+                    'usa'=>'دالر',
+                    'eur'=>'یرو',
+                    'ir'=>'تومان'
+                );
+                break;
+
+            default:
+                $money_type=array('usa'=>'دالر');
+        }
+        $data['money_type']=$money_type;
+        $data['account_rows'] = $this->account_model->get_where(array('id'=>$id,'type'=>$type));
+        $this->load->template("balance/get_single_balance", $data);
+
+    }
+    function get_total_balance_result(){
+
+        $datepicker=$_POST['datepicker'];
+        $datepicker1=$_POST['datepicker1'];
+        if($datepicker1!=""){
+            $data['total_result']=$this->cash_model->get();
+        }
+
+
+
+        $this->load->popupp('balance/get_total_balance_result',$data);
+    }
+
+    function get_single_balance_result(){
+
+        $datepicker=$_POST['datepicker'];
+        $datepicker1=$_POST['datepicker1'];
+        $account_id=$_POST['account_id'];
+
+        $data['single_result']=$this->cash_model->get_where(array('date(date)>='=>$datepicker, 'date(date)<='=>$datepicker1,'account_id'=>$account_id));
+        $this->load->popupp('balance/get_single_balance_result',$data);
+    }
     function balance_check_out($id){
         $this->form_validation->set_rules('date' , null, 'required',
             array(
@@ -140,7 +198,6 @@ class balance extends CI_Controller {
                 'balance_type'=>$this->input->post('type')
             );
 
-print_r($balance_info);
             $balance_id=$this->balance_model->insert($balance_info);
 
             if($this->db->escape_str($this->input->post('balance'))>0){

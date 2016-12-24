@@ -54,13 +54,7 @@
                           <ul class="nav nav-second-level">
 
                               <li>
-                                  <a href="<?php  echo site_url('balance/get_balance_total');?>">گرفتن گزارش کلی</a>
-                              </li>
-                              <li>
-                                  <a href="<?php  echo site_url('balance/get_balance_single');?>">گرفتن گزارش فردی </a>
-                              </li>
-                              <li>
-                                  <a href="<?php  echo site_url('balance/get_balance_single');?>">گرفتن گزارش فردی </a>
+                                  <a href="<?php  echo site_url('balance/get_total_balance');?>">گرفتن گزارش کلی</a>
                               </li>
                           </ul>
                     </li>

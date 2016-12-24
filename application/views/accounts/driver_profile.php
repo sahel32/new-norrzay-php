@@ -25,7 +25,7 @@
                                 <th>نام</th>
                                 <th>تخلص</th>
                                 <th>شماره تماس</th>
-                                <th>بردگی</th>
+                                <!--<th>بردگی</th>-->
                                 <th>رسیدگی </th>
 
                                 <th>تغییرات</th>
@@ -44,7 +44,7 @@
                                     <td><?php echo $value->lname;?></td>
                                     <td><?php echo $value->phone;?></td>
                                     <?php    foreach ($single_balance_rows as $bkey => $bvalue) {?><?php }?>
-                                    <td class="center"><?php echo (isset($bvalue->debit))? $bvalue->debit : "";?></td>
+                                   <!-- <td class="center"><?php /*echo (isset($bvalue->debit))? $bvalue->debit : "";*/?></td>-->
                                     <td class="center"><?php echo (isset($bvalue->credit))? $bvalue->credit : "";?></td>
 
 
