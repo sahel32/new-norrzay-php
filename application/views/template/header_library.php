@@ -22,8 +22,9 @@
 
     <script src="<?php echo asset_url('js/bootstrap.min.js'); ?>" ></script>
     <!-- METISMENU SCRIPTS -->
-
     <script src="<?php echo asset_url('js/jquery.metisMenu.js'); ?>" ></script>
+
+
 </head>
 <body>
 <div id="wrapper">
