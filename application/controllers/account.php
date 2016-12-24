@@ -100,8 +100,8 @@ class account extends CI_Controller {
 			$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
 
 			$data['account_rows'] = $this->account_model->get_where(array('id' => $id));
-			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id),$data['get_balance_date']);
-			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id,'date>='=>$data['get_balance_date']));
+			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
+			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 
 			$this->load->template('accounts/driver_profile',$data);
 		}
@@ -124,21 +124,21 @@ class account extends CI_Controller {
 			//$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 			$data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
 
-			$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
+			//$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
 
 			$data['account_rows'] = $this->account_model->get_where(array('id' => $id));
-			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id),$data['get_balance_date']);
-			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id,'date>='=>$data['get_balance_date']));
+			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
+			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 
 			$this->load->template('accounts/seller_profile',$data);
 		}
 		if($type=="customer"){
-			$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
+		//	$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
 
 			$data['account_rows'] = $this->account_model->get_where(array('id' => $id));
 			$data['cash_rows']=$this->cash_model->get_where(array('account_id' => $id));
-			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id),$data['get_balance_date']);
-			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id,'date>='=>$data['get_balance_date']));
+			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
+			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 			$data['pre_buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
 			$data['pre_sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'pre'));
 			$data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'fact'));
@@ -147,21 +147,21 @@ class account extends CI_Controller {
 		}
 
 		if($type=="stuff"){
-			$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
+			//$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
 
 			$data['account_rows'] = $this->account_model->get_where(array('id' => $id));
-			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id),$data['get_balance_date']);
-			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id,'date>='=>$data['get_balance_date']));
+			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
+			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 
 			$this->load->template('accounts/stuff_profile',$data);
 		}
 
 		if($type=="dealer"){
-			$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
+			//$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
 
 			$data['account_rows'] = $this->account_model->get_where(array('id' => $id));
-			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id),$data['get_balance_date']);
-			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id,'date>='=>$data['get_balance_date']));
+			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
+			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 
 			$this->load->template('accounts/dealer_profile',$data);
 		}

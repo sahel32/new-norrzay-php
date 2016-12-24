@@ -79,8 +79,8 @@
                                 <th>کد</th>
 
                                 <th>نوع پول</th>
-                                <th>رسیدگی</th>
-                                <th>بردگی</th>
+                               <!-- <th>رسیدگی</th>
+                                <th>بردگی</th>-->
                                 <th>بیلانس (الباقی)</th>
                                 <th>تغییرات</th>
                             </tr>
@@ -89,11 +89,11 @@
                             <?php
                             foreach ($type_rows as $key => $type_value) {
                                 $this->load->model('cash_model');
-                                $this->load->model('balance_model');
+                                //$this->load->model('balance_model');
 
                                 if($type_value->type!="check"){
-                                    $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$type_value->account_id,'table_name'=>'account','balance_type'=>$type_value->type));
-                                $all=$this->cash_model->get_balance_credit_debit_mylty_money($type_value->account_id,$type_value->type,$get_balance_date);
+                                   // $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$type_value->account_id,'table_name'=>'account','balance_type'=>$type_value->type));
+                                $all=$this->cash_model->get_balance_credit_debit_mylty_money($type_value->account_id,$type_value->type);
                             foreach ($all as $key => $value) {
                                 ?>
 
@@ -130,8 +130,8 @@
                                         ?></td>
                                     </td>
 
-                                    <td class="center"><?php echo $value->debit;?></td>
-                                    <td class="center"><?php echo $value->credit;?></td>
+                                    <!--<td class="center"><?php /*echo $value->debit;*/?></td>
+                                    <td class="center"><?php /*echo $value->credit;*/?></td>-->
                                     <td class="center"><?php echo $value->balance;?></td>
 
                                     <td class="center">

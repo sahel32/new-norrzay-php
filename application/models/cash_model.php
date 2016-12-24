@@ -40,7 +40,7 @@ class cash_model extends CI_Model{
         return $query->result();
     }
 
-    function get_balance_credit_debit_mylty_money($id,$type,$date){
+    function get_balance_credit_debit_mylty_money($id,$type){
         $query=$this->db->query("
 SELECT
   ( debit-credit) AS balance,
@@ -58,7 +58,7 @@ SELECT
   FROM
     cash
   WHERE transaction_type = 'debit'
-    AND account_ID = ? AND type=? and date>='".$date."'
+    AND account_ID = ? AND type=? 
 ) AS t1,
 (SELECT
   IFNULL(SUM(cash.`cash`),0) AS debit2
@@ -67,7 +67,7 @@ FROM
   check_option
 WHERE cash.id = check_option.`cash_id`
   AND cash.`account_id` = ?
-  AND check_option.`type` = ? and date>='".$date."'
+  AND check_option.`type` = ?
   AND cash.`transaction_type`='debit'
 ) AS t2) AS result,
   (SELECT (credit1+credit2) AS debit FROM (
@@ -76,7 +76,7 @@ SELECT
   FROM
     cash
   WHERE transaction_type = 'credit'
-    AND account_ID = ? AND type=? and date>='".$date."'
+    AND account_ID = ? AND type=?
 ) AS t1,
 (SELECT
   IFNULL(SUM(cash.`cash`),0) AS credit2
@@ -85,7 +85,7 @@ FROM
   check_option
 WHERE cash.id = check_option.`cash_id`
   AND cash.`account_id` = ?
-  AND check_option.`type` = ? and date>='".$date."'
+  AND check_option.`type` = ? 
   AND cash.`transaction_type`='credit'
 ) AS t2) AS result1,
   account,
@@ -99,7 +99,7 @@ GROUP BY account.`id`
     }
 
 
-    function get_balance_credit_debit_single($id,$date){
+    function get_balance_credit_debit_single($id){
         $query=$this->db->query("
 SELECT
   (credit-debit) AS balance,
@@ -115,13 +115,13 @@ FROM
   FROM
     cash
   WHERE transaction_type = 'debit'
-    AND account_ID = ? and date>='".$date."') AS result,
+    AND account_ID = ?) AS result,
   (SELECT
     IFNULL(SUM(cash),0) AS credit
   FROM
     cash
   WHERE transaction_type = 'credit'
-    AND account_ID = ? and date>='".$date."') AS result1,
+    AND account_ID = ? ) AS result1,
   account,
   cash
 WHERE cash.`account_id` = account.id
