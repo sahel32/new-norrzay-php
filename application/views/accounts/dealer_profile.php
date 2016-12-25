@@ -25,7 +25,10 @@
                     اطلاعات عمومی
                     <div class="btn-group pull-left">
                         <a href="<?php echo site_url('cash/profile_credit_debit/').$this->uri->segment('3')."/".$this->uri->segment('4');?>">
-                        پرداخت/دریافت</a>
+                      بردگی</a>
+
+                        <a href="<?php echo site_url('cash/debit_deal/').$this->uri->segment('3')."/".$this->uri->segment('4');?>">
+                           رسیدگی</a>
                         </div>
                 </div>
                 <div class="panel-body">

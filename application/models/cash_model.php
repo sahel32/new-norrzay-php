@@ -108,7 +108,8 @@ SELECT
   name,
   lname,
   phone,
-  account.id
+  account.id,
+  cash.type as type
 FROM
   (SELECT
     IFNULL(SUM(cash),0) AS debit
