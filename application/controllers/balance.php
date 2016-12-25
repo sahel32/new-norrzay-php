@@ -68,11 +68,11 @@ class balance extends CI_Controller {
     }
     function get_total_balance_result(){
 
-        $datepicker=$_POST['datepicker'];
-        $datepicker1=$_POST['datepicker1'];
-        if($datepicker1!=""){
-            $data['total_result']=$this->cash_model->get();
-        }
+        //$datepicker=$_POST['datepicker'];
+        $data['stock_rows']=$this->stock_model->get();
+
+            $data['account_rows']=$this->account_model->order_by('type');
+
 
 
 

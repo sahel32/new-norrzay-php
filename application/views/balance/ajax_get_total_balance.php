@@ -35,8 +35,7 @@
 
             e.preventDefault();
 
-            var datepicker=$("#datepicker").val();
-            var datepicker1=$("#datepicker1").val();
+           // var datepicker=$("#datepicker").val();
 
             //var id = $(this).data('id'); // get id of clicked row
             //var remain = $(this).data('remain'); // get id of clicked row
@@ -47,7 +46,7 @@
             $.ajax({
                 url:  '<?php echo site_url('balance/get_total_balance_result'); ?>',
                 type: 'POST',
-                data: {datepicker:datepicker,datepicker1:datepicker1},
+               // data: {datepicker:datepicker},
                 dataType: 'html'
             })
                 .done(function(data){

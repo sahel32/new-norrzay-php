@@ -52,12 +52,16 @@ class cash extends CI_Controller {
                 $money_type=array(
                     'usa'=>'دالر',
                     'af'=>'افغانی',
-                    'usa'=>'دالر',
                     'eur'=>'یرو',
                     'ir'=>'تومان'
             );
                 break;
-
+            case "dealer":
+                $money_type=array(
+                    'usa'=>'دالر',
+                    'ir'=>'تومان'
+                );
+                break;
             default:
                 $money_type=array('usa'=>'دالر');
         }
@@ -314,6 +318,58 @@ class cash extends CI_Controller {
             }
         }
 
+    }
+    public function debit_deal(){
+        $this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method().'/'.$this->uri->segment(3).'/'.$this->uri->segment(4));
+
+        $data['stocks'] = $this->stock_model->get();
+        //$data['account_rows'] = $this->account->get_where(array('type' => 'customer'));
+        $data['account_rows'] = $this->account_model->get_where(array('type'=>'driver'));
+        $data['money_type']=$money_type=array(
+            'usa'=>'دالر',
+            'af'=>'افغانی',
+            'usa'=>'دالر',
+            'eur'=>'یرو',
+            'ir'=>'تومان'
+        );
+       // $data['account_id']=$account_id;
+        $data['title']="dashboard";
+        $data['date']=$this->shamci_date->get_today_datetime();
+        $this->form_validation->set_rules('amount' , null, 'required',
+            array(
+                'required'      => 'You have not provided name in name field'
+            )
+        );
+
+        function alpha_int($str)
+        {
+            $ci =& get_instance();
+            $str = (strtolower($ci->config->item('charset')) != 'utf-8') ? utf8_encode($str) : $str;
+
+            return ( ! preg_match("/^[[:alpha:]- چجحخهعغفقثصضشسیبلاتنمکگپظطزرذدئو_.]+$/", $str)) ? FALSE : TRUE;
+        }
+        if($this->form_validation->run()==false){
+
+            $data['signup_form']="active";
+            $this->load->template('cash/debit_deal', $data);
+        }else {
+
+            $cash_information = array(
+                'cash' => $this->db->escape_str($this->input->post('amount')),
+                'type' => $this->input->post('type'),
+                'date' => $this->input->post('date'),
+                'transaction_type' => $this->input->post('transaction_type'),
+                'account_id' => $this->input->post('account_id')
+
+            );
+
+            $cash_id=  $this->cash_model->insert($cash_information);
+            if($this->input->post('type')=="check"){
+                $this->check_type($cash_id,$account_type);
+            }else {
+                $this->load->template('cash/profile_credit_debit', $data);
+            }
+        }
     }
     function check_type($cash_id,$account_type){
         echo $this->uri->segment(2);

@@ -53,6 +53,13 @@ class account_model extends CI_Model{
       return $query->result();
     }
 
+    function order_by($order_by){
+        //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
+        $this->db->order_by($order_by);
+        $query=$this->db->get($this->table);
+        return $query->result();
+    }
+
     function get_where($wheres){
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
         $query=$this->db->get_where($this->table, $wheres);

@@ -1,14 +1,13 @@
-
 <?php $this->load->view('balance/ajax_get_total_balance'); ?>
 <div id="page-inner">
     <div class="row">
         <div class="col-md-12">
-            <h2>گرفتن یک نفر</h2>
+            <h2>گرفتن یک کلی </h2>
             <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به خریدار و فروشنده مورد نظر را مشاهده کنید.</h5>
         </div>
     </div>
     <!-- /. ROW  -->
-    <hr />
+    <hr/>
     <div class="row">
         <div class="col-md-12">
             <!-- Form Elements -->
@@ -21,21 +20,16 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="<?php echo site_url('balance/get_total_balance_result');?>" method="post">
-                                <div class="col-md-3 form-group">
-                                    <lable>از این تاریخ</lable>
-                                    <input type="text" id="datepicker" name="datepicker" class="form-control">
-                                </div>
-                                <div class="col-md-3 form-group">
-                                    <lable>الی این تاریخ</lable>
-                                    <input type="text" id="datepicker1"  name="datepicker1" class="form-control">
-
-
-                                </div>
-
+                            <form action="<?php echo site_url('balance/get_total_balance_result'); ?>" method="post">
+                                <!-- <div class="col-md-3 form-group">
+                                     <lable>از این تاریخ</lable>
+                                     <input type="text" id="datepicker" name="datepicker" class="form-control">
+                                 </div>-->
                                 <div class="col-md-4 gaps">
-                                    <button type="button" class="btn btn-default pull-left" id="get_total_balance" data-toggle="modal" data-target="#view-modal" >جستجو</button>
-                                    <button type="submit" class="btn btn-default pull-left"  >جستجو پرنت</button>
+                                    <button type="button" class="btn btn-default pull-left" id="get_total_balance"
+                                            data-toggle="modal" data-target="#view-modal">جستجو
+                                    </button>
+                                    <button type="submit" class="btn btn-default pull-left">جستجو پرنت</button>
 
                                     <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
                                 </div>
@@ -50,21 +44,18 @@
         </div>
     </div>
 </div>
-<link href="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css" >
+<link href="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet"
+      type="text/css">
 
-<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap.min.js'); ?>" ></link>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap.min.js'); ?>"></link>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
+    <
+    script
+    src = "<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>" ></script>
 <script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); ?>"></script>
 <script>
-    $(document).ready(function() {
-        $("#datepicker").datepicker({
-            dateFormat: "yy/mm/dd"
-        });
-        $("#datepicker1").datepicker({
-            dateFormat: "yy/mm/dd"
-        });
-
+    $(document).ready(function () {
+        $("#datepicker").datepicker();
     });
 </script>
 
