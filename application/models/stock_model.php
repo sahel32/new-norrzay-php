@@ -44,6 +44,8 @@ class stock_model extends CI_Model{
         $value =$query->row();
         return $value->$column;
     }
+    
+    
     function get_remain_oil($id,$buy_sell){
         $query=$this->db->query('
         SELECT

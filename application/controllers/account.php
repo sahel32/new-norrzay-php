@@ -163,6 +163,11 @@ class account extends CI_Controller {
 			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
 			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 
+			$data['type_rows']=$this->cash_model->group_by(array('account_id'=>$id),'type');
+			$data['account_rows']=$this->account_model->get_where(array('id'=>$id));
+			$data['exchanger_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'account'));
+			$data['cash_type_rows']=$this->cash_model->group_by(array('account_id' => $id),'type');
+			
 			$this->load->template('accounts/dealer_profile',$data);
 		}
     }

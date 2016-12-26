@@ -8,15 +8,6 @@
 
 <script type="text/javascript" src="<?php echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.autocomplete.js'); ?>"></script>
 
-<!--<link rel="stylesheet" href="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/themes/base/jquery.ui.all.css'); */?>">
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/jquery-1.10.2.js'); */?>"></script>
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.core.js'); */?>"></script>
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.widget.js'); */?>"></script>
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.position.js'); */?>"></script>
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.menu.js'); */?>"></script>
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.autocomplete.js'); */?>"></script>
-<link rel="stylesheet" href="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/demos.css'); */?>">
--->
 <script type="text/javascript">
     $(function(){
         $("#birds").autocomplete({
@@ -134,49 +125,7 @@
 
 
 </script>
-        <!-- Start Modal driver -->
-        <div id="new-driver" class="modal fade" tabindex="-1">
-            <script>
 
-
-                $("#insert-check").click(function () {
-                    alert("hi")
-                })
-
-            </script>
-           <!-- <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
-                        <h3 class="modal-title">ثبت درایور (راننده) جدید</h3>
-                    </div>
-                    <div class="modal-body clearfix">
-                        <form role="form" method="post" >
-                            <div class="col-md-3 form-group">
-                                <label>نام</label>
-                                <input class="form-control" />
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label>تخلص</label>
-                                <input class="form-control" />
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label>شماره تماس</label>
-                                <input class="form-control" />
-                            </div>
-                            <div class="col-md-3 form-group">
-
-                                <input class="form-control" type="submit" data-dismiss="modal" id="insert-check"/>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-success" data-dismiss="modal">تائید</button>
-                    </div>
-                </div>
-            </div>-->
-        </div>
-        <!-- End Modal driver -->
 
 
 
