@@ -76,9 +76,14 @@ SELECT (buy-sell) AS remain FROM (SELECT (driver+buy1) AS buy FROM (SELECT
 FROM
   stock,
   stock_transaction
-WHERE stock.id = ?
+WHERE (stock_transaction.stock = ?
   AND stock.id = stock_transaction.`stock_id`
-  AND buy_sell = \'buy\' AND stock_transaction.type=\'fact\') AS t,
+  AND buy_sell = \'sell\' AND stock_transaction.type=\'fact\' )
+  OR (
+  stock.id = ?
+  AND stock.id = stock_transaction.`stock_id`
+  AND buy_sell = \'buy\' AND stock_transaction.type=\'fact\'
+  )) AS t,
   (SELECT
   IFNULL(SUM(driver_transaction.amount),0) AS driver
 FROM
@@ -93,7 +98,7 @@ FROM
 WHERE stock.id = ?
   AND stock.id = stock_transaction.`stock_id`
   AND buy_sell = \'sell\' AND stock_transaction.type=\'fact\') AS t1
-        ', array($id,$id,$id));
+        ', array($id,$id,$id,$id));
         $value =$query->row();
         return $value->remain;
     }

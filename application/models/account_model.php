@@ -85,7 +85,7 @@ class account_model extends CI_Model{
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
         $query=$this->db->get_where($this->table, $wheres);
         $value =$query->row();
-        return $value->name;
+        return (isset($value->name))? $value->name : "";
     }
     
     //deletes data from table by condtion or array of condition

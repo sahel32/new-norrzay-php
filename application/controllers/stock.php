@@ -24,61 +24,66 @@ class stock extends CI_Controller {
 		 $data['title']="dashboard";
 		 $this->load->template("stock/index", $data);
 	}
-	public function transfer(){
+	public function transfer()
+	{
 
-		$data['main_title']="add stock";
-		$data['sub_title']="add stock form ";
-		$data['desc']="add stock decription";
+		$data['main_title'] = "add stock";
+		$data['sub_title'] = "add stock form ";
+		$data['desc'] = "add stock decription";
 		$data['oil_type_rows'] = $this->stock_model->get_group_by('oil_type');
+		$data['stocks'] = $this->stock_model->get_where(array('type' => 'fact'));
+		$data['drivers'] = $this->account_model->get_where(array('type' => 'driver'));
 
-		$this->form_validation->set_rules('name' , null, 'alpha_int|required',
+
+
+
+
+		function check_exist_pre_buy_sell_id($id)
+		{
+			$ci = get_instance();
+			$con = $ci->oil_model->check_exist(array('id' => $id));
+			return $con;
+		}
+
+		$this->form_validation->set_rules('transit', null, 'required',
 			array(
-				'required'      => 'You have not provided name in name field',
-				'alpha_int'         =>'please insert just alghabatic charecters'
+				'required' => 'ضروری'
 			)
 		);
-
-		/*    $this->form_validation->set_rules('province' , null, 'alpha_int|required',
-                 array(
-                     'required'      => 'You have not provided name in name field',
-                     'alpha_int'         =>'please insert just alghabatic charecters'
-             )
-                 );
-
-            $this->form_validation->set_rules('phone' , null, 'is_natural|required|regex_match[/^[0-9]{10}$/]',
-                 array(
-                     'required'      => 'You have not provided name in name field',
-                     'is_natural'         =>'Please Use Just numberic charecters'
-             )
-                 );*/
-
-		function alpha_int($str)
-		{
-			$ci =& get_instance();
-			$str = (strtolower($ci->config->item('charset')) != 'utf-8') ? utf8_encode($str) : $str;
-
-			return ( ! preg_match("/^[[:alpha:]- 1234567890qwertyuiopasdfghjklzxcvbnmچجحخهعغفقثصضشسیبلاتنمکگپظطزرذدئو_.]+$/", $str)) ? FALSE : TRUE;
-		}
-
-		if($this->form_validation->run()==false){
-
-			$data['signup_form']="active";
-			$this->load->template('stock/transfer',$data);
-		}else{
-
-			$cantact_info=array(
-				'name'=>$this->db->escape_str($this->input->post('name')),
-				'province'=>$this->db->escape_str($this->input->post('province')),
-				'type'=>'fact',
-				'oil_type'=>$this->input->post('oil_type')
+		$this->form_validation->set_rules('amount', null, 'required',
+			array(
+				'required' => 'ضروری'
+			)
+		);
+		if ($this->form_validation->run() == false) {
+			$data['oil_type_rows'] = $this->stock_model->get_group_by('oil_type');
+			$data['stocks'] = $this->stock_model->get_where(array('type' => 'fact'));
+			$data['drivers'] = $this->account_model->get_where(array('type' => 'driver'));
+			$this->load->template('stock/transfer', $data);
+		} else {
+			$fact_transaction = array(
+				'f_date' => $this->input->post('date'),
+				'amount' => $this->db->escape_str($this->input->post('amount')),
+				'stock_id' => $this->input->post('stock_source'),
+				'stock' => $this->input->post('stock_target'),
+				'unit' => 'ton',
+				'type' => "fact",
+				'buy_sell' => 'sell',
 			);
 
-			$id=$this->stock_model->insert($cantact_info);
+			$id = $this->oil_model->insert($fact_transaction);
+			$extra_transaction = array(
+				'st_id' => $id,
+				'driver_id' => $this->input->post('driver_id'),
+				'transit' => $this->db->escape_str($this->input->post('transit'))
+			);
 
-			$data['fu_page_title']="Login Form";
-			redirect('stock/profile/'.$id.'/fact');
-			// $this->profile($id);
+
+			$d_id = $this->driver_model->insert($extra_transaction);
+			$this->load->template('stock/transfer', $data);
 		}
+
+
 
 
 	}
@@ -151,7 +156,9 @@ class stock extends CI_Controller {
 
 		$data['pre_oil_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'pre'));
 
-		$data['fact_oil_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact'));
+		$data['fact_oil_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact','buyer_seller_id!='=>''));
+		$data['transfer_in']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact','buyer_seller_id'=>0));
+		$data['transfer_out']=$this->oil_model->get_where(array('stock' => $id,'type'=>'fact','buyer_seller_id'=>0));
 		$data['driver_oil_rows']=$this->driver_model->get_where_oil(array('stock_id' => $id,'type'=>'fact'));
 
        	$this->load->template('stock/profile_'.$type,$data);
