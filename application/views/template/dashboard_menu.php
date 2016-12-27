@@ -19,7 +19,9 @@
                             <li>
                                 <a href="<?php  echo site_url('stock/lists');?>">گدام ها</a>
                             </li>
-
+                            <li>
+                                <a href="<?php  echo site_url('stock/transfer');?>"> ترانسفر بین گدام ها </a>
+                            </li>
                         </ul>
                     </li>
                     <li>

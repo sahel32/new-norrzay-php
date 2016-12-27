@@ -1,24 +1,30 @@
 
-<link type="text/css" href="<?php echo asset_url('js/datepicker/styles/jquery-ui-1.8.14.css'); ?>" rel="stylesheet" />
 
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery-1.6.2.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.core.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/calendar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-ar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-fa.js'); ?>"></script>
+<!--<script src="<?php /*echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); */?>"></script>
+<script src="<?php /*echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); */?>"></script>
+<link href="<?php /*echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); */?>" rel="stylesheet" type="text/css" >
+-->
+<!--<script type="text/javascript">
+    $(function(){
+        $("#datepicker").datepicker({
+            dateFormat: "yy/mm/dd"
+        });
+    });
+</script>-->
 
+<style>
+    .ui-autocomplete-loading {
+        background: white url("<?php echo asset_url('jquery-ui-1.10.4/ui-anim_basic_16x16.gif');?>") right center no-repeat;
+    }
 
+</style>
+<link href="<?php echo asset_url('jquery-ui-1.10.4/jquery-ui.css'); ?>" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
-    $(function() {
-        // حالت پیشفرض
-        $('#datepicker').datepicker({
-            showButtonPanel: true
-        });
-        //-----------------------------------
-        $('#datepicker2').datepicker({
-            showButtonPanel: true
+    $(function(){
+        $("#get_real_oil_id").autocomplete({
+            source: "<?php echo site_url('cash/get_real_oil_id_json');?>" // path to the get_birds method
         });
     });
 </script>
@@ -41,73 +47,40 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form role="form" action="<?php echo site_url('oil/debit_deal'); ?>" method="post" >
+                        <form role="form" action="<?php echo site_url('cash/debit_deal/'.$id.'/'.$type); ?>" method="post" >
+
 
                             <div class="col-md-3 form-group">
                                 <label>تاریح</label>
 
-                                <input type="text"  value="<?php echo set_value('f_date'); ?>" name="f_date" class="form-control"  id="datepicker"/>
-                                <span class="help-inline"><?php echo (form_error('f_date') ) ? form_error('f_date') : "<span class='red'>*</span>"; ?></span>
+                                <input type="text"  value="<?php echo set_value('date'); ?>" name="date" class="form-control"  id="datepicker"/>
+                                <span class="help-inline"><?php echo (form_error('date') ) ? form_error('date') : "<span class='red'>*</span>"; ?></span>
 
                             </div>
 
                             <div class="col-md-3 form-group">
-                                <label>راننده</label>
-                                <select class="form-control" name="account_id">
+                                <label id="car-ton">کد موتر</label>
+
+                                <input type="text" id="get_real_oil_id"  value="<?php echo set_value('st_id'); ?>"name="st_id" class="form-control" data-trigger="hover"/>
+                                <span class="help-inline"><?php echo (form_error('st_id') ) ? form_error('st_id') : "<span class='red'>*</span>"; ?></span>
+
+                            </div>
+                            <div class="col-md-3 form-group">
+
+                                <label>نوع پول</label>
+
+
+                                <select class="form-control" name="type" id="type">
+
                                     <?php
+                                    foreach ($money_type as $anotherkey => $val) {
+                                        echo "<option value='".$anotherkey."'>".$val."</option>";
+                                    }
+                                    ?>
+                                    <option value="check" >check</option>
 
-                                    foreach ($account_rows as $key => $value) {?>
-
-                                        <option value="<?php echo $value->id;?>"><?php echo $value->name;?></option>
-
-                                    <?php }?>
 
                                 </select>
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label>از گدام...</label>
-                                <select class="form-control" name="stock">
-                                    <?php
-
-                                    foreach ($stock as $key => $bvalue) {?>
-
-
-                                        <option value="<?php echo $bvalue->id;?>">
-                                            <?php echo $bvalue->oil_type;
-                                            ?></option>
-
-
-                                    <?php }?>
-                                </select>
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label>به گدام...</label>
-                                <select class="form-control" name="stock">
-                                    <?php
-
-                                    foreach ($stock as $key => $bvalue) {?>
-
-
-                                        <option value="<?php echo $bvalue->id;?>">
-                                            <?php echo $bvalue->oil_type;
-                                            ?></option>
-
-
-                                    <?php }?>
-                                </select>
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label id="car-ton">تعداد موتر</label>
-
-                                <input type="text"  value="<?php echo set_value('amount'); ?>"name="amount" class="form-control" />
-                                <span class="help-inline"><?php echo (form_error('amount') ) ? form_error('amount') : "<span class='red'>*</span>"; ?></span>
-
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label >تناز</label>
-
-                                <input type="text" id="car-count" value="<?php echo set_value('car_count'); ?>"name="car_count" class="form-control" />
-                                <span class="help-inline"><?php echo (form_error('car_count') ) ? form_error('car_count') : "<span class='red'>*</span>"; ?></span>
 
                             </div>
 
@@ -117,10 +90,7 @@
                                 <span class="help-inline"><?php echo (form_error('unit_price') ) ? form_error('unit_price') : "<span class='red'>*</span>"; ?></span>
 
                             </div>
-                            <div class="col-md-6 form-group">
-                                <label>شرح و تفصیلات</label>
-                                <textarea class="form-control" rows="3" name="desc" ></textarea>
-                            </div>
+
                             <div class="col-md-offset-3 col-md-3 gap">
                                 <button type="submit" class="btn btn-default pull-left">تائید</button>
                                 <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
@@ -133,31 +103,3 @@
     </div>
     <!-- /. PAGE INNER  -->
 
-    <script>
-
-        $(document).ready(function(){
-
-
-            //alert("hi")
-        })
-
-
-        $("#measurement-type").change(function (){
-            var value=$(this).val()
-            if(value=="ton"){
-                $("#car-ton").text('مقدار');
-                $("#car-count").prop('disabled', true);
-            }else{
-                $("#car-ton").text('تعداد موتر')
-                $("#car-count").prop('disabled', false);
-            }
-            /*if(value=="ton"){
-             $("#car-number").attr('disabled','disabled');
-             }else{
-             $("#car-number").attr('enabled','enabled');
-             }*/
-
-
-        })
-
-    </script>
