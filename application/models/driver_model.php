@@ -19,7 +19,13 @@ class driver_model extends CI_Model{
         $this->driver_id="driver_id";
 
     }
+    function get_where_column($wheres,$column){
 
+        //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
+        $query=$this->db->get_where($this->table, $wheres);
+        $value =$query->row();
+        return (isset($value->$column))? $value->$column : "";
+    }
     //get all rows of table
     function get(){
         //  $this->db->order_by($this->id,'desc');

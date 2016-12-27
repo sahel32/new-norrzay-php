@@ -276,7 +276,7 @@
                   <div class="col-md-12 col-sm-6">
                       <div class="panel panel-default">
                           <div class="panel-heading">
-                              drivers oil that is added to this stock
+                              جدول اول تیل های خارج شده جدول دوم تیل های وارد شده از گدام های دیگه
                               <div class="btn-group pull-left">
                                   <select id="filter2">
                                       <option value="debit">debit</option>
@@ -288,16 +288,16 @@
 
                           <div class="panel-body">
                               <div class="table-responsive">
-                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example3">
                                       <thead>
                                       <tr>
                                           <th>کد</th>
-                                          <th>کد پیش خرید</th>
-                                          <th>نام فروشنده</th>
+                                          <th>کدام منبا</th>
+                                          <th>گدام مقصد</th>
                                           <th>نوغ تیل</th>
-                                          <th>حالت تیل</th>
+
                                           <th>تناژ</th>
-                                          <th>تعداد موتر</th>
+                                          <th>اسم راننده</th>
                                           <th>فی</th>
                                           <th>تغییرات</th>
                                       </tr>
@@ -307,18 +307,28 @@
                                       foreach ($transfer_in as $key => $value) {?>
                                           <tr class="odd gradeX">
                                               <td><?php echo $value->id;?></td>
-                                              <td><?php echo $value->parent_id;?></td>
-
-                                              <td class="center"><?php
-                                                  $this->load->model('account_model');
-                                                  echo $this->account_model->get_name(array('id'=>$value->buyer_seller_id));
+                                              <td><?php
+                                                  $this->load->model('stock_model');
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'name');
+                                                  ?>
+                                              </td>
+                                              <td><?php
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock),'name');
                                                   ?></td>
-                                              <td class="center"><?php echo $value->name;?></td>
-                                              <td class="center"><?php echo $value->type;?></td>
+                                              <td class="center"><?php
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type');
+                                                  ?></td>
+
                                               <td class="center">
                                                   <?php echo $value->amount;?>
                                               </td>
-                                              <td class="center"><?php echo $value->car_count;?></td>
+                                              <td><?php
+                                                  $this->load->model('stock_model');
+                                                  $this->load->model('driver_model');
+                                                  $account_id= $this->driver_model->get_where_column(array('st_id'=>$value->id),'driver_id');
+                                                  echo $this->account_model->get_where_column(array('id'=>$account_id),'name');
+                                                  ?>
+                                              </td> 
                                               <td class="center"><?php echo $value->unit_price;?></td>
                                               <td class="center">
                                                   <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
@@ -327,22 +337,53 @@
                                               </td>
                                           </tr>
                                       <?php }?>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                          <div class="panel-body">
+                              <div class="table-responsive">
+                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example2">
+                                      <thead>
+                                      <tr>
+                                          <th>کد</th>
+                                          <th>کدام منبا</th>
+                                          <th>گدام مقصد</th>
+                                          <th>نوغ تیل</th>
+
+                                          <th>تناژ</th>
+                                          <th>اسم راننده</th>
+                                          <th>فی</th>
+                                          <th>تغییرات</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
                                       <?php
                                       foreach ($transfer_out as $key => $value) {?>
                                           <tr class="odd gradeX">
                                               <td><?php echo $value->id;?></td>
-                                              <td><?php echo $value->parent_id;?></td>
-
-                                              <td class="center"><?php
-                                                  $this->load->model('account_model');
-                                                  echo $this->account_model->get_name(array('id'=>$value->buyer_seller_id));
+                                              <td><?php
+                                                  $this->load->model('stock_model');
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'name');
+                                                  ?>
+                                              </td>
+                                              <td><?php
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock),'name');
                                                   ?></td>
-                                              <td class="center"><?php echo $value->name;?></td>
-                                              <td class="center"><?php echo $value->type;?></td>
+                                              <td class="center"><?php
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type');
+                                                  ?></td>
+
                                               <td class="center">
                                                   <?php echo $value->amount;?>
                                               </td>
-                                              <td class="center"><?php echo $value->car_count;?></td>
+                                              <td><?php
+                                                  $this->load->model('stock_model');
+                                                  $this->load->model('driver_model');
+                                                  $account_id= $this->driver_model->get_where_column(array('st_id'=>$value->id),'driver_id');
+                                                  echo $this->account_model->get_where_column(array('id'=>$account_id),'name');
+                                                  ?>
+                                              </td>
                                               <td class="center"><?php echo $value->unit_price;?></td>
                                               <td class="center">
                                                   <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
@@ -351,7 +392,6 @@
                                               </td>
                                           </tr>
                                       <?php }?>
-
                                       </tbody>
                                   </table>
                               </div>
@@ -370,6 +410,8 @@
                   $(document).ready(function () {
                       $('#dataTables-example').dataTable();
                       $('#dataTables-example1').dataTable();
+                      $('#dataTables-example2').dataTable();
+                      $('#dataTables-example3').dataTable();
 
                   });
 

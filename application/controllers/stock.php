@@ -65,6 +65,7 @@ class stock extends CI_Controller {
 				'f_date' => $this->input->post('date'),
 				'amount' => $this->db->escape_str($this->input->post('amount')),
 				'stock_id' => $this->input->post('stock_source'),
+				'unit_price' => $this->input->post('unit_price'),
 				'stock' => $this->input->post('stock_target'),
 				'unit' => 'ton',
 				'type' => "fact",
