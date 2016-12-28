@@ -272,6 +272,133 @@
                   </div>
               </div>
 <?php  }?>
+              <div class="row">
+                  <div class="col-md-12 col-sm-6">
+                      <div class="panel panel-default">
+                          <div class="panel-heading">
+                              جدول اول تیل های خارج شده جدول دوم تیل های وارد شده از گدام های دیگه
+                              <div class="btn-group pull-left">
+                                  <select id="filter2">
+                                      <option value="debit">debit</option>
+                                      <option value="credit">credit</option>
+                                  </select>
+                                  <i class="fa fa-comments fa-filter" aria-hidden="true"> فیلتر </i>
+                              </div>
+                          </div>
+
+                          <div class="panel-body">
+                              <div class="table-responsive">
+                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example3">
+                                      <thead>
+                                      <tr>
+                                          <th>کد</th>
+                                          <th>کدام منبا</th>
+                                          <th>گدام مقصد</th>
+                                          <th>نوغ تیل</th>
+
+                                          <th>تناژ</th>
+                                          <th>اسم راننده</th>
+                                          <th>فی</th>
+                                          <th>تغییرات</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <?php
+                                      foreach ($transfer_in as $key => $value) {?>
+                                          <tr class="odd gradeX">
+                                              <td><?php echo $value->id;?></td>
+                                              <td><?php
+                                                  $this->load->model('stock_model');
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'name');
+                                                  ?>
+                                              </td>
+                                              <td><?php
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock),'name');
+                                                  ?></td>
+                                              <td class="center"><?php
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type');
+                                                  ?></td>
+
+                                              <td class="center">
+                                                  <?php echo $value->amount;?>
+                                              </td>
+                                              <td><?php
+                                                  $this->load->model('stock_model');
+                                                  $this->load->model('driver_model');
+                                                  $account_id= $this->driver_model->get_where_column(array('st_id'=>$value->id),'driver_id');
+                                                  echo $this->account_model->get_where_column(array('id'=>$account_id),'name');
+                                                  ?>
+                                              </td> 
+                                              <td class="center"><?php echo $value->unit_price;?></td>
+                                              <td class="center">
+                                                  <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                  <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                                                  <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                              </td>
+                                          </tr>
+                                      <?php }?>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                          <div class="panel-body">
+                              <div class="table-responsive">
+                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example2">
+                                      <thead>
+                                      <tr>
+                                          <th>کد</th>
+                                          <th>کدام منبا</th>
+                                          <th>گدام مقصد</th>
+                                          <th>نوغ تیل</th>
+
+                                          <th>تناژ</th>
+                                          <th>اسم راننده</th>
+                                          <th>فی</th>
+                                          <th>تغییرات</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <?php
+                                      foreach ($transfer_out as $key => $value) {?>
+                                          <tr class="odd gradeX">
+                                              <td><?php echo $value->id;?></td>
+                                              <td><?php
+                                                  $this->load->model('stock_model');
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'name');
+                                                  ?>
+                                              </td>
+                                              <td><?php
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock),'name');
+                                                  ?></td>
+                                              <td class="center"><?php
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type');
+                                                  ?></td>
+
+                                              <td class="center">
+                                                  <?php echo $value->amount;?>
+                                              </td>
+                                              <td><?php
+                                                  $this->load->model('stock_model');
+                                                  $this->load->model('driver_model');
+                                                  $account_id= $this->driver_model->get_where_column(array('st_id'=>$value->id),'driver_id');
+                                                  echo $this->account_model->get_where_column(array('id'=>$account_id),'name');
+                                                  ?>
+                                              </td>
+                                              <td class="center"><?php echo $value->unit_price;?></td>
+                                              <td class="center">
+                                                  <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                  <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                                                  <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                              </td>
+                                          </tr>
+                                      <?php }?>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
             </div>
              <!-- /. PAGE INNER  -->
 
@@ -283,6 +410,8 @@
                   $(document).ready(function () {
                       $('#dataTables-example').dataTable();
                       $('#dataTables-example1').dataTable();
+                      $('#dataTables-example2').dataTable();
+                      $('#dataTables-example3').dataTable();
 
                   });
 
