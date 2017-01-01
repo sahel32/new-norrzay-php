@@ -105,16 +105,17 @@ WHERE stock_transaction.id = cash.`table_id`
 
     }
 
-    function get_remain_oil_each_pre_buy($id,$buy_sell){
+    function get_remain_oil_each_pre($id,$buy_sell){
         $query=$this->db->query('
-SELECT
+ SELECT
   (buy-sell) AS remain
 FROM
   (SELECT
     IFNULL(SUM(amount), 0) AS sell
   FROM
     stock_transaction
-  WHERE parent_id = ?) AS result,
+  WHERE parent_id = ?
+  AND TYPE=\'fact\') AS result,
   (SELECT
     amount AS buy
   FROM
@@ -128,7 +129,7 @@ FROM
 
     }
 
-    function get_remain_oil_each_pre($id,$buy_sell){
+    function get_remain_oil_each_pre2($id,$buy_sell){
         $query=$this->db->query('
 SELECT (sell2-sell1) AS remain FROM (SELECT
   IFNULL(amount,0) AS sell2

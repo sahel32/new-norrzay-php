@@ -200,7 +200,7 @@ class oil extends CI_Controller {
 		$data['stock_buy'] = $this->stock_model->get_where(array('type'=>'buy'));
 		$data['stock_rows'] = $this->stock_model->get_where(array('type'=>$data['buy_sell']));
 		//$data['account_rows'] = $this->account->get_where(array('type' => 'customer'));
-		$data['account_rows'] = $this->account_model->get_or_where(array('type'=>'customer'),array('type'=>'seller'));
+		$data['account_rows'] = $this->account_model->get_or_where();
 
 		//$data['balance_rows'] = $this->balance_model->get_where(array('type'=>'pre'));
 
@@ -293,10 +293,7 @@ class oil extends CI_Controller {
 		$this->oil_model->get_balance(array('type'=>'pre', 'buy_sell'=>'buy'));
 	}
 
-	public function pre_sell_to_fact_form($template="template" , $popupp_pre_buy_sell_id="",$remain='',$buy_sell=''){
-
-
-
+	public function pre_sell_to_fact_form($template="template" , $popupp_pre_buy_sell_id="",$remain=''){
 			$data = array(
 				'main_title' => "pre sell",
 				'sub_title' => "pre sell sub title",
@@ -324,7 +321,7 @@ class oil extends CI_Controller {
 
 			//$data['seller_rows'] = $this->account_model->get_where(array('type'=>'customer'));
 			$data['driver_rows'] = $this->account_model->get_where(array('type'=>'driver'));
-			$data['stock_rows'] = $this->stock_model->get_where(array('type'=>'fact'));
+			$data['stock_rows'] = $this->stock_model->get_where(array('type'=>'fact','status'=>1));
 			$this->load->popupp('oil/pre_sell_to_fact_form', $data);
 		} else {
 			$fact_transaction = array(
@@ -372,8 +369,11 @@ class oil extends CI_Controller {
 			$d_id = $this->driver_model->insert($driver_transaction);
 
 
-
-			$this->load->popupp('oil/pre_sell_to_fact_form', $data);
+			if($template=="popupp"){
+				$this->load->$template('oil/pre_sell_to_fact_form', $data);
+			}else{
+				redirect('oil/lists_pre_sell');
+			}
 		}
 
 
@@ -458,9 +458,9 @@ class oil extends CI_Controller {
 		$con= $ci->oil_model->check_exist(array('id'=>$id));
 		return $con;
     }
-		$data['seller_rows'] = $this->account_model->get_where(array('type'=>'seller'));
-		$data['driver_rows'] = $this->account_model->get_where(array('type'=>'driver'));
-		$data['stock_rows'] = $this->stock_model->get_where(array('type'=>'fact'));
+		$data['seller_rows'] = $this->account_model->get_where(array('type'=>'seller','status'=>1));
+		$data['driver_rows'] = $this->account_model->get_where(array('type'=>'driver','status'=>1));
+		$data['stock_rows'] = $this->stock_model->get_where(array('type'=>'fact','status'=>1));
 
 
 	if ($this->form_validation->run() == false) {
@@ -700,4 +700,6 @@ class oil extends CI_Controller {
 		}
 
 	}
+
+
 }

@@ -59,14 +59,13 @@
                                     <label>تاریخ</label>
                                     <input class="form-control" name="received_date" id="date-picker" />
                                 </div>
-                                <div class="col-md-3 form-group">
-                                    <label>تاریخ</label>
-                                    <input type="text" class="form-control" name="account_id" value="<?php
+                              
+                                    <input type=hidden class="form-control" name="account_id" value="<?php
                                     $this->load->model('oil_model');
                                     echo $this->oil_model->get_where_column(array('id'=>$popupp_pre_buy_sell_id),
                                         'buyer_seller_id')
                                     ?>" />
-                                </div>
+
 
 
                                 <div class="col-md-3 form-group">
