@@ -167,10 +167,10 @@ class stock extends CI_Controller {
 
 	public function lists()
 	{
-		$data['main_title']="لیست گدام ها";
-		$data['sub_title']="لیست گدام ها";
+		$data['main_title']="stock profile";
+		$data['sub_title']="stock details";
 		$data['buy_sell']="stock details";
-		$data['desc']="در این قسمت شما میتوانید لیست گدام های موجود را مشاهده نمایید.";
+		$data['desc']="stick descipttion";
 		 $data['stock_rows']=$this->stock_model->get();
 		 $this->load->template("stock/lists", $data);
 	}

@@ -83,9 +83,8 @@
                                             
                                             </select>
                                         </div>
-                                        <div class="clearfix"></div>
                                         <div class="col-md-3 form-group">
-                                            <label>نوع تیل</label>
+                                            <label>stock</label>
                                             <select class="form-control" name="stock">
                                         <?php
 
@@ -158,9 +157,9 @@
                                         </div>-->
                                         <div class="col-md-6 form-group">
                                             <label>شرح و تفصیلات</label>
-                                            <textarea class="form-control" rows="1" name="desc" ></textarea>
+                                            <textarea class="form-control" rows="3" name="desc" ></textarea>
                                         </div>
-                                        <div class="col-md-3 gaps">
+                                        <div class="col-md-offset-3 col-md-3 gap">
                                         <button type="submit" class="btn btn-default pull-left">تائید</button>
                                         <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
                                         </div>
