@@ -69,6 +69,7 @@ class stock extends CI_Controller {
 				'stock' => $this->input->post('stock_target'),
 				'unit' => 'ton',
 				'type' => "fact",
+				'buyer_seller_id'=>0,
 				'buy_sell' => 'sell',
 			);
 
@@ -148,6 +149,7 @@ class stock extends CI_Controller {
     }
 
     public function profile($id=0,$type){
+		$this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method().'/'.$this->uri->segment(3).'/'.$this->uri->segment(4));
     	  $data['fu_page_title']="Login Form";
           $data['stock_rows']=$this->stock_model->get_where(array('id' => $id));
 		$data['main_title']="stock profile";
@@ -167,6 +169,7 @@ class stock extends CI_Controller {
 
 	public function lists()
 	{
+		$this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method());
 		$data['main_title']="stock profile";
 		$data['sub_title']="stock details";
 		$data['buy_sell']="stock details";
@@ -175,4 +178,46 @@ class stock extends CI_Controller {
 		 $this->load->template("stock/lists", $data);
 	}
 
+	public function inactive($id){
+		$this->stock_model->update(array('status'=>0),array('id'=>$id));
+		redirect($_SESSION['url']);
+	}
+	public function active($id){
+		$this->stock_model->update(array('status'=>1),array('id'=>$id));
+		redirect($_SESSION['url']);
+	}
+	public function delete_review($id){
+
+		$data['id']=$id;
+
+		$this->load->popupp('accounts/delete_review',$data);
+	}
+
+
+	public function transfer_delete($stock,$stock_id,$st_id){
+		$this->driver_model->delete(array('st_id'=>$st_id));
+		$this->oil_model->delete(array('stock'=>$stock,'stock_id'=>$stock_id));
+		redirect($_SESSION['url']);
+	}
+	public function fact_oil_delete($st_id){
+		$this->driver_model->delete(array('st_id'=>$st_id));
+		$this->oil_model->delete(array('id'=>$st_id));
+		$this->cash_model->delete(array('table_id'=>$st_id,'table_name'=>'stock_transaction'));
+		redirect($_SESSION['url']);
+
+	}
+
+	public function driver_oil_delete($id){
+		echo $oil_id=$this->driver_model->get_where_column(array('id'=>$id),'st_id');
+		$this->driver_model->delete(array('id'=>$id));
+		$this->oil_model->delete(array('id'=>$oil_id));
+		$this->cash_model->delete(array('table_id'=>$id,'table_name'=>'driver_transaction'));
+		redirect($_SESSION['url']);
+
+	}
+	public function delete($id){
+
+
+		redirect($_SESSION['url']);
+	}
 }

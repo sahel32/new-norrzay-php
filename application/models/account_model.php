@@ -33,6 +33,7 @@ class account_model extends CI_Model{
 
     function accounts_json($q){
         $this->db->select('name');
+        $this->db->where('status=1');
         $this->db->like('name', $q);
         $query = $this->db->get($this->table);
         if($query->num_rows() > 0){
@@ -74,11 +75,11 @@ class account_model extends CI_Model{
         return (isset($value->$column))? $value->$column : "";
     }
 
-    function get_or_where($wheres,$or_wheres){
+    function get_or_where(){
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
-        $this->db->where($wheres);
-        $this->db->or_where($or_wheres);
-        $query=$this->db->get($this->table);
+        $query=$this->db->query("
+        select * from account where status='1' and (type='seller' or type='customer')
+        ");
         return $query->result();
     }
     function get_name($wheres){

@@ -25,6 +25,7 @@
                                                 <th>تیل موجودی</th>
                                                 <th>نوع گدام</th>
                                                 <th>تغییرات</th>
+                                                <th>وضعیت</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -52,9 +53,14 @@
                                                 <?php } ?>
                                                 <td class="center"><?php echo $s_value->type;?></td>
                                                 <td class="center">
-                                                    <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+
                                                     <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-                                                    <a href="blank.html"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                                </td>
+                                                <td class="center">
+                                                    <?php
+                                                    if($s_value->type=="fact") {
+                                                        echo ($s_value->status) ? "<a href='" . site_url('stock/inactive/' . $s_value->id . '') . "'> غیر فعال کردن </a>" : "<a href='" . site_url('stock/active/' . $s_value->id . '') . "'> فعال کردن </a>";
+                                                    }?>
                                                 </td>
                                             </tr>
                                             <?php }?>
@@ -125,9 +131,9 @@
                                               <td class="center"><?php echo $value->car_count;?></td>
                                               <td class="center"><?php echo $value->unit_price;?></td>
                                               <td class="center">
-                                                  <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                  <a href="<?php echo site_url('account/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                                   <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                                  <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                                  <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                               </td>
                                           </tr>
                                       <?php }?>
@@ -144,7 +150,7 @@
                   <div class="col-md-12 col-sm-6">
                       <div class="panel panel-default">
                           <div class="panel-heading">
-                              fact oil of this stock
+                              تیل های حفیفی 
                               <div class="btn-group pull-left">
                                   <select id="filter2">
                                       <option value="debit">debit</option>
@@ -191,9 +197,9 @@
                                               <td class="center"><?php echo $value->car_count;?></td>
                                               <td class="center"><?php echo $value->unit_price;?></td>
                                               <td class="center">
-                                                  <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                  <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                                   <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                                  <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                                  <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                               </td>
                                           </tr>
                                       <?php }
@@ -211,7 +217,7 @@
                   <div class="col-md-12 col-sm-6">
                       <div class="panel panel-default">
                           <div class="panel-heading">
-                              drivers oil that is added to this stock
+                              تیل های اضافه باز از راننده ها
                               <div class="btn-group pull-left">
                                   <select id="filter2">
                                       <option value="debit">debit</option>
@@ -256,13 +262,13 @@
                                               <td class="center"><?php echo $value->car_count;?></td>
                                               <td class="center"><?php echo $value->unit_price;?></td>
                                               <td class="center">
-                                                  <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                  <a href="<?php echo site_url('stock/driver_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                                   <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                                  <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                                  <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+
                                               </td>
                                           </tr>
                                       <?php }?>
-                                      ?>
 
                                       </tbody>
                                   </table>
@@ -295,7 +301,7 @@
                                           <th>کدام منبا</th>
                                           <th>گدام مقصد</th>
                                           <th>نوغ تیل</th>
-
+                                          <th>تلریخ</th>
                                           <th>تناژ</th>
                                           <th>اسم راننده</th>
                                           <th>فی</th>
@@ -318,7 +324,9 @@
                                               <td class="center"><?php
                                                   echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type');
                                                   ?></td>
-
+                                              <td class="center">
+                                                  <?php echo $value->f_date;?>
+                                              </td>
                                               <td class="center">
                                                   <?php echo $value->amount;?>
                                               </td>
@@ -331,9 +339,8 @@
                                               </td> 
                                               <td class="center"><?php echo $value->unit_price;?></td>
                                               <td class="center">
-                                                  <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                  <a href="<?php echo site_url('stock/transfer_delete/'.$value->stock.'/'.$value->stock_id.'/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                                   <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                                  <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                               </td>
                                           </tr>
                                       <?php }?>
@@ -350,7 +357,7 @@
                                           <th>کدام منبا</th>
                                           <th>گدام مقصد</th>
                                           <th>نوغ تیل</th>
-
+                                          <th>تلریخ</th>
                                           <th>تناژ</th>
                                           <th>اسم راننده</th>
                                           <th>فی</th>
@@ -373,7 +380,9 @@
                                               <td class="center"><?php
                                                   echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type');
                                                   ?></td>
-
+                                              <td class="center">
+                                                  <?php echo $value->f_date;?>
+                                              </td>
                                               <td class="center">
                                                   <?php echo $value->amount;?>
                                               </td>
@@ -386,9 +395,9 @@
                                               </td>
                                               <td class="center"><?php echo $value->unit_price;?></td>
                                               <td class="center">
-                                                  <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                  <a href="<?php echo site_url('stock/transfer_delete/'.$value->stock.'/'.$value->stock_id.'/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+
                                                   <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                                  <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                               </td>
                                           </tr>
                                       <?php }?>

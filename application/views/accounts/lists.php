@@ -1,4 +1,4 @@
-
+<?php $this->load->view('accounts/ajax_delete_review');?>
 <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
@@ -44,6 +44,7 @@
 
                                             <th>بیلانس (الباقی)</th>
                                             <th>تغییرات</th>
+                                            <th>وضعیت</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -54,7 +55,7 @@
                                        // $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$value->id,'table_name'=>'account'));
                                         $single_balance_rows=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $value->id));
                                        ?>
-                                        <tr class="odd gradeX">
+                                        <tr class="odd gradeX"  >
                                             <td><?php echo $value->id;?></td>
                                             <td><?php echo $value->name;?></td>
                                             <td><?php echo $value->lname;?></td>
@@ -64,12 +65,17 @@
                                             <td class="center"><?php /*echo (isset($bvalue->credit))? $bvalue->credit : "";*/?></td>-->
                                             <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?></td>
 
-                                            <td class="center">
-                                                <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                            <td class="center" >
+                                                <div data-toggle="modal" data-id="<?php echo $value->id;?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash">
+                                                </div>
                                                 <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="<?php echo site_url('account/profile/'.$value->id.'/'.$value->type); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-                                                <a href="<?php echo site_url('balance/get_single_balance/'.$value->id.'/'.$value->type); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-
+<!--                                                <a href="<?php /*echo site_url('balance/get_single_balance/'.$value->id.'/'.$value->type); */?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+-->
+                                            </td>
+                                            <td class="center">
+                                                <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'> غیر فعال کردن </a>" : "<a href='".site_url('account/active/'.$value->id.'')."'> فعال کردن </a>"
+                                                ; ?>
                                             </td>
                                         </tr>
                                     <?php }  ?>

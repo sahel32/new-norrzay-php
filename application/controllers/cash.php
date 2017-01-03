@@ -505,6 +505,8 @@ class cash extends CI_Controller {
     }
 
     public function profile($id=0,$type){
+        $this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method().'/'.$this->uri->segment(3).'/'.$this->uri->segment(4));
+
         $data['fu_page_title']="Login Form";
         $data['account_rows']=$this->cash_model->get_balance_credit_debit($id);
         $data['balance_rows']=$this->account_model->get_where(array('id' => $id ,'type' => 'account'));
@@ -551,9 +553,19 @@ class cash extends CI_Controller {
             $this->load->template('accounts/dealer_profile',$data);
         }
     }
-    public function delete($id=0){
+    public function delete($id){
+        $cash=$this->cash_model->get_where(array('id'=>$id));
+        foreach ($cash as $key => $value){
+                $driver=$this->driver_model->get_where(array('id'=>$value->table_id));
+                foreach ($driver as $key => $dvalue){
+                    $this->check_model->delete(array('cash_id'=>$id));
+                    $this->driver_model->delete(array('id'=>$value->table_id));
+                    $this->oil_model->delete(array('id'=>$dvalue->st_id));
+                    $this->cash_model->delete(array('id'=>$id));
+            }
+        }
 
-
-        //$this->load->template('accounts/profile',$data);
+    redirect($_SESSION['url']);
     }
+    
 }

@@ -26,6 +26,7 @@
                                                 <th>نوع گدام</th>
                                                 <th>نوع تیل</th>
                                                 <th>تغییرات</th>
+                                                <th>وضعیت</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -75,9 +76,16 @@
                                                     ?></td>
                                                 <td class="center"><?php echo $value->oil_type;?></td>
                                                 <td class="center">
-                                                    <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+                                                   <!-- <div data-toggle="modal" data-id="<?php /*echo $value->id;*/?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash">
+                                                    </div>-->
                                                     <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
                                                     <a href="<?php echo site_url('stock/profile/'.$value->id.'/'.$sufix); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                                </td>
+                                                <td class="center">
+                                                    <?php
+                                                    if($value->type=="fact") {
+                                                        echo ($value->status) ? "<a href='" . site_url('stock/inactive/' . $value->id . '') . "'> غیر فعال کردن </a>" : "<a href='" . site_url('stock/active/' . $value->id . '') . "'> فعال کردن </a>";
+                                                    }?>
                                                 </td>
                                             </tr>
                                             <?php }?>

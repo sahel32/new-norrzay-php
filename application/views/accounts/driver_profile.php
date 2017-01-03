@@ -1,4 +1,59 @@
-<?php $this->load->view('check/ajax_get_check_info'); ?>
+<div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">
+                    <i class="glyphicon glyphicon-user"></i> User Profile
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="modal-loader" style="display: none; text-align: center;">
+                    <!-- ajax loader -->
+                    <img src="<?php echo asset_url('img/ajax-loader.gif'); ?>">
+                </div>
+
+                <!-- mysql data will be load here -->
+                <div id="dynamic-content"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+
+        $(document).on('click', '#getUser', function(e){
+
+            e.preventDefault();
+
+            var uid = $(this).data('id'); // get id of clicked row
+
+            $('#dynamic-content').html(''); // leave this div blank
+            $('#modal-loader').show();      // load ajax loader on button click
+
+            $.ajax({
+                url: '<?php echo site_url('check/get_check_info/');?>'+uid,
+                type: 'POST',
+                data: 'id='+uid,
+                dataType: 'html'
+            })
+                .done(function(data){
+                    console.log(data);
+                    $('#dynamic-content').html(''); // blank before load.
+                    $('#dynamic-content').html(data); // load here
+                    $('#modal-loader').hide(); // hide loader
+                })
+                .fail(function(){
+                    $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+                    $('#modal-loader').hide();
+                });
+
+        });
+    });
+</script>
 <div id="page-inner">
     <div class="row">
         <div class="col-md-12">
@@ -29,13 +84,14 @@
                                 <th>رسیدگی </th>
 
                                 <th>تغییرات</th>
+                                <th>وضعیت</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
                             foreach ($account_rows as $key => $value) {
                                 $this->load->model('cash_model');
-                                $single_balance_rows=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $value->id),$get_balance_date);
+                                $single_balance_rows=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $value->id));
 
                                 ?>
                                 <tr class="odd gradeX">
@@ -49,9 +105,14 @@
 
 
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <div data-toggle="modal" data-id="<?php echo $value->id;?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash">
+                                        </div>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('balance/balance_check_out/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+<!--                                        <a href="<?php /*echo site_url('balance/balance_check_out/'.$value->id); */?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+-->                                    </td>
+                                    <td class="center">
+                                        <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'> غیر فعال کردن </a>" : "<a href='".site_url('account/active/'.$value->id.'')."'> فعال کردن </a>"
+                                        ; ?>
                                     </td>
                                 </tr>
                             <?php }  ?>
@@ -85,6 +146,7 @@
                             <thead>
                             <tr>
                                 <th>شماره فاکتور</th>
+                                <th>کد بار</th>
                                 <th>تاریخ</th>
                                 <th>مقدار پول</th>
                                 <th>نوع پول</th>
@@ -98,7 +160,9 @@
                             foreach ($all_debit_credit as $key => $cash_value) {
                                 ?>
                                 <tr class="odd gradeX">
+
                                     <td><?php  echo $cash_value->id;?></td>
+                                    <td><?php  echo $cash_value->table_id;?></td>
                                     <td><?php  echo $cash_value->date;?></td>
                                     <td><?php  echo $cash_value->cash;?></td>
                                     <td class="center"><?php
@@ -124,7 +188,7 @@
                                         }
                                         ;?></td>
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a href="<?php echo site_url('cash/delete/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
                                         <a href="<?php echo site_url('balance/balance_check_out/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                     </td>
@@ -155,6 +219,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example3">
                                     <thead>
                                     <tr>
+                                        <th>کد بار</th>
                                         <th>تاریخ</th>
                                         <th>مقدار تیل (تناژ)</th>
                                         <th>مشتری</th>
@@ -171,6 +236,7 @@
 
                                     foreach ($driver_oil_rows as $key => $value) {?>
                                         <tr class="odd gradeX">
+                                            <td><?php echo $value->id;?></td>
                                             <td><?php echo $value->f_date;?></td>
                                             <td><?php echo $value->amount;?></td>
                                             <td class="center"><?php
@@ -188,7 +254,9 @@
                                             <td class="center"><?php echo $value->first_hand;?></td>
                                             <td class="center"><?php echo $value->transit;?></td>
                                             <td class="center">
-                                                <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                               <!-- <a href="<?php /*echo site_url('cash/delete/'.$cash_value->id) */?>"><span class="glyphicon glyphicon-trash"></span></a>-->
+                                                <div data-toggle="modal" data-id="<?php echo $value->id;?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash">
+                                                    </div>
                                                 <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                             </td>

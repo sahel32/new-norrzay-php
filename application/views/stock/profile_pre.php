@@ -1,3 +1,4 @@
+<?php $this->load->view('stock/ajax_delete_review'); ?>
 <div class="row">
     <div class="col-md-12">
         <h2><?php echo $main_title;?></h2>
@@ -47,7 +48,8 @@
 
                                 <td class="center"><?php echo $s_value->type;?></td>
                                 <td class="center">
-                                    <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <div data-toggle="modal" data-id="<?php echo $s_value->id;?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash">
+                                    </div>
                                     <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
                                 
                                 </td>

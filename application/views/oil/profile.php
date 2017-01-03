@@ -71,12 +71,7 @@
                                     <td class="center">
                                         <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('oil/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-                                        <!--<span id="openpopup" style="cursor: pointer" onclick="popupp(<?php /*//echo $value->id.','.$remain.",'".$buy_sell."'"; */?>)" class="button">set to fact </span>
--->
 
-                                        <button data-toggle="modal" data-target="#view-modal" data-remain="<?php echo $remain;?>" data-id="<?php echo $value->id;?>" id="getUser" class="btn btn-sm btn-info">
-                                            <i class="glyphicon glyphicon-eye-open"></i> چک</button>
                                     </td>
                                 </tr>
 
@@ -132,7 +127,6 @@
                                     <td class="center">
                                         <a href="<?php echo site_url('account/delete/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('account/profile/'.$cash_value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                     </td>
                                 </tr>
                             <?php  }?>
@@ -205,7 +199,6 @@
                                     <td class="center">
                                         <a href="<?php echo site_url('account/delete/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('account/profile/'.$cash_value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                     </td>
                                 </tr>
                             <?php  }?>
