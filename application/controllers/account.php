@@ -193,6 +193,34 @@ class account extends CI_Controller {
 		$this->load->popupp('accounts/delete_review',$data);
 	}
 
+	public function delete_cash($id){
+
+		$cash_detail=$this->cash_model->get_where(array('id'=>$id));
+		foreach ($cash_detail as $key =>$value){
+			if($value->table_name=="stock_transaction"){
+				$dr_id=$this->driver_model->get_where_column(array('st_id'=>$value->table_id),'id');
+				$this->driver_model->delete(array('id'=>$dr_id));
+				$this->oil_model->delete(array('id'=>$value->table_id));
+				$this->cash_model->delete(array('id'=>$id));
+			}elseif ($value->table_name=="driver_transaction"){
+				$st_id=$this->driver_model->get_where_column(array('id'=>$value->table_id),'st_id');
+				$this->driver_model->delete(array('id'=>$value->table_id));
+				$this->oil_model->delete(array('id'=>$st_id));
+				$this->cash_model->delete(array('id'=>$id));
+			}else{
+				$this->check_model->delete(array('cash_id'=>$id));
+				$this->cash_model->delete(array('id'=>$id));
+			}
+			redirect($_SESSION['url']);
+		}
+		$this->driver_model->delete(array('driver_id'=>$id));
+		$this->oil_model->delete(array('buyer_seller_id'=>$id));
+		$this->dealer_model->delete(array('dealer_id'=>$id));
+		$this->cash_model->delete(array('account_id'=>$id));
+		$this->account_model->delete(array('id'=>$id));
+
+		redirect($_SESSION['url']);
+	}
 	public function delete($id){
 		$this->driver_model->delete(array('driver_id'=>$id));
 		$this->oil_model->delete(array('buyer_seller_id'=>$id));

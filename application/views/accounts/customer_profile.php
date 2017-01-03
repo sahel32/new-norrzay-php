@@ -140,9 +140,8 @@
                                         }
                                         ;?></td>
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a href="<?php echo site_url('account/delete_cash/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                     </td>
                                 </tr>
                             <?php  }?>
@@ -201,7 +200,7 @@
                                             <td class="center"><?php echo $value->name; ?></td>
                                             <td class="center"><?php echo $value->unit_price; ?></td>
                                             <td class="center">
-                                                <a href="<?php echo site_url('account/delete/'.$value->id); ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                                 <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                             </td>
@@ -210,34 +209,6 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                            <div class="tab-pane fade" id="moreinfo2">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="odd gradeX">
-                                            <td class="center">4</td>
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">X</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
                         </div>
                         <div class="tab-pane fade " id="sell">
                             <h4></h4>
@@ -268,7 +239,7 @@
                                             <td class="center"><?php echo $value->name; ?></td>
                                             <td class="center"><?php echo $value->unit_price; ?></td>
                                             <td class="center">
-                                                <a href="<?php echo site_url('account/delete/'.$value->id); ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                                 <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
                                                 <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                             </td>
@@ -277,34 +248,6 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                            <div class="tab-pane fade" id="moreinfo2">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="odd gradeX">
-                                            <td class="center">4</td>
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">X</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
                         </div>
                         <div class="tab-pane fade " id="prebuy">
                             <h4></h4>
@@ -335,10 +278,9 @@
                                             <td class="center"><?php echo $value->name; ?></td>
                                             <td class="center"><?php echo $value->unit_price; ?></td>
                                             <td class="center">
-                                                <a href="<?php echo site_url('account/delete/'.$value->id); ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                                 <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-                                                <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-                                            </td>
+                                                <a href="<?php echo site_url('oil/profile/'.$value->id.'/buy'); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                         </tr>
                                     <?php  }?>
                                     </tbody>
@@ -404,7 +346,7 @@
                                             <td class="center">
                                                 <a href="<?php echo site_url('account/delete/'.$value->id); ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                                 <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-                                                <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                                <a href="<?php echo site_url('oil/profile/'.$value->id.'/sell'); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                             </td>
                                         </tr>
                                     <?php  }?>

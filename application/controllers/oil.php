@@ -27,7 +27,7 @@ class oil extends CI_Controller {
 
 	public function lists_pre_sell(){
 
-
+			$this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method());
 			$data = array(
 				'main_title' => "pre sell",
 				'sub_title' => "pre sell sub title",
@@ -47,7 +47,7 @@ class oil extends CI_Controller {
 	public function lists_pre_buy($buy_sell="buy" ,$type='pre')
 	{
 
-
+	$this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method());
 		$data=array(
 			'main_title'=>"pre buy",
 			'sub_title'=>"pre buy sub title",
@@ -64,7 +64,13 @@ class oil extends CI_Controller {
 			$this->load->template("oil/lists_pre_buy", $data);
 
 	}
-
+	public function pre_set_end($id,$buy_sell){
+		$remain=$this->oil_model->get_remain_oil_each_pre($id,$buy_sell);
+		$amount=$this->oil_model->get_where_column(array('id'=>$id),'amount');
+		$mines=$amount-$remain;
+		$this->oil_model->update(array('amount'=>$mines),array('id'=>$id));
+		redirect($_SESSION['url']);
+	}
 	public function pre_sell($buy_sell="sell")
 		{
 
