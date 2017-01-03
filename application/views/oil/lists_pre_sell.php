@@ -35,7 +35,7 @@
                             <th>تاریخ تقریبی تحویل</th>
                             <th>نام مشتری</th>
                             <th>نوغ تیل</th>
-                            <th>تناژ</th>
+                            <th>موجود</th>
                             <th>تعداد موتر</th>
                             <th>فی</th>
                             <th>تغییرات</th>
@@ -69,11 +69,13 @@
                                 <td class="center"><?php echo $value->car_count;?></td>
                                 <td class="center"><?php echo $value->unit_price;?></td>
                                 <td class="center">
-                                    <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a href="<?php echo site_url('oil/pre_set_end/'.$value->id.'/sell') ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                     <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a href="<?php echo site_url('oil/profile/'.$value->id.'/sell'); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                    <?php if($remain!=0){ ?>
                                     <div data-toggle="modal" data-target="#view-modal"  data-remain="<?php echo $remain;?>" data-id="<?php echo $value->id;?>" id="getUser" class="btn btn-sm btn-info">
                                         <i class="glyphicon glyphicon-eye-open"></i> چک</div>
+                                    <?php } ?>
                                 </td>
                             </tr>
 
