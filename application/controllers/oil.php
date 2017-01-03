@@ -49,7 +49,7 @@ class oil extends CI_Controller {
 
 
 		$data=array(
-			'main_title'=>"pre buy",
+			'main_title'=>"لیست پیش خرید",
 			'sub_title'=>"pre buy sub title",
 			'desc'=>"pre sell desc",
 			'buy_sell' => $buy_sell,
@@ -180,13 +180,13 @@ class oil extends CI_Controller {
 	{
 
 			$data = array(
-				'main_title' => "pre buy",
-				'sub_title' => "pre buy sub title",
-				'desc' => "pre sell desc",
-				'account_label' => 'buy from',
-				'pre_date' => 'pre buy date',
-				'pre_date_2' => 'pre buy give date',
-				'stock_label' => 'to stock',
+				'main_title' => "پیش خرید",
+				'sub_title' => "فورم ثبت پیش خرید",
+				'desc' => "از این قسمت میتوانید پیش خرید خود را ثبت نمایید.",
+				'account_label' => 'فروشنده',
+				'pre_date' => 'تاریخ پیش خرید',
+				'pre_date_2' => 'تاریخ تقریبی رسید',
+				'stock_label' => 'نوع تیل',
 				'stock_disable' => 'disabled',
 				'buy_sell' => 'buy',
 				'transaction_type'=>'debit',

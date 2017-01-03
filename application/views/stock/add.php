@@ -1,7 +1,7 @@
 <div class="row">
                     <div class="col-md-12">
-                     <h2>ثبت درایور</h2>   
-                        <h5>از این قسمت میتوانید مشخصات درایور را ثبت نمایید. </h5>
+                     <h2>ثبت گدام</h2>   
+                        <h5>از این قسمت میتوانید مشخصات گدام جدید را ثبت نمایید. </h5>
                        
                     </div>
                 </div>
@@ -12,7 +12,7 @@
                     <!-- Form Elements -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            فورم ثبت درایور
+                            فورم ثبت گدام
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -21,7 +21,7 @@
 
                                         <div class="col-md-3 form-group">
 
-                                            <label>name :</label>
+                                            <label>نام گدام</label>
                                        
                                             <input type="text"  value="<?php echo set_value('name'); ?>"name="name" class="form-control" data-trigger="hover"/>
                                             <span class="help-inline"><?php echo (form_error('name') ) ? form_error('name') : "<span class='red'>*</span>"; ?></span>
@@ -31,7 +31,7 @@
 
                                         <div class="col-md-3 form-group">
 
-                                            <label>provionce :</label>
+                                            <label>ولایت (ناحیه)</label>
                                        
                                             <input type="text"  value="<?php echo set_value('province'); ?>"name="province" class="form-control" data-trigger="hover" />
                                             <span class="help-inline"><?php echo (form_error('province') ) ? form_error('province') : "<span class='red'>*</span>"; ?></span>
