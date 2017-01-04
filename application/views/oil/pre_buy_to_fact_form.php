@@ -54,8 +54,8 @@
                                 </div>
 
                                 <div class="col-md-3 form-group">
-                                    <label>فروشنده دست اول</label><br>
-                                    <?php echo $first_hand; ?>
+                                    <label>فروشنده دست اول</label>
+                                    <h4 style="margin-top: 0px; font-size: 14px; line-height: 1.42857143; padding: 6px 12px; border-radius: 4px; border: 1px solid #ccc;"><?php echo $first_hand; ?></h4>
                                 </div>
                                 <input class="form-control" type="hidden" value="<?php echo $account_id;?>" name="account_id">
                                 <div class="col-md-3 form-group">

@@ -15,22 +15,12 @@
         //-----------------------------------
     });
 </script>
-<div id="page-inner">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>خرید</h2>
-            <h5>از این قسمت میتوانید تیل خریداری شده را وارد نمایید. </h5>
-
-        </div>
-    </div>
-    <!-- /. ROW  -->
-    <hr />
     <div class="row">
         <div class="col-md-12">
             <!-- Form Elements -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    فورم ثبت خرید
+                    فورم ثبت فروش
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -48,7 +38,7 @@
                                         echo "<input type='hidden'  value='$popupp_pre_buy_sell_id' name='pre_buy_sell_id' >";
                                     }?>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-9 form-group">
                                     <label>مقدار موجود</label>
                                     <?php
                                     echo $remain;
@@ -88,7 +78,7 @@
 
 
                                 <div class="col-md-3 form-group">
-                                    <label>نمبر گمرک فروش</label>
+                                    <label>ناحیه بارگیری</label>
                                     <select class="form-control" name="stock_id" >
                                         <?php
 
@@ -97,14 +87,17 @@
                                             <option value="<?php echo $value->id;?>"><?php echo $value->name;?></option>
 
                                         <?php }?>
-
                                     </select>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>ناحیه تخلیه</label>
+                                    <input type="text" class="form-control" name="">
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>شرح و تفصیلات</label>
                                     <textarea name="desc" class="form-control" rows="1" data-toggle="tooltip" title="نکات بیشتر را میتوانید در این قسمت ذکر کنید." data-placement="top"></textarea>
                                 </div>
-                                <div class="col-md-3 gaps">
+                                <div class="col-md-offset-3 col-md-3 gaps">
                                     <button type="submit" class="btn btn-default pull-left" id="submit">تائید</button>
                                     <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
                                 </div>
