@@ -2,11 +2,8 @@
 <?php $this->load->view('oil/ajax_prebuy_to_fact'); ?>
 <div class="row">
                     <div class="col-md-12">
-                     <h2><?php echo $main_title; ?></h2>
-                        <h5>در جدول پایین شما میتوانید لیست پیش فروش های تیل را مشاهده کنید.</h5>
-
-
-
+                     <h2>پیش خرید ها</h2>
+                        <h5>در جدول پایین شما میتوانید لیست پیش خرید های تیل را مشاهده کنید.</h5>
                     </div>
                 </div>
                  <!-- /. ROW  -->
@@ -16,14 +13,7 @@
                         <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                             لیست پیش فروش ها
-                            <div class="btn-group pull-left">
-                                <select id="filter2">
-                                    <option value="debit">debit</option>
-                                    <option value="credit">credit</option>
-                                </select>
-                                <i class="fa fa-comments fa-filter" aria-hidden="true"> فیلتر </i>
-                            </div>
+                             لیست پیش خرید ها
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -31,11 +21,11 @@
                                     <thead>
                                         <tr>
                                             <th>کد</th>
-                                            <th>تاریخ پیش فروش</th>
-                                            <th>تاریخ تقریبی تحویل</th>
-                                            <th>نام مشتری</th>
-                                            <th>نوغ تیل</th>
-                                            <th>تناژ موجود</th>
+                                            <th>تاریخ پیش خرید</th>
+                                            <th>تاریخ تقریبی رسید</th>
+                                            <th>نام فروشنده</th>
+                                            <th>نوع تیل</th>
+                                            <th>تناژ</th>
                                             <th>تعداد موتر</th>
                                             <th>فی</th>
                                             <th>تغییرات</th>
