@@ -36,7 +36,7 @@
 
             $.ajax({
                 url:  '<?php echo site_url('oil/pre_buy_to_fact_form/popupp'); ?>/'+id+'/'+remain,
-                type: 'POST',
+                //type: 'POST',
                 // data: 'id='+id,
                 dataType: 'html'
             })

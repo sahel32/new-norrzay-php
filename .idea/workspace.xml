@@ -3,14 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="cbb75546-40b7-4d59-86d7-7c61b75aec71" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/account.php" afterPath="$PROJECT_DIR$/application/controllers/account.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/oil.php" afterPath="$PROJECT_DIR$/application/controllers/oil.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/accounts/customer_profile.php" afterPath="$PROJECT_DIR$/application/views/accounts/customer_profile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/accounts/dealer_profile.php" afterPath="$PROJECT_DIR$/application/views/accounts/dealer_profile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/accounts/driver_profile.php" afterPath="$PROJECT_DIR$/application/views/accounts/driver_profile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/oil/lists_pre_buy.php" afterPath="$PROJECT_DIR$/application/views/oil/lists_pre_buy.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/oil/lists_pre_sell.php" afterPath="$PROJECT_DIR$/application/views/oil/lists_pre_sell.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/stock.php" afterPath="$PROJECT_DIR$/application/controllers/stock.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/oil/ajax_prebuy_to_fact.php" afterPath="$PROJECT_DIR$/application/views/oil/ajax_prebuy_to_fact.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/oil/ajax_presell_to_fact.php" afterPath="$PROJECT_DIR$/application/views/oil/ajax_presell_to_fact.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php" afterPath="$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php" afterPath="$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/stock/profile_fact.php" afterPath="$PROJECT_DIR$/application/views/stock/profile_fact.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/stock/profile_pre.php" afterPath="$PROJECT_DIR$/application/views/stock/profile_pre.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/stock/transfer.php" afterPath="$PROJECT_DIR$/application/views/stock/transfer.php" />
     </list>
     <ignored path="new-norrzay-php.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,53 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="customer_profile.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/accounts/customer_profile.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2414">
-              <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dealer_profile.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/accounts/dealer_profile.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3978">
-              <caret line="234" column="168" selection-start-line="234" selection-start-column="168" selection-end-line="234" selection-end-column="168" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lists_pre_sell.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/oil/lists_pre_sell.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lists_pre_buy.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/oil/lists_pre_buy.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="76" column="112" selection-start-line="76" selection-start-column="112" selection-end-line="76" selection-end-column="112" />
-              <folding>
-                <marker date="1483449448419" expanded="true" signature="5298:5404" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="oil.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/oil.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="66" column="45" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
+            <state relative-caret-position="276">
+              <caret line="387" column="103" selection-start-line="387" selection-start-column="103" selection-end-line="387" selection-end-column="103" />
               <folding>
                 <element signature="n#lists_pre_buy#0;n#oil#0;n#!!top" expanded="false" />
                 <element signature="n#pre_sell#0;n#oil#0;n#!!top" expanded="false" />
@@ -94,56 +53,66 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oil_model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/oil_model.php">
+      <file leaf-file-name="ajax_prebuy_to_fact.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/oil/ajax_prebuy_to_fact.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1235">
-              <caret line="247" column="8" selection-start-line="247" selection-start-column="8" selection-end-line="247" selection-end-column="48" />
+            <state relative-caret-position="289">
+              <caret line="37" column="75" selection-start-line="37" selection-start-column="69" selection-end-line="37" selection-end-column="75" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="account_model.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/models/account_model.php">
+      <file leaf-file-name="pre_sell_to_fact_form.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="156" selection-end-column="2" />
+            <state relative-caret-position="204">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding>
-                <marker date="1483303728388" expanded="true" signature="2415:2450" placeholder="select * fro... account" />
-                <marker date="1483303728388" expanded="true" signature="2415:2453" placeholder="select * fro... account" />
-                <marker date="1483303728388" expanded="true" signature="2415:2464" placeholder="select * fro... account" />
-                <marker date="1483303728388" expanded="true" signature="2415:2492" placeholder="select * fro... account" />
+                <marker date="1483568460109" expanded="true" signature="1091:1358" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="2005:2215" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="2414:2615" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="3107:3259" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="3575:3731" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="4056:4208" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="4542:5079" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="4689:5040" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="5145:5332" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="5398:5698" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="5774:6043" placeholder="..." />
+                <marker date="1483568460109" expanded="true" signature="6306:6511" placeholder="/*...*/" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="driver_profile.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/accounts/driver_profile.php">
+      <file leaf-file-name="transfer.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/stock/transfer.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="107" column="44" selection-start-line="107" selection-start-column="40" selection-end-line="108" selection-end-column="49" />
+              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="101" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="account.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/account.php">
+      <file leaf-file-name="stock.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/stock.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3604">
-              <caret line="212" column="4" selection-start-line="212" selection-start-column="4" selection-end-line="212" selection-end-column="4" />
-              <folding />
+            <state relative-caret-position="291">
+              <caret line="59" column="94" selection-start-line="59" selection-start-column="94" selection-end-line="59" selection-end-column="94" />
+              <folding>
+                <element signature="n#add#0;n#stock#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile_fact.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/stock/profile_fact.php">
+      <file leaf-file-name="pre_buy_to_fact_form.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2176">
-              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -174,13 +143,9 @@
         <option value="$PROJECT_DIR$/application/views/cash/debit_deal.php" />
         <option value="$PROJECT_DIR$/application/views/template/dashboard_menu.php" />
         <option value="$PROJECT_DIR$/application/models/stock_model.php" />
-        <option value="$PROJECT_DIR$/application/views/stock/transfer.php" />
         <option value="$PROJECT_DIR$/application/models/driver_model.php" />
         <option value="$PROJECT_DIR$/application/views/oil/profile.php" />
         <option value="$PROJECT_DIR$/application/views/oil/pre_sell_form.php" />
-        <option value="$PROJECT_DIR$/application/views/oil/ajax_prebuy_to_fact.php" />
-        <option value="$PROJECT_DIR$/application/views/oil/ajax_presell_to_fact.php" />
-        <option value="$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php" />
         <option value="$PROJECT_DIR$/application/models/oil_model.php" />
         <option value="$PROJECT_DIR$/application/models/delete_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/cash.php" />
@@ -188,7 +153,6 @@
         <option value="$PROJECT_DIR$/application/views/accounts/ajax_delete_review.php" />
         <option value="$PROJECT_DIR$/application/views/stock/delete_review.php" />
         <option value="$PROJECT_DIR$/application/views/stock/ajax_delete_review.php" />
-        <option value="$PROJECT_DIR$/application/views/stock/profile_pre.php" />
         <option value="$PROJECT_DIR$/assets/js/dataTables/dataTables.bootstrap.js" />
         <option value="$PROJECT_DIR$/application/views/accounts/lists.php" />
         <option value="$PROJECT_DIR$/application/views/accounts/stuff_profile.php" />
@@ -198,15 +162,21 @@
         <option value="$PROJECT_DIR$/application/views/oil/pre_buy_form.php" />
         <option value="$PROJECT_DIR$/application/views/stock/lists.php" />
         <option value="$PROJECT_DIR$/assets/js/dataTables/jquery.dataTables.js" />
-        <option value="$PROJECT_DIR$/application/controllers/stock.php" />
-        <option value="$PROJECT_DIR$/application/views/stock/profile_fact.php" />
         <option value="$PROJECT_DIR$/application/views/accounts/customer_profile.php" />
         <option value="$PROJECT_DIR$/application/views/accounts/dealer_profile.php" />
         <option value="$PROJECT_DIR$/application/controllers/account.php" />
         <option value="$PROJECT_DIR$/application/views/accounts/driver_profile.php" />
-        <option value="$PROJECT_DIR$/application/controllers/oil.php" />
         <option value="$PROJECT_DIR$/application/views/oil/lists_pre_buy.php" />
         <option value="$PROJECT_DIR$/application/views/oil/lists_pre_sell.php" />
+        <option value="$PROJECT_DIR$/application/views/stock/profile_pre.php" />
+        <option value="$PROJECT_DIR$/application/views/stock/profile_fact.php" />
+        <option value="$PROJECT_DIR$/application/views/oil/ajax_prebuy_to_fact.php" />
+        <option value="$PROJECT_DIR$/application/views/oil/ajax_presell_to_fact.php" />
+        <option value="$PROJECT_DIR$/application/controllers/oil.php" />
+        <option value="$PROJECT_DIR$/application/views/stock/transfer.php" />
+        <option value="$PROJECT_DIR$/application/controllers/stock.php" />
+        <option value="$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php" />
+        <option value="$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php" />
       </list>
     </option>
   </component>
@@ -252,6 +222,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -298,19 +269,98 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stock" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oil" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bankid" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -371,18 +421,19 @@
       <workItem from="1483266578432" duration="25307000" />
       <workItem from="1483373823613" duration="4585000" />
       <workItem from="1483447334982" duration="3731000" />
+      <workItem from="1483549390848" duration="3376000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121995000" />
+    <option name="totallyTimeSpent" value="125371000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24886535" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2526475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -413,7 +464,15 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/application/controllers/stock.php</url>
+          <line>26</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -498,41 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/stock/transfer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/oil/ajax_prebuy_to_fact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="60" column="9" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/oil/ajax_presell_to_fact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="42" column="56" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -662,24 +686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/stock/profile_pre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="51" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/models/driver_model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/stock.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3638">
-          <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -694,21 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/stock/lists.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="78" column="55" selection-start-line="78" selection-start-column="51" selection-end-line="79" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/stock/profile_fact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -730,16 +725,101 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/accounts/driver_profile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="1819">
           <caret line="107" column="44" selection-start-line="107" selection-start-column="40" selection-end-line="108" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/oil_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4199">
+          <caret line="247" column="8" selection-start-line="247" selection-start-column="8" selection-end-line="247" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/account_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding>
+            <marker date="1483303728388" expanded="true" signature="2415:2450" placeholder="select * fro... account" />
+            <marker date="1483303728388" expanded="true" signature="2415:2453" placeholder="select * fro... account" />
+            <marker date="1483303728388" expanded="true" signature="2415:2464" placeholder="select * fro... account" />
+            <marker date="1483303728388" expanded="true" signature="2415:2492" placeholder="select * fro... account" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/stock/lists.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="78" column="55" selection-start-line="78" selection-start-column="51" selection-end-line="79" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/oil/lists_pre_buy.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="66" column="112" selection-start-line="66" selection-start-column="112" selection-end-line="66" selection-end-column="112" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/oil/lists_pre_sell.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/accounts/dealer_profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="234" column="168" selection-start-line="234" selection-start-column="168" selection-end-line="234" selection-end-column="168" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/stock/profile_fact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/stock/profile_pre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/oil/ajax_presell_to_fact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/oil/ajax_prebuy_to_fact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="37" column="75" selection-start-line="37" selection-start-column="69" selection-end-line="37" selection-end-column="75" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/oil.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="66" column="45" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
+        <state relative-caret-position="276">
+          <caret line="387" column="103" selection-start-line="387" selection-start-column="103" selection-end-line="387" selection-end-column="103" />
           <folding>
             <element signature="n#lists_pre_buy#0;n#oil#0;n#!!top" expanded="false" />
             <element signature="n#pre_sell#0;n#oil#0;n#!!top" expanded="false" />
@@ -754,49 +834,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/oil/lists_pre_buy.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/stock.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="76" column="112" selection-start-line="76" selection-start-column="112" selection-end-line="76" selection-end-column="112" />
+        <state relative-caret-position="291">
+          <caret line="59" column="94" selection-start-line="59" selection-start-column="94" selection-end-line="59" selection-end-column="94" />
           <folding>
-            <marker date="1483449448419" expanded="true" signature="5298:5404" placeholder="..." />
+            <element signature="n#add#0;n#stock#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/oil/lists_pre_sell.php">
+    <entry file="file://$PROJECT_DIR$/application/views/stock/transfer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+        <state relative-caret-position="272">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="101" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/accounts/dealer_profile.php">
+    <entry file="file://$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3978">
-          <caret line="234" column="168" selection-start-line="234" selection-start-column="168" selection-end-line="234" selection-end-column="168" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/oil_model.php">
+    <entry file="file://$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1235">
-          <caret line="247" column="8" selection-start-line="247" selection-start-column="8" selection-end-line="247" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/account_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="156" selection-end-column="2" />
+        <state relative-caret-position="204">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <marker date="1483303728388" expanded="true" signature="2415:2450" placeholder="select * fro... account" />
-            <marker date="1483303728388" expanded="true" signature="2415:2453" placeholder="select * fro... account" />
-            <marker date="1483303728388" expanded="true" signature="2415:2464" placeholder="select * fro... account" />
-            <marker date="1483303728388" expanded="true" signature="2415:2492" placeholder="select * fro... account" />
+            <marker date="1483568460109" expanded="true" signature="1091:1358" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="2005:2215" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="2414:2615" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="3107:3259" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="3575:3731" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="4056:4208" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="4542:5079" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="4689:5040" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="5145:5332" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="5398:5698" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="5774:6043" placeholder="..." />
+            <marker date="1483568460109" expanded="true" signature="6306:6511" placeholder="/*...*/" />
           </folding>
         </state>
       </provider>

@@ -386,8 +386,6 @@ class oil extends CI_Controller {
 
 	}
     public function pre_buy_to_fact_form($template="template" , $popupp_pre_buy_sell_id="",$remain=''){
-
-		echo $this->shamci_date->get_today_date();
 		$data = array(
 			'main_title' => "pre sell",
 			'sub_title' => "pre sell sub title",
@@ -470,8 +468,6 @@ class oil extends CI_Controller {
 
 
 	if ($this->form_validation->run() == false) {
-
-
 		$this->load->$template('oil/pre_buy_to_fact_form', $data);
 	} else {
 		$fact_transaction = array(

@@ -57,7 +57,7 @@ class stock extends CI_Controller {
 		);
 		if ($this->form_validation->run() == false) {
 			$data['oil_type_rows'] = $this->stock_model->get_group_by('oil_type');
-			$data['stocks'] = $this->stock_model->get_where(array('type' => 'fact'));
+			$data['stocks'] = $this->stock_model->get_where(array('type' => 'fact','status'=>1));
 			$data['drivers'] = $this->account_model->get_where(array('type' => 'driver'));
 			$this->load->template('stock/transfer', $data);
 		} else {
@@ -76,7 +76,7 @@ class stock extends CI_Controller {
 			$id = $this->oil_model->insert($fact_transaction);
 			$extra_transaction = array(
 				'st_id' => $id,
-				'driver_id' => $this->input->post('driver_id'),
+				'name' => $this->input->post('driver_name'),
 				'transit' => $this->db->escape_str($this->input->post('transit'))
 			);
 
@@ -150,8 +150,8 @@ class stock extends CI_Controller {
 
     public function profile($id=0,$type){
 		$this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method().'/'.$this->uri->segment(3).'/'.$this->uri->segment(4));
-    	  $data['fu_page_title']="Login Form";
-          $data['stock_rows']=$this->stock_model->get_where(array('id' => $id));
+		$data['fu_page_title']="Login Form";
+		$data['stock_rows']=$this->stock_model->get_where(array('id' => $id));
 		$data['main_title']="stock profile";
 		$data['sub_title']="stock details";
 		$data['desc']="stick descipttion";

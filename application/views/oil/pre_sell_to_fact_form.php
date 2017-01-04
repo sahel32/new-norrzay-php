@@ -1,21 +1,17 @@
-<link type="text/css" href="<?php echo asset_url('js/datepicker/styles/jquery-ui-1.8.14.css'); ?>" rel="stylesheet" />
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery-1.6.2.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.core.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/calendar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-ar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-fa.js'); ?>"></script>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); ?>"></script>
+<link href="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css" >
 
 <script type="text/javascript">
-    $(function() {
-        // حالت پیشفرض
-        $('#date-picker').datepicker({
-            showButtonPanel: true
+    $(function(){
+        $("#date-picker").datepicker({
+            dateFormat: "yy/mm/dd"
         });
-        //-----------------------------------
     });
 </script>
-    <div class="row">
+
+
+<div class="row">
         <div class="col-md-12">
             <!-- Form Elements -->
             <div class="panel panel-default">
@@ -25,7 +21,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form role="form" action="<?php echo site_url('oil/pre_sell_to_fact_form'); ?>" method="post">
+                            <form role="form" action="<?php echo site_url('oil/pre_sell_to_fact_form/popupp'.'/'.$popupp_pre_buy_sell_id.'/'.$remian); ?>" method="post">
 
                                 <div class="col-md-3 form-group">
                                    

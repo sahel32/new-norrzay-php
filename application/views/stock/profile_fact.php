@@ -1,7 +1,14 @@
               <div class="row">
                     <div class="col-md-12">
-                        <h2><?php echo $main_title;?></h2>   
-                        <h5><?php echo $desc;?></h5>
+                        <?php
+                        foreach ($stock_rows as $key => $t_value) {
+                            ?>
+
+                            <h2>گدام حقیقی</h2>
+                            <h5> نوع تیل در این گدام <?php echo $t_value->oil_type ?></h5>
+
+                        <?php }?>
+
                     </div>
                 </div>
                  <!-- /. ROW  -->
@@ -21,7 +28,7 @@
                                             <tr>
                                                 <th>کد</th>
                                                 <th>نام گدام</th>
-                                                <th>ادرس</th>
+                                                <th>نوع تیل</th>
                                                 <th>تیل موجودی</th>
                                                 <th>نوع گدام</th>
                                                 <th>تغییرات</th>
@@ -37,7 +44,7 @@
                                             <tr class="odd gradeX">
                                                 <td><?php echo $s_value->id;?></td>
                                                 <td><?php echo $s_value->name;?></td>
-                                                <td><?php echo $s_value->province;?></td>
+                                                <td><?php echo $s_value->oil_type;?></td>
                                                 <?php if($s_value->type=="fact"){ ?>
                                                     <td class="center"><?php
                                                         $this->load->model('stock_model');

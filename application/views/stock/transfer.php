@@ -28,16 +28,7 @@
                             </div>
                             <div class="col-md-3 form-group">
                                 <label>نام درایور (راننده)</label>
-                                <select class="form-control" name="driver_id">
-                                    <?php
-
-                                    foreach ($drivers as $key => $dvalue) {?>
-
-                                        <option value="<?php echo $dvalue->id;?>"><?php echo $dvalue->name.' - '.$dvalue->lname;?></option>
-
-                                    <?php }?>
-
-                                </select>
+                                <input class="form-control" name="driver_name">
                             </div>
                             <div class="col-md-3 form-group">
                                 <label>نمبر موتر (ترانزیت)</label>
