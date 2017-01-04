@@ -17,8 +17,8 @@
 </script>
  <div class="row">
                     <div class="col-md-12">
-                     <h2><?php  echo $main_title; ?></h2>   
-                        <h5><?php  echo $desc; ?></h5>
+                     <h2>پیش خرید</h2>   
+                        <h5>در این قسمت میتوانید با استفاده از فورم ذیل پیش خرید خود را ثبت نمایید.</h5>
                        
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                     <!-- Form Elements -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           <?php  echo $sub_title; ?>
+                           فورم ثبت پیش خرید
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -69,8 +69,9 @@
                                             
                                             </select>
                                         </div>
+                                        <div class="clearfix"></div>
                                         <div class="col-md-3 form-group">
-                                            <label>کدام و نوع تیل</label>
+                                            <label>نوع تیل</label>
                                             <select class="form-control" name="stock">
                                         <?php
 
@@ -116,9 +117,9 @@
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label>شرح و تفصیلات</label>
-                                            <textarea class="form-control" rows="3" name="desc" ></textarea>
+                                            <textarea class="form-control" rows="1" name="desc" ></textarea>
                                         </div>
-                                        <div class="col-md-offset-3 col-md-3 gap">
+                                        <div class="col-md-3 gaps">
                                         <button type="submit" class="btn btn-default pull-left">تائید</button>
                                         <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
                                         </div>

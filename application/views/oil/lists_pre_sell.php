@@ -2,11 +2,8 @@
 <?php $this->load->view('oil/ajax_presell_to_fact'); ?>
 <div class="row">
     <div class="col-md-12">
-        <h2><?php echo $main_title; ?></h2>
+        <h2>پیش فروش ها</h2>
         <h5>در جدول پایین شما میتوانید لیست پیش فروش های تیل را مشاهده کنید.</h5>
-
-
-
     </div>
 </div>
 <!-- /. ROW  -->
@@ -17,13 +14,6 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 لیست پیش فروش ها
-                <div class="btn-group pull-left">
-                    <select id="filter2">
-                        <option value="debit">debit</option>
-                        <option value="credit">credit</option>
-                    </select>
-                    <i class="fa fa-comments fa-filter" aria-hidden="true"> فیلتر </i>
-                </div>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -33,9 +23,9 @@
                             <th>کد</th>
                             <th>تاریخ پیش فروش</th>
                             <th>تاریخ تقریبی تحویل</th>
-                            <th>نام مشتری</th>
-                            <th>نوغ تیل</th>
-                            <th>موجود</th>
+                            <th>نام خریدار</th>
+                            <th>نوع تیل</th>
+                            <th>تناژ</th>
                             <th>تعداد موتر</th>
                             <th>فی</th>
                             <th>تغییرات</th>

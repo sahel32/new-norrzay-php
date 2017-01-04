@@ -1,7 +1,7 @@
               <div class="row">
                     <div class="col-md-12">
-                        <h2><?php echo $main_title;?></h2>   
-                        <h5><?php echo $desc;?></h5>
+                        <h2>گدام ها</h2>   
+                        <h5>در قسمت پایین شما میتوانید لیست گدام های موجود را مشاهده نمایید.</h5>
                     </div>
                 </div>
                  <!-- /. ROW  -->
@@ -10,7 +10,7 @@
                     <div class="col-md-12 col-sm-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                 <?php echo $sub_title;?>
+                                 لیست گدام ها
                             </div>
 
                             <div class="panel-body">
@@ -21,7 +21,6 @@
                                                 <th>کد</th>
                                                 <th>نام</th>
                                                 <th>ولایت</th>
-
                                                 <th>تیل موجود</th>
                                                 <th>نوع گدام</th>
                                                 <th>نوع تیل</th>
