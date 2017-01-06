@@ -17,7 +17,7 @@
     <div class="col-md-12 col-sm-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <?php echo $sub_title;?>
+                اطلاعات عمومی گدام
 
             </div>
 
@@ -29,8 +29,7 @@
                             <th>کد</th>
                             <th>نام گدام</th>
                             <th>نوع تیل</th>
-
-                            <th>تیل موجودی</th>
+                            <th>موجودی تیل</th>
                             <th>نوع گدام</th>
                             <th>تغییرات</th>
                         </tr>
@@ -46,17 +45,17 @@
                                 <td><?php echo $s_value->name;?></td>
                                 <td><?php echo $s_value->oil_type;?></td>
 
-                                    <td class="center"><?php
+                                    <td class="center"> <?php
                                         $this->load->model('stock_model');
                                         echo  $this->stock_model->get_stock_balance_pre_buy($s_value->id, $s_value->type);
 
-                                        ?></td>
+                                        ?> تن </td>
 
                                 <td class="center"><?php echo $s_value->type;?></td>
                                 <td class="center">
-                                    <div data-toggle="modal" data-id="<?php echo $s_value->id;?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash">
+                                    <div data-toggle="modal" data-id="<?php echo $s_value->id;?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top">
                                     </div>
-                                    <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
                                 
                                 </td>
                             </tr>
@@ -74,14 +73,7 @@
         <div class="col-md-12 col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    تیل های پیش خرید شده
-                    <div class="btn-group pull-left">
-                        <select id="filter2">
-                            <option value="debit">debit</option>
-                            <option value="credit">credit</option>
-                        </select>
-                        <i class="fa fa-comments fa-filter" aria-hidden="true"> فیلتر </i>
-                    </div>
+                    اطلاعات تیل های موجود در این گدام
                 </div>
 
                 <div class="panel-body">
@@ -90,11 +82,8 @@
                             <thead>
                             <tr>
                                 <th>کد</th>
-
-
                                 <th>نام فروشنده</th>
-                                <th>نوغ تیل</th>
-                                <th>حالت تیل</th>
+                                <th>نوع تیل</th>
                                 <th>تناژ</th>
                                 <th>تعداد موتر</th>
                                 <th>فی</th>
@@ -114,19 +103,18 @@
                                         echo $this->account_model->get_name(array('id'=>$value->buyer_seller_id));
                                         ?></td>
                                     <td class="center"><?php echo $value->name;?></td>
-                                    <td class="center"><?php echo $value->type;?></td>
                                     <td class="center">
                                         <?php
                                         $this->load->model('oil_model');
                                         echo $this->oil_model->get_remain_oil_each_pre($value->id,$value->buy_sell);
-                                        ?>
+                                        ?> تن
                                     </td>
                                     <td class="center"><?php echo $value->car_count;?></td>
                                     <td class="center"><?php echo $value->unit_price;?></td>
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></a>
+                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
+                                        <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-cog"></span></a>
                                     </td>
                                 </tr>
                             <?php }?>
@@ -157,4 +145,8 @@
         var table2= $('#dataTables-example2').dataTable();
         table2.fnFilter(filtervalue );
     });
+</script>
+<script>
+    $("span").tooltip();
+    $("div").tooltip();
 </script>
