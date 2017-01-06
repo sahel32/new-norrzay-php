@@ -453,7 +453,7 @@ label{
     color: #18c318;
 }
 .glyphicon-cog{
-    color: rgb(9, 87, 241);
+    color: brown;
 }
 .glyphicon-user{
     color: rgb(43, 62, 81);
@@ -467,4 +467,7 @@ label{
 }
 .align{
     text-align: center;
+}
+.glyphicon-tint{
+    color: black;
 }

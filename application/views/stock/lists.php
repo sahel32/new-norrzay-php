@@ -25,7 +25,6 @@
                                                 <th>نوع گدام</th>
                                                 <th>نوع تیل</th>
                                                 <th>تغییرات</th>
-                                                <th>وضعیت</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -77,13 +76,13 @@
                                                 <td class="center">
                                                    <!-- <div data-toggle="modal" data-id="<?php /*echo $value->id;*/?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash">
                                                     </div>-->
-                                                    <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-                                                    <a href="<?php echo site_url('stock/profile/'.$value->id.'/'.$sufix); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-                                                </td>
-                                                <td class="center">
-                                                    <?php
+                                                    <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
+                                                    <a href="<?php echo site_url('stock/profile/'.$value->id.'/'.$sufix); ?>"><span class="glyphicon glyphicon-cog" data-toggle="tooltip" title="پروفایل گدام" data-placement="top"></span></a>
+                                                     <?php
                                                     if($value->type=="fact") {
-                                                        echo ($value->status) ? "<a href='" . site_url('stock/inactive/' . $value->id . '') . "'> غیر فعال کردن </a>" : "<a href='" . site_url('stock/active/' . $value->id . '') . "'> فعال کردن </a>";
+                                                        echo ($value->status) ? "<a href='" . site_url('stock/inactive/' . $value->id . '') . "'><span style='color:blue;' class='glyphicon glyphicon-ok-circle' data-toggle='tooltip' title='غیر فعال کردن گدام' data-placement='top'></span>  </a>" : "<a href='" . site_url('stock/active/' . $value->id . '') . "'>
+                                                            <span style='color: #f90c05;' class='glyphicon glyphicon-ban-circle' data-toggle='tooltip' title='فعال کردن گدام' data-placement='top'></span>
+                                                              </a>";
                                                     }?>
                                                 </td>
                                             </tr>
@@ -107,5 +106,8 @@
             $(document).ready(function () {
                 $('#dataTables-example').dataTable();
             });
+    </script>
+    <script>
+        $("span").tooltip();
     </script>
       <!-- CUSTOM SCRIPTS -->
