@@ -101,8 +101,13 @@
                                     <td class="center"><?php
                                         $this->load->model('account_model');
                                         echo $this->account_model->get_name(array('id'=>$value->buyer_seller_id));
+                                        echo " ";
+                                        echo $this->account_model->get_where_column(array('id'=>$value->buyer_seller_id),'lname');
                                         ?></td>
-                                    <td class="center"><?php echo $value->name;?></td>
+                                    <td class="center"><?php
+                                        $this->load->model('stock_model');
+                                        echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type')
+                                        ?></td>
                                     <td class="center">
                                         <?php
                                         $this->load->model('oil_model');

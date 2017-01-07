@@ -21,7 +21,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form role="form" action="<?php echo site_url('oil/pre_buy_to_fact_form/popupp/'.$popupp_pre_buy_sell_id.'/'.$remain); ?>" method="post">
+                            <form role="form" action="<?php echo site_url('oil/pre_buy_to_fact_form/template/'.$popupp_pre_buy_sell_id.'/'.$remain); ?>" method="post">
 
                                 <div class="col-md-3 form-group">
                                     <label>کد پیش خرید</label>
@@ -50,7 +50,8 @@
 
                                 <div class="col-md-3 form-group">
                                     <label>فروشنده دست اول</label>
-                                    <h4 style="margin-top: 0px; font-size: 14px; line-height: 1.42857143; padding: 6px 12px; border-radius: 4px; border: 1px solid #ccc;"><?php echo $first_hand; ?></h4>
+                                    <h4 style="margin-top: 0px;height: 35px; font-size: 14px; line-height: 1.42857143; padding: 6px 12px; border-radius: 4px; border: 1px solid #ccc;">
+                                        <?php echo $first_hand; ?></h4>
                                 </div>
                                 <input class="form-control" type="hidden" value="<?php echo $account_id;?>" name="account_id">
                                 <div class="col-md-3 form-group">

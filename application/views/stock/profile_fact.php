@@ -30,7 +30,6 @@
                                                 <th>نام گدام</th>
                                                 <th>نوع تیل</th>
                                                 <th>موجودی تیل</th>
-                                                <th>نوع گدام</th>
                                                 <th>تغییرات</th>
                                             </tr>
                                         </thead>
@@ -57,7 +56,7 @@
                                                         echo  $this->stock_model->get_stock_balance($s_value->id,$s_value->type);
                                                         ?></td>
                                                 <?php } ?>
-                                                <td class="center"><?php echo $s_value->type;?></td>
+
                                                 <td class="center">
 
                                                     <a href="#"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
@@ -113,20 +112,28 @@
                                       <tbody>
                                       <?php
 
-                                      foreach ($fact_oil_rows as $key => $value) {?>
+                                      foreach ($fact_oilbuy_rows as $key => $value) {?>
                                           <tr class="odd gradeX">
                                               <td><?php echo $value->id;?></td>
                                               <td><?php echo $value->parent_id;?></td>
-                                              <td></td>
+                                              <td><?php echo $value->f_date;?></td>
                                               <td class="center"><?php
                                                   $this->load->model('account_model');
                                                   echo $this->account_model->get_name(array('id'=>$value->buyer_seller_id));
+                                                  echo " ";
+                                                  echo $this->account_model->get_where_column(array('id'=>$value->buyer_seller_id),'lname');
                                                   ?></td>
-                                              <td class="center"><?php echo $value->name;?></td>
+                                              <td class="center"><?php
+                                                  $this->load->model('stock_model');
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type')
+                                                  ?></td>
                                               <td class="center">
                                                   <?php echo $value->amount;?> تن
                                               </td>
-                                              <td class="center"><?php echo $value->unit_price;?></td>
+                                              <td class="center"><?php
+                                                  $this->load->model('oil_model');
+                                                 echo  $this->oil_model->get_where_column(array('id'=>$value->parent_id),'unit_price');
+                                                  ?></td>
                                               <td class="center">
                                                   <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></span></a>
                                                   <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
@@ -140,7 +147,7 @@
                                     </table>
                                 </div>
                               </div>
-                              <div class="tab-pane fade active in" id="overload">
+                              <div class="tab-pane fade" id="overload">
                                 <h4></h4>
                                 <div class="table-responsive">
                                   <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -169,12 +176,17 @@
                                                   echo $this->account_model->get_name(array('id'=>$value->buyer_seller_id));
                                                   ?>
                                               </td>
-                                              <td class="center"><?php echo $value->name;?></td>
-                                              <td class="center"><?php echo $value->type;?></td>
+                                              <td class="center"><?php echo $this->account_model->get_name(array('id'=>$value->driver_id));?></td>
+                                              <td class="center"><?php echo $value->transit;?></td>
                                               <td class="center">
                                                   <?php echo $value->amount;?>
                                               </td>
-                                              <td class="center"><?php echo $value->car_count;?> تومان </td>
+                                              <td class="center"><?php
+                                                  $this->load->model('oil_model');
+                                                  echo $value->amount
+                                                      *
+                                                      $this->oil_model->get_where_column(array('id'=>$value->parent_id),'unit_price');
+                                                  ?> تومان </td>
                                               <td class="center">
                                                   <a href="<?php echo site_url('stock/driver_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></span></a>
                                                   <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
@@ -188,64 +200,61 @@
                                   </table>
                                 </div>
                               </div>
-                              <div class="tab-pane fade active in" id="sell-list">
-                                <h4></h4>
-                                <div class="table-responsive">
-                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example3">
-                                      <thead>
-                                      <tr>
-                                          <th>کد</th>
-                                          <th>کد پیش فروش</th>
-                                          <th>تاریخ</th>
-                                          <th>خریدار</th>
-                                          <th>نوع تیل</th>
-                                          <th>تناژ</th>
-                                          <th>فی</th>
-                                          <th>تغییرات</th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                      <?php
-                                      foreach ($transfer_in as $key => $value) {?>
-                                          <tr class="odd gradeX">
-                                              <td><?php echo $value->id;?></td>
-                                              <td><?php
-                                                  $this->load->model('stock_model');
-                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'name');
-                                                  ?>
-                                              </td>
-                                              <td><?php
-                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock),'name');
-                                                  ?></td>
-                                              <td class="center"><?php
-                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type');
-                                                  ?></td>
-                                              <td class="center">
-                                                  <?php echo $value->f_date;?>
-                                              </td>
-                                              <td class="center">
-                                                  <?php echo $value->amount;?>
-                                              </td>
-                                              <td><?php
-                                                  $this->load->model('stock_model');
-                                                  $this->load->model('driver_model');
-                                                  $account_id= $this->driver_model->get_where_column(array('st_id'=>$value->id),'driver_id');
-                                                  echo $this->account_model->get_where_column(array('id'=>$account_id),'name');
-                                                  ?>
-                                              </td> 
-                                              
-                                              <td class="center">
-                                                  <a href="<?php echo site_url('stock/transfer_delete/'.$value->stock.'/'.$value->stock_id.'/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></a>
-                                                  <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
-                                                  <a href="#"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="فاکتور پیش فروش" data-placement="top"></span></a>
-                                              </td>
-                                          </tr>
-                                      <?php }?>
-                                      </tbody>
-                                  </table>
+                                <div class="tab-pane fade" id="sell-list">
+                                    <h4></h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example1">
+                                            <thead>
+                                            <tr>
+                                                <th>کد</th>
+                                                <th>کد پیش خرید</th>
+                                                <th>تاریخ</th>
+                                                <th>فروشنده</th>
+                                                <th>نوع تیل</th>
+                                                <th>تناژ</th>
+                                                <th>فی</th>
+                                                <th>تغییرات</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php
+
+                                            foreach ($fact_oilsell_rows as $key => $value) {?>
+                                                <tr class="odd gradeX">
+                                                    <td><?php echo $value->id;?></td>
+                                                    <td><?php echo $value->parent_id;?></td>
+                                                    <td><?php echo $value->f_date;?></td>
+                                                    <td class="center"><?php
+                                                        $this->load->model('account_model');
+                                                        echo $this->account_model->get_name(array('id'=>$value->buyer_seller_id));
+                                                        echo " ";
+                                                        echo $this->account_model->get_where_column(array('id'=>$value->buyer_seller_id),'lname');
+                                                        ?></td>
+                                                    <td class="center"><?php
+                                                        $this->load->model('stock_model');
+                                                        echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type')
+                                                        ?></td>
+                                                    <td class="center">
+                                                        <?php echo $value->amount;?> تن
+                                                    </td>
+                                                    <td class="center"><?php
+                                                        $this->load->model('oil_model');
+                                                        echo  $this->oil_model->get_where_column(array('id'=>$value->parent_id),'unit_price');
+                                                        ?></td>
+                                                    <td class="center">
+                                                        <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></span></a>
+                                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
+                                                        <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="فاکتور پیش خرید" data-placement="top"></span></a>
+                                                    </td>
+                                                </tr>
+                                            <?php }
+                                            ?>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="tab-pane fade active in" id="transfer-list">
+                              <div class="tab-pane fade" id="transfer-list">
                                 <h4></h4>
                                 <div class="table-responsive">
                                   <table class="table table-striped table-bordered table-hover" id="dataTables-example2">
@@ -287,10 +296,46 @@
                                               <td><?php
                                                   $this->load->model('stock_model');
                                                   $this->load->model('driver_model');
-                                                  $account_id= $this->driver_model->get_where_column(array('st_id'=>$value->id),'driver_id');
-                                                  echo $this->account_model->get_where_column(array('id'=>$account_id),'name');
+                                                  echo $account_id= $this->driver_model->get_where_column(array('st_id'=>$value->id),'name');
+                                                 // echo $this->account_model->get_where_column(array('id'=>$account_id),'name');
                                                   ?>
                                               </td> 
+                                              <td class="center"><?php echo $value->unit_price;?></td>
+                                              <td class="center">
+                                                  <a href="<?php echo site_url('stock/transfer_delete/'.$value->stock.'/'.$value->stock_id.'/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></a>
+
+                                                  <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
+                                              </td>
+                                          </tr>
+                                      <?php }?>
+                                      <?php
+                                      foreach ($transfer_out as $key => $value) {?>
+                                          <tr class="odd gradeX">
+                                              <td><?php echo $value->id;?></td>
+                                              <td class="center">
+                                                  <?php echo $value->f_date;?>
+                                              </td>
+                                              <td><?php
+                                                  $this->load->model('stock_model');
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'name');
+                                                  ?>
+                                              </td>
+                                              <td><?php
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock),'name');
+                                                  ?></td>
+                                              <td class="center"><?php
+                                                  echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type');
+                                                  ?></td>
+                                              <td class="center">
+                                                  <?php echo $value->amount;?>
+                                              </td>
+                                              <td><?php
+                                                  $this->load->model('stock_model');
+                                                  $this->load->model('driver_model');
+                                                  echo $account_id= $this->driver_model->get_where_column(array('st_id'=>$value->id),'name');
+                                                  // echo $this->account_model->get_where_column(array('id'=>$account_id),'name');
+                                                  ?>
+                                              </td>
                                               <td class="center"><?php echo $value->unit_price;?></td>
                                               <td class="center">
                                                   <a href="<?php echo site_url('stock/transfer_delete/'.$value->stock.'/'.$value->stock_id.'/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></a>
