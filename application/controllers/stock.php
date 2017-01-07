@@ -159,7 +159,9 @@ class stock extends CI_Controller {
 
 		$data['pre_oil_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'pre'));
 
-		$data['fact_oil_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact','buyer_seller_id!='=>''));
+		$data['fact_oilbuy_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact','buy_sell'=>'buy','buyer_seller_id!='=>''));
+		$data['fact_oilsell_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact','buy_sell'=>'sell','buyer_seller_id!='=>''));
+
 		$data['transfer_in']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact','buyer_seller_id'=>0));
 		$data['transfer_out']=$this->oil_model->get_where(array('stock' => $id,'type'=>'fact','buyer_seller_id'=>0));
 		$data['driver_oil_rows']=$this->driver_model->get_where_oil(array('stock_id' => $id,'type'=>'fact'));

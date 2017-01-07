@@ -21,7 +21,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form role="form" action="<?php echo site_url('oil/pre_sell_to_fact_form/popupp'.'/'.$popupp_pre_buy_sell_id.'/'.$remian); ?>" method="post">
+                            <form role="form" action="<?php echo site_url('oil/pre_sell_to_fact_form/template'.'/'.$popupp_pre_buy_sell_id.'/'.$remain); ?>" method="post">
 
                                 <div class="col-md-3 form-group">
                                    

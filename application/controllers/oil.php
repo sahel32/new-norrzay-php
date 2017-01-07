@@ -184,7 +184,6 @@ class oil extends CI_Controller {
 		}
 	public function pre_buy($buy_sell="buy")
 	{
-
 			$data = array(
 				'main_title' => "pre buy",
 				'sub_title' => "pre buy sub title",
@@ -529,7 +528,7 @@ class oil extends CI_Controller {
 			$this->cash_model->insert($extra_cash_information);
 		}
 		if($template=="popupp"){
-			$this->load->$template('oil/pre_buy_to_fact_form', $data);
+			$this->load->template('oil/pre_buy_to_fact_form', $data);
 		}else{
 			redirect('oil/lists_pre_buy');
 		}
