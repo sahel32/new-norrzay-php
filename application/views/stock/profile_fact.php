@@ -133,11 +133,13 @@
                                               <td class="center"><?php
                                                   $this->load->model('oil_model');
                                                  echo  $this->oil_model->get_where_column(array('id'=>$value->parent_id),'unit_price');
-                                                  ?></td>
+                                                  ?>
+                                                <span class="glyphicon glyphicon-usd"></span>
+                                              </td>
                                               <td class="center">
                                                   <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></span></a>
                                                   <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
-                                                  <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="فاکتور پیش خرید" data-placement="top"></span></a>
+                                                  <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="مشاهده فاکتور" data-placement="top"></span></a>
                                               </td>
                                           </tr>
                                       <?php }
@@ -179,7 +181,7 @@
                                               <td class="center"><?php echo $this->account_model->get_name(array('id'=>$value->driver_id));?></td>
                                               <td class="center"><?php echo $value->transit;?></td>
                                               <td class="center">
-                                                  <?php echo $value->amount;?>
+                                                  <?php echo $value->amount;?> تن 
                                               </td>
                                               <td class="center"><?php
                                                   $this->load->model('oil_model');
@@ -190,8 +192,7 @@
                                               <td class="center">
                                                   <a href="<?php echo site_url('stock/driver_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></span></a>
                                                   <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
-                                                  <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-
+                                                  <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="مشاهده فاکتور" data-placement="top"></span></a>
                                               </td>
                                           </tr>
                                       <?php }?>
@@ -207,9 +208,9 @@
                                             <thead>
                                             <tr>
                                                 <th>کد</th>
-                                                <th>کد پیش خرید</th>
+                                                <th>کد پیش فروش</th>
                                                 <th>تاریخ</th>
-                                                <th>فروشنده</th>
+                                                <th>خریدار</th>
                                                 <th>نوع تیل</th>
                                                 <th>تناژ</th>
                                                 <th>فی</th>
@@ -240,11 +241,13 @@
                                                     <td class="center"><?php
                                                         $this->load->model('oil_model');
                                                         echo  $this->oil_model->get_where_column(array('id'=>$value->parent_id),'unit_price');
-                                                        ?></td>
+                                                        ?>
+                                                          <span class="glyphicon glyphicon-usd"></span>
+                                                        </td>
                                                     <td class="center">
                                                         <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></span></a>
                                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
-                                                        <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="فاکتور پیش خرید" data-placement="top"></span></a>
+                                                        <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="مشاهده فاکتور" data-placement="top"></span></a>
                                                     </td>
                                                 </tr>
                                             <?php }
@@ -291,7 +294,7 @@
                                                   echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type');
                                                   ?></td>
                                               <td class="center">
-                                                  <?php echo $value->amount;?>
+                                                  <?php echo $value->amount;?> تن 
                                               </td>
                                               <td><?php
                                                   $this->load->model('stock_model');
@@ -327,7 +330,7 @@
                                                   echo $this->stock_model->get_where_column(array('id'=>$value->stock_id),'oil_type');
                                                   ?></td>
                                               <td class="center">
-                                                  <?php echo $value->amount;?>
+                                                  <?php echo $value->amount;?> تن 
                                               </td>
                                               <td><?php
                                                   $this->load->model('stock_model');

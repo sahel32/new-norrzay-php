@@ -136,33 +136,6 @@ text-align: center;
 font-size: 25px;
 padding-top: 10px;
 }
-.stock{
-    background: #333;
-}
-.safebox{
-    background: #3c763d;
-}
-.reports{
-    background: #AF0000;
-}
-.backup{
-    background: #0078D7;
-}
-.buys{
-    background: #db0630;
-}
-.sells{
-    background: #4d3fb5;
-}
-.accounts{
-    background: #8702A8;
-}
-.debits{
-    background: #b94a00;
-}
-.credits{
-    background: #009688;
-}
 .back-dash {
     padding:20px;
     font-size:20px;
@@ -470,4 +443,43 @@ label{
 }
 .glyphicon-tint{
     color: black;
+}
+.fa-database{
+    color: black;
+}
+.glyphicon-usd{
+    font-size: 12px;
+}
+.glyphicon-shopping-cart{
+    color: blue;
+}
+.glyphicon-tasks{
+    color: #8702A8;
+}
+.stock{
+    background: #333;
+}
+.safebox{
+    background: #3c763d;
+}
+.reports{
+    background: #AF0000;
+}
+.backup{
+    background: #0078D7;
+}
+.buys{
+    background: #db0630;
+}
+.sells{
+    background: #4d3fb5;
+}
+.accounts{
+    background: #8702A8;
+}
+.debits{
+    background: #b94a00;
+}
+.credits{
+    background: #009688;
 }

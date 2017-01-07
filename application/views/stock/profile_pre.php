@@ -115,11 +115,13 @@
                                         ?> تن
                                     </td>
                                     <td class="center"><?php echo $value->car_count;?></td>
-                                    <td class="center"><?php echo $value->unit_price;?></td>
+                                    <td class="center"><?php echo $value->unit_price;?>
+                                        <span class="glyphicon glyphicon-usd"></span>
+                                    </td>
                                     <td class="center">
                                         <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
-                                        <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-cog"></span></a>
+                                        <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="مشاهده فاکتور" data-placement="top"></span></a>
                                     </td>
                                 </tr>
                             <?php }?>
