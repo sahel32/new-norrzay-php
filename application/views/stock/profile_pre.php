@@ -94,8 +94,6 @@
                             <?php
 
                             foreach ($pre_oil_rows as $key => $value) {?>
-
-
                                 <tr class="odd gradeX">
                                     <td><?php echo $value->id;?></td>
                                     <td class="center"><?php
