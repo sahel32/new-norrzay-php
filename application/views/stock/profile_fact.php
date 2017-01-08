@@ -43,19 +43,15 @@
                                                 <td><?php echo $s_value->id;?></td>
                                                 <td><?php echo $s_value->name;?></td>
                                                 <td><?php echo $s_value->oil_type;?></td>
-                                                <?php if($s_value->type=="fact"){ ?>
+                                                <?php
+
+                                                if($s_value->type=="fact"){ ?>
                                                     <td class="center"><?php
                                                         $this->load->model('stock_model');
                                                         echo  $this->stock_model->get_stock_balance_fact($s_value->id);
 
                                                         ?> تن </td>
-                                                <?php  }else{?>
-                                                    <td class="center"><?php
-                                                        $this->load->model('stock_model');
-
-                                                        echo  $this->stock_model->get_stock_balance($s_value->id,$s_value->type);
-                                                        ?></td>
-                                                <?php } ?>
+                                                <?php  } ?>
 
                                                 <td class="center">
 
@@ -96,7 +92,7 @@
                               <div class="tab-pane fade active in" id="buy-list">
                                 <h4></h4>
                                 <div class="table-responsive">
-                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example1">
+                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                       <thead>
                                       <tr>
                                           <th>کد</th>
@@ -150,7 +146,7 @@
                               <div class="tab-pane fade" id="overload">
                                 <h4></h4>
                                 <div class="table-responsive">
-                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example1">
                                       <thead>
                                       <tr>
                                           <th>کد</th>
@@ -203,7 +199,7 @@
                                 <div class="tab-pane fade" id="sell-list">
                                     <h4></h4>
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example1">
+                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example2">
                                             <thead>
                                             <tr>
                                                 <th>کد</th>
@@ -257,7 +253,7 @@
                               <div class="tab-pane fade" id="transfer-list">
                                 <h4></h4>
                                 <div class="table-responsive">
-                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example2">
+                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example3">
                                       <thead>
                                       <tr>
                                           <th>کد</th>

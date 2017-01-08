@@ -37,6 +37,95 @@ class balance extends CI_Controller {
         $this->load->template("balance/get_total_balance", $data);
 
 }
+    
+    public function account_report(){
+        $this->form_validation->set_rules('firstdate' , null, 'required',
+            array(
+                'required'      => 'You have not provided name in name field'
+            )
+        );
+        $this->form_validation->set_rules('id' , null, 'required',
+            array(
+                'required'      => 'You have not provided name in name field'
+            )
+        );
+        if($this->form_validation->run()==false){
+            $this->load->template("balance/account_report");
+        }else{
+
+            $stock_type=$this->stock_model->get_where_column(array('id'=>$this->db->escape_str($this->input->post("id"))),'type');
+            if($stock_type=="fact"){
+            if($this->db->escape_str($this->input->post("type"))=="stock"){
+
+                $data['fact_oilbuy_rows']=$this->oil_model->get_where(
+                  array(
+                      'stock_id'=>$this->db->escape_str($this->input->post("id")),
+                      'stock'=>0,
+                      'type'=>'fact',
+                      'buy_sell'=>'buy',
+                      'f_date>='=>$this->db->escape_str($this->input->post("firstdate")),
+                      'f_date<='=>$this->db->escape_str($this->input->post("firstdate"))
+                      ));
+
+                $data['fact_oilsell_rows']=$this->oil_model->get_where(
+                    array(
+                        'stock_id'=>$this->db->escape_str($this->input->post("id")),
+                        'stock'=>0,
+                        'type'=>'fact',
+                        'buy_sell'=>'sell',
+                        'f_date>='=>$this->db->escape_str($this->input->post("firstdate")),
+                        'f_date<='=>$this->db->escape_str($this->input->post("firstdate"))
+                    ));
+
+                $data['transfer_in']=$this->oil_model->get_where(
+                    array(
+                        'stock_id'=>$this->db->escape_str($this->input->post("id")),
+                        'buyer_seller_id'=>0,
+                        'type'=>'fact',
+                        'f_date>='=>$this->db->escape_str($this->input->post("firstdate")),
+                        'f_date<='=>$this->db->escape_str($this->input->post("firstdate"))));
+
+                $data['transfer_out']=$this->oil_model->get_where(
+                    array(
+                        'stock'=>$this->db->escape_str($this->input->post("id")),
+                        'type'=>'fact',
+                        'f_date>='=>$this->db->escape_str($this->input->post("firstdate")),
+                        'f_date<='=>$this->db->escape_str($this->input->post("firstdate"))));
+
+                $data['stock_rows']=$this->stock_model->get_where(
+                    array('id'=>$this->db->escape_str($this->input->post("id"))));
+
+                $data['driver_oil_rows']=$this->driver_model->get_where_oil(
+                    array(
+                        'stock_id' => $this->db->escape_str($this->input->post("id")),
+                        'type'=>'fact',
+                        'f_date>='=>$this->db->escape_str($this->input->post("firstdate")),
+                        'f_date<='=>$this->db->escape_str($this->input->post("firstdate"))));
+                $this->load->template("balance/stock_account_report_fact",$data);
+
+           /* }elseif ($this->db->escape_str($this->input->post("type"))=="oil"){
+
+            }elseif ($this->db->escape_str($this->input->post("type"))=="account"){*/
+
+            }
+                }else{
+                $data['pre_oil_rows']=$this->oil_model->get_where(
+                    array(
+                        'stock_id' =>$this->db->escape_str($this->input->post("id")),
+                        'type'=>'pre',
+                        'f_date>='=>$this->db->escape_str($this->input->post("firstdate")),
+                        'f_date<='=>$this->db->escape_str($this->input->post("firstdate"))));
+                $data['stock_rows']=$this->stock_model->get_where(
+                    array('id'=>$this->db->escape_str($this->input->post("id"))));
+            $this->load->template("balance/stock_account_report_pre",$data);
+            }
+
+        if ($this->db->escape_str($this->input->post("type"))=="account"){
+            
+        }
+        }
+
+    }
     public function get_single_balance($id,$type){
         $data['title']="dashboard";
         switch ($type){
@@ -68,13 +157,8 @@ class balance extends CI_Controller {
     }
     function get_total_balance_result(){
 
-        //$datepicker=$_POST['datepicker'];
         $data['stock_rows']=$this->stock_model->get();
-
-            $data['account_rows']=$this->account_model->order_by('type');
-
-
-
+        $data['account_rows']=$this->account_model->order_by('type');
 
         $this->load->popupp('balance/get_total_balance_result',$data);
     }

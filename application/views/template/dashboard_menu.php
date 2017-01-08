@@ -58,6 +58,15 @@
                               <li>
                                   <a href="<?php  echo site_url('balance/get_total_balance');?>">گرفتن گزارش کلی</a>
                               </li>
+                              <li>
+                                  <a href="<?php  echo site_url('balance/account_report');?>">گزارش مالی حساب ها</a>
+                              </li>
+                              <li>
+                                  <a href="<?php  echo site_url('balance/get_total_balance');?>">گزارش گدام ها</a>
+                              </li>
+                              <li>
+                                  <a href="<?php  echo site_url('balance/get_total_balance');?>">گزارش تیل ها</a>
+                              </li>
                           </ul>
                     </li>
                     <li  >

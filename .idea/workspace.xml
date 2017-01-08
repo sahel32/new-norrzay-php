@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbb75546-40b7-4d59-86d7-7c61b75aec71" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/balance/account_report.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/balance/ajax_account_report.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/balance/stock_account_report_fact.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/balance/stock_account_report_pre.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/.htaccess" afterPath="$PROJECT_DIR$/application/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/oil.php" afterPath="$PROJECT_DIR$/application/controllers/oil.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/stock.php" afterPath="$PROJECT_DIR$/application/controllers/stock.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/driver_model.php" afterPath="$PROJECT_DIR$/application/models/driver_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php" afterPath="$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php" afterPath="$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/balance.php" afterPath="$PROJECT_DIR$/application/controllers/balance.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/stock_model.php" afterPath="$PROJECT_DIR$/application/models/stock_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/stock/profile_fact.php" afterPath="$PROJECT_DIR$/application/views/stock/profile_fact.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/stock/profile_pre.php" afterPath="$PROJECT_DIR$/application/views/stock/profile_pre.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/template/dashboard_menu.php" afterPath="$PROJECT_DIR$/application/views/template/dashboard_menu.php" />
     </list>
     <ignored path="new-norrzay-php.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,75 +33,81 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="oil.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/oil.php">
+      <file leaf-file-name="dashboard_menu.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/template/dashboard_menu.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="300" column="104" selection-start-line="300" selection-start-column="104" selection-end-line="300" selection-end-column="104" />
-              <folding>
-                <element signature="n#lists_pre_buy#0;n#oil#0;n#!!top" expanded="false" />
-                <element signature="n#pre_sell#0;n#oil#0;n#!!top" expanded="false" />
-                <element signature="n#pre_buy_sell_balance#0;n#oil#0;n#!!top" expanded="false" />
-                <element signature="n#pre_sell_to_fact_form#0;n#oil#0;n#!!top" expanded="false" />
-                <element signature="n#pre_buy_to_fact_form#0;n#oil#0;n#!!top" expanded="false" />
-                <element signature="n#sell#0;n#oil#0;n#!!top" expanded="false" />
-                <element signature="n#fact_buy#0;n#oil#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pre_sell_to_fact_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+            <state relative-caret-position="357">
+              <caret line="61" column="87" selection-start-line="61" selection-start-column="87" selection-end-line="61" selection-end-column="87" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile_fact.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/stock/profile_fact.php">
+      <file leaf-file-name="balance.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/controllers/balance.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="232" column="52" selection-start-line="232" selection-start-column="52" selection-end-line="235" selection-end-column="63" />
+            <state relative-caret-position="354">
+              <caret line="123" column="12" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="12" />
               <folding>
-                <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
+                <element signature="n#get_single_balance#0;n#balance#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="account_model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/account_model.php">
+      <file leaf-file-name="stock_model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/stock_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="69" column="29" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="29" />
+            <state relative-caret-position="274">
+              <caret line="118" column="24" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
               <folding>
-                <marker date="1483739235973" expanded="true" signature="2415:2492" placeholder="select * fro... account" />
+                <element signature="n#get#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#get_group_by#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#get_where_column#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#get_remain_oil#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#get_stock_balance_fact#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#get_stock_balance_pre#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#get_stock_balance_pre_sell#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#get_stock_balance_pre_buy#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#get_where#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#get_or_where#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#delete#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#insert#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#update#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#check_email_exist#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#check_empty#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#last_id#0;n#stock_model#0;n#!!top" expanded="false" />
+                <element signature="n#last_row#0;n#stock_model#0;n#!!top" expanded="false" />
+                <marker date="1483826967089" expanded="true" signature="1171:1430" placeholder="SELECT (buy SUM" />
+                <marker date="1483826967089" expanded="true" signature="1211:1313" placeholder="SELECT SUM(a... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="1329:1418" placeholder="SELECT amoun... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="1617:2449" placeholder="SELECT (buy-... driver" />
+                <marker date="1483826967089" expanded="true" signature="1651:2230" placeholder="SELECT (driv... IFNULL" />
+                <marker date="1483826967089" expanded="true" signature="1685:2035" placeholder="SELECT IFNUL... stock" />
+                <marker date="1483826967089" expanded="true" signature="2046:2223" placeholder="SELECT IFNUL... driver_transaction" />
+                <marker date="1483826967089" expanded="true" signature="2242:2442" placeholder="SELECT IFNUL... stock" />
+                <marker date="1483826967089" expanded="true" signature="2638:3470" placeholder="SELECT (buy-... driver" />
+                <marker date="1483826967089" expanded="true" signature="2672:3251" placeholder="SELECT (driv... IFNULL" />
+                <marker date="1483826967089" expanded="true" signature="2706:3056" placeholder="SELECT IFNUL... stock" />
+                <marker date="1483826967089" expanded="true" signature="3067:3244" placeholder="SELECT IFNUL... driver_transaction" />
+                <marker date="1483826967089" expanded="true" signature="3263:3463" placeholder="SELECT IFNUL... stock" />
+                <marker date="1483826967089" expanded="true" signature="3662:4366" placeholder="SELECT (buy_... IFNULL" />
+                <marker date="1483826967089" expanded="true" signature="3702:3892" placeholder="SELECT IFNUL... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="3784:3891" placeholder="SELECT id FR... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="3905:4356" placeholder="SELECT IFNUL... IFNULL" />
+                <marker date="1483826967089" expanded="true" signature="3952:4144" placeholder="SELECT IFNUL... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="4080:4143" placeholder="SELECT id FR... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="4160:4349" placeholder="SELECT IFNUL... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="4285:4348" placeholder="SELECT id FR... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="4578:5077" placeholder="SELECT (pres... IFNULL" />
+                <marker date="1483826967089" expanded="true" signature="4634:4779" placeholder="SELECT IFNUL... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="4790:5070" placeholder="SELECT IFNUL... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="4943:5069" placeholder="SELECT id FR... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="5262:5832" placeholder="SELECT (pres... IFNULL" />
+                <marker date="1483826967089" expanded="true" signature="5308:5493" placeholder="SELECT IFNUL... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="5504:5825" placeholder="SELECT IFNUL... stock_transaction" />
+                <marker date="1483826967089" expanded="true" signature="5668:5805" placeholder="SELECT id FR... stock_transaction" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cash_model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/cash_model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="34" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile_pre.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/stock/profile_pre.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1853">
-              <caret line="109" column="47" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -113,21 +120,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/views/balance/ajax_get_single_balance.php" />
-        <option value="$PROJECT_DIR$/application/views/balance/get_single_balance_result.php" />
-        <option value="$PROJECT_DIR$/assets/js/bootstrap-datepicker/bootstrap-datepicker.fa.js" />
-        <option value="$PROJECT_DIR$/application/models/cash_model.php" />
-        <option value="$PROJECT_DIR$/application/views/balance/ajax_get_total_balance.php" />
-        <option value="$PROJECT_DIR$/application/views/balance/get_total_balance.php" />
-        <option value="$PROJECT_DIR$/application/controllers/balance.php" />
         <option value="$PROJECT_DIR$/application/views/balance/get_total_balance_result.php" />
         <option value="$PROJECT_DIR$/application/views/cash/credit_debit.php" />
         <option value="$PROJECT_DIR$/application/views/balance/get_single_balance.php" />
         <option value="$PROJECT_DIR$/application/models/dealer_model.php" />
         <option value="$PROJECT_DIR$/application/config/autoload.php" />
         <option value="$PROJECT_DIR$/application/views/cash/debit_deal.php" />
-        <option value="$PROJECT_DIR$/application/views/template/dashboard_menu.php" />
-        <option value="$PROJECT_DIR$/application/models/stock_model.php" />
         <option value="$PROJECT_DIR$/application/views/oil/profile.php" />
         <option value="$PROJECT_DIR$/application/views/oil/pre_sell_form.php" />
         <option value="$PROJECT_DIR$/application/models/oil_model.php" />
@@ -160,10 +158,19 @@
         <option value="$PROJECT_DIR$/application/controllers/oil.php" />
         <option value="$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php" />
         <option value="$PROJECT_DIR$/application/views/oil/pre_sell_to_fact_form.php" />
-        <option value="$PROJECT_DIR$/application/controllers/stock.php" />
         <option value="$PROJECT_DIR$/application/models/account_model.php" />
-        <option value="$PROJECT_DIR$/application/views/stock/profile_fact.php" />
+        <option value="$PROJECT_DIR$/application/views/balance/account_balance.php" />
+        <option value="$PROJECT_DIR$/application/views/template/dashboard_menu.php" />
+        <option value="$PROJECT_DIR$/application/views/balance/stock_account_report.php" />
         <option value="$PROJECT_DIR$/application/views/stock/profile_pre.php" />
+        <option value="$PROJECT_DIR$/application/models/stock_model.php" />
+        <option value="$PROJECT_DIR$/application/controllers/stock.php" />
+        <option value="$PROJECT_DIR$/application/views/stock/profile_fact.php" />
+        <option value="$PROJECT_DIR$/application/views/balance/ajax_account_report.php" />
+        <option value="$PROJECT_DIR$/application/views/balance/account_report.php" />
+        <option value="$PROJECT_DIR$/application/views/balance/stock_account_report_fact.php" />
+        <option value="$PROJECT_DIR$/application/views/balance/stock_account_report_pre.php" />
+        <option value="$PROJECT_DIR$/application/controllers/balance.php" />
       </list>
     </option>
   </component>
@@ -208,6 +215,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -277,6 +285,28 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="stock" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -300,6 +330,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="oil" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="new-norrzay-php" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="balance" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -341,7 +393,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -411,18 +462,19 @@
       <workItem from="1483549390848" duration="3376000" />
       <workItem from="1483650579386" duration="4907000" />
       <workItem from="1483726404389" duration="7352000" />
+      <workItem from="1483819387412" duration="15243000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137630000" />
+    <option name="totallyTimeSpent" value="152873000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2602118" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26399395" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -465,69 +517,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/controllers/balance.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="71" column="54" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/template/dashboard_menu.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="77" selection-start-line="22" selection-start-column="77" selection-end-line="22" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/stock_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/cash/credit_debit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/cash/debit_deal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/balance/get_single_balance.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="80" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/oil/profile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/oil/pre_sell_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/check/ajax_get_check_info.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="59" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/core/MY_Loader.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -722,7 +711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -730,7 +718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,17 +733,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
           <caret line="37" column="75" selection-start-line="37" selection-start-column="69" selection-end-line="37" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="108" selection-start-line="23" selection-start-column="108" selection-end-line="23" selection-end-column="108" />
-          <folding>
-            <element signature="e#2754#2896#0#HTML" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -764,7 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="46" column="113" selection-start-line="46" selection-start-column="113" selection-end-line="46" selection-end-column="113" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -772,7 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
           <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,7 +760,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/oil.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
+        <state relative-caret-position="2873">
           <caret line="300" column="104" selection-start-line="300" selection-start-column="104" selection-end-line="300" selection-end-column="104" />
           <folding>
             <element signature="n#lists_pre_buy#0;n#oil#0;n#!!top" expanded="false" />
@@ -802,7 +776,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/cash_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
+        <state relative-caret-position="493">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="34" selection-end-column="5" />
           <folding />
         </state>
@@ -810,7 +784,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/account_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="1173">
           <caret line="69" column="29" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="29" />
           <folding>
             <marker date="1483739235973" expanded="true" signature="2415:2492" placeholder="select * fro... account" />
@@ -822,14 +796,152 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="523">
           <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="101" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/oil/pre_buy_to_fact_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="104" column="32" selection-start-line="104" selection-start-column="32" selection-end-line="116" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/balance/get_total_balance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/template/dashboard_menu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="61" column="87" selection-start-line="61" selection-start-column="87" selection-end-line="61" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/stock_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="118" column="24" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
+          <folding>
+            <element signature="n#get#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#get_group_by#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#get_where_column#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#get_remain_oil#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#get_stock_balance_fact#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#get_stock_balance_pre#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#get_stock_balance_pre_sell#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#get_stock_balance_pre_buy#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#get_where#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#get_or_where#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#delete#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#insert#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#update#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#check_email_exist#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#check_empty#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#last_id#0;n#stock_model#0;n#!!top" expanded="false" />
+            <element signature="n#last_row#0;n#stock_model#0;n#!!top" expanded="false" />
+            <marker date="1483826967089" expanded="true" signature="1171:1430" placeholder="SELECT (buy SUM" />
+            <marker date="1483826967089" expanded="true" signature="1211:1313" placeholder="SELECT SUM(a... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="1329:1418" placeholder="SELECT amoun... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="1617:2449" placeholder="SELECT (buy-... driver" />
+            <marker date="1483826967089" expanded="true" signature="1651:2230" placeholder="SELECT (driv... IFNULL" />
+            <marker date="1483826967089" expanded="true" signature="1685:2035" placeholder="SELECT IFNUL... stock" />
+            <marker date="1483826967089" expanded="true" signature="2046:2223" placeholder="SELECT IFNUL... driver_transaction" />
+            <marker date="1483826967089" expanded="true" signature="2242:2442" placeholder="SELECT IFNUL... stock" />
+            <marker date="1483826967089" expanded="true" signature="2638:3470" placeholder="SELECT (buy-... driver" />
+            <marker date="1483826967089" expanded="true" signature="2672:3251" placeholder="SELECT (driv... IFNULL" />
+            <marker date="1483826967089" expanded="true" signature="2706:3056" placeholder="SELECT IFNUL... stock" />
+            <marker date="1483826967089" expanded="true" signature="3067:3244" placeholder="SELECT IFNUL... driver_transaction" />
+            <marker date="1483826967089" expanded="true" signature="3263:3463" placeholder="SELECT IFNUL... stock" />
+            <marker date="1483826967089" expanded="true" signature="3662:4366" placeholder="SELECT (buy_... IFNULL" />
+            <marker date="1483826967089" expanded="true" signature="3702:3892" placeholder="SELECT IFNUL... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="3784:3891" placeholder="SELECT id FR... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="3905:4356" placeholder="SELECT IFNUL... IFNULL" />
+            <marker date="1483826967089" expanded="true" signature="3952:4144" placeholder="SELECT IFNUL... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="4080:4143" placeholder="SELECT id FR... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="4160:4349" placeholder="SELECT IFNUL... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="4285:4348" placeholder="SELECT id FR... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="4578:5077" placeholder="SELECT (pres... IFNULL" />
+            <marker date="1483826967089" expanded="true" signature="4634:4779" placeholder="SELECT IFNUL... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="4790:5070" placeholder="SELECT IFNUL... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="4943:5069" placeholder="SELECT id FR... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="5262:5832" placeholder="SELECT (pres... IFNULL" />
+            <marker date="1483826967089" expanded="true" signature="5308:5493" placeholder="SELECT IFNUL... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="5504:5825" placeholder="SELECT IFNUL... stock_transaction" />
+            <marker date="1483826967089" expanded="true" signature="5668:5805" placeholder="SELECT id FR... stock_transaction" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/stock/profile_fact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="255" column="119" selection-start-line="255" selection-start-column="119" selection-end-line="255" selection-end-column="119" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/balance/ajax_get_total_balance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/balance/account_report.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="62" column="69" selection-start-line="62" selection-start-column="69" selection-end-line="62" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/balance/ajax_account_report.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="49" column="64" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/balance/stock_account_report_fact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-221">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="0" selection-end-line="68" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/balance/stock_account_report_pre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/stock/profile_pre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="92" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="154" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/stock.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="161" column="31" selection-start-line="161" selection-start-column="15" selection-end-line="161" selection-end-column="31" />
+        <state relative-caret-position="187">
+          <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="159" selection-end-column="98" />
           <folding>
             <element signature="n#add#0;n#stock#0;n#!!top" expanded="false" />
             <element signature="n#lists#0;n#stock#0;n#!!top" expanded="false" />
@@ -837,22 +949,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/stock/profile_fact.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/balance.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="232" column="52" selection-start-line="232" selection-start-column="52" selection-end-line="235" selection-end-column="63" />
+        <state relative-caret-position="354">
+          <caret line="123" column="12" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="12" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="false" />
+            <element signature="n#get_single_balance#0;n#balance#0;n#!!top" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/stock/profile_pre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1853">
-          <caret line="109" column="47" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
