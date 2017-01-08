@@ -40,11 +40,11 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="<?php echo site_url('balance/account_report'); ?>" method="post">
-                                 <div class="col-md-3 form-group">
-                                     <lable>از این تاریخ</lable>
-                                     <input type="text" id="datepicker" name="firstdate" class="form-control">
-                                 </div>
+                            <form action="<?php echo site_url('balance/oil_report'); ?>" method="post">
+                                <div class="col-md-3 form-group">
+                                    <lable>از این تاریخ</lable>
+                                    <input type="text" id="datepicker" name="firstdate" class="form-control">
+                                </div>
                                 <div class="col-md-3 form-group">
                                     <lable>الی تاریخ</lable>
                                     <input type="text" id="datepicker1" name="seconddate" class="form-control">
@@ -52,17 +52,13 @@
                                 <div class="col-md-3 form-group">
                                     <label>گزراش از :</label>
                                     <select class="form-control" name="type" >
-                                        <option value="stock">گدام ها</option>
+
                                         <option value="prebuy">تیل های پیش خرید</option>
                                         <option value="presell">تیل های پیش فروش</option>
                                         <option value="sell">تیل های فروخته شده</option>
                                         <option value="buy">تیل های خریداری شده</option>
-                                        <option value="account">حساب ها</option>
+                                       
                                     </select>
-                                </div>
-                                <div class="col-md-3 form-group">
-                                    <lable>ایدی مورد نظر</lable>
-                                    <input type="text"  name="id" class="form-control">
                                 </div>
                                 <div class="col-md-4 gaps">
                                     <!--<button type="button" class="btn btn-default pull-left" id="get_total_balance"

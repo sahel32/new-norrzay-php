@@ -39,6 +39,11 @@ class balance extends CI_Controller {
 }
     
     public function account_report(){
+
+        $id=$this->db->escape_str($this->input->post("id"));
+        $type=$this->db->escape_str($this->input->post("type"));
+        $firstdate=$this->db->escape_str($this->input->post("firstdate"));
+        $seconddate=$this->db->escape_str($this->input->post("seconddate"));
         $this->form_validation->set_rules('firstdate' , null, 'required',
             array(
                 'required'      => 'You have not provided name in name field'
@@ -53,9 +58,9 @@ class balance extends CI_Controller {
             $this->load->template("balance/account_report");
         }else{
 
-            $stock_type=$this->stock_model->get_where_column(array('id'=>$this->db->escape_str($this->input->post("id"))),'type');
-            if($stock_type=="fact"){
             if($this->db->escape_str($this->input->post("type"))=="stock"){
+                $stock_type=$this->stock_model->get_where_column(array('id'=>$id),'type');
+            if($stock_type=="fact"){
 
                 $data['fact_oilbuy_rows']=$this->oil_model->get_where(
                   array(
@@ -103,11 +108,7 @@ class balance extends CI_Controller {
                         'f_date<='=>$this->db->escape_str($this->input->post("firstdate"))));
                 $this->load->template("balance/stock_account_report_fact",$data);
 
-           /* }elseif ($this->db->escape_str($this->input->post("type"))=="oil"){
 
-            }elseif ($this->db->escape_str($this->input->post("type"))=="account"){*/
-
-            }
                 }else{
                 $data['pre_oil_rows']=$this->oil_model->get_where(
                     array(
@@ -118,11 +119,198 @@ class balance extends CI_Controller {
                 $data['stock_rows']=$this->stock_model->get_where(
                     array('id'=>$this->db->escape_str($this->input->post("id"))));
             $this->load->template("balance/stock_account_report_pre",$data);
+            }}
+
+            if ($type=="account"){
+                $account_type=$this->account_model->get_where_column(array('id'=>$id),'type');
+                if($account_type=="driver"){
+                    $data['driver_oil_rows']=$this->driver_model->get_where_oil(array('driver_transaction.driver_id' => $id));
+
+                    $data['account_rows'] = $this->account_model->get_where(array('id' => $id));
+                    $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
+
+                    $this->load->template('accounts/driver_profile',$data);
+                }
+
+                if($account_type=="exchanger"){
+                    $data['type_rows']=$this->cash_model->group_by(array('account_id'=>$id),'type');
+                    $data['account_rows']=$this->account_model->get_where(array('id'=>$id));
+                    $data['exchanger_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'account'));
+                    $data['cash_type_rows']=$this->cash_model->group_by(array('account_id' => $id),'type');
+
+                    $this->load->template('accounts/exchanger_profile',$data);
+                }
+
+                if($account_type=="seller"){
+                    $data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
+
+                    $data['account_rows'] = $this->account_model->get_where(array('id' => $id));
+                    $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
+                    $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
+
+                    $this->load->template('accounts/seller_profile',$data);
+                }
+                if($account_type=="customer"){
+
+                    $data['account_rows'] = $this->account_model->get_where(array('id' => $id));
+                    $data['cash_rows']=$this->cash_model->get_where(array('account_id' => $id));
+                    $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
+                    $data['all_debit_credit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                        ));
+                    $data['pre_buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
+                    $data['pre_sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'pre'));
+                    $data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'fact'));
+                    $data['sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'fact'));
+                    $this->load->template('accounts/customer_profile',$data);
+                }
+
+                if($account_type=="stuff"){
+                    $data['account_rows'] = $this->account_model->get_where(array('id' => $id));
+                    $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
+                    $data['all_debit_credit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                        ));
+
+                    $this->load->template('accounts/stuff_profile',$data);
+                }
+
+                if($account_type=="dealer"){
+                    $data['all_debit_credit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                            ));
+
+                    $data['type_rows']=$this->cash_model->group_by(array('account_id'=>$id),'type');
+                    $data['account_rows']=$this->account_model->get_where(array('id'=>$id));
+                    $data['exchanger_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'account'));
+                    $data['cash_type_rows']=$this->cash_model->group_by(array('account_id' => $id),'type');
+
+                    $this->load->template('balance/dealer_profile',$data);
+                }
             }
 
-        if ($this->db->escape_str($this->input->post("type"))=="account"){
-            
+            if ($type=="prebuy"){
+                $data['oil_rows']=$this->oil_model->get_where(
+                    array(
+                        'type' => 'pre',
+                        'buyer_seller_id'=>$id,
+                        'buy_sell'=>'buy',
+                        'f_date>='=>$firstdate,
+                        'f_date<='=>$seconddate
+                    ));
+                $this->load->template("balance/prebuy_report",$data);
+            }
+
+            if ($type=="presell"){
+                $data['oil_rows']=$this->oil_model->get_where(
+                    array(
+                        'type' => 'pre',
+                        'buyer_seller_id'=>$id,
+                        'buy_sell'=>'sell',
+                        'f_date>='=>$firstdate,
+                        'f_date<='=>$seconddate
+                    ));
+                $this->load->template("balance/presell_report",$data);
+            }
+
+            if ($type=="buy"){
+                $data['fact_oilbuy_rows']=$this->oil_model->get_where(
+                    array(
+                        'type'=>'fact',
+                        'buyer_seller_id'=>$id,
+                        'buy_sell'=>'buy',
+                        'stock'=>0,
+                        'f_date>='=>$firstdate,
+                        'f_date<='=>$seconddate
+                    ));
+                $this->load->template("balance/buy_report",$data);
+            }
+
+            if ($type=="sell"){
+                $data['fact_oilsell_rows']=$this->oil_model->get_where(
+                    array(
+                        'type'=>'fact',
+                        'buy_sell'=>'sell',
+                        'buyer_seller_id'=>$id,
+                        'stock'=>0,
+                        'f_date>='=>$firstdate,
+                        'f_date<='=>$seconddate
+                    ));
+                $this->load->template("balance/sell_report",$data);
+            }
         }
+
+    }
+    public function oil_report(){
+
+        $id=$this->db->escape_str($this->input->post("id"));
+        $type=$this->db->escape_str($this->input->post("type"));
+        $firstdate=$this->db->escape_str($this->input->post("firstdate"));
+        $seconddate=$this->db->escape_str($this->input->post("seconddate"));
+        $this->form_validation->set_rules('firstdate' , null, 'required',
+            array(
+                'required'      => 'You have not provided name in name field'
+            )
+        );
+
+        if($this->form_validation->run()==false){
+            $this->load->template("balance/oil_report");
+        }else{
+
+            if ($type=="prebuy"){
+                $data['oil_rows']=$this->oil_model->get_where(
+                    array(
+                        'type' => 'pre',
+                        'buy_sell'=>'buy',
+                        'f_date>='=>$firstdate,
+                        'f_date<='=>$seconddate
+                    ));
+                $this->load->template("balance/prebuy_report",$data);
+            }
+
+            if ($type=="presell"){
+                $data['oil_rows']=$this->oil_model->get_where(
+                    array(
+                        'type' => 'pre',
+                        'buy_sell'=>'sell',
+                        'f_date>='=>$firstdate,
+                        'f_date<='=>$seconddate
+                    ));
+                $this->load->template("balance/presell_report",$data);
+            }
+
+            if ($type=="buy"){
+                $data['fact_oilbuy_rows']=$this->oil_model->get_where(
+                    array(
+                        'type'=>'fact',
+                        'buy_sell'=>'buy',
+                        'stock'=>0,
+                        'f_date>='=>$firstdate,
+                        'f_date<='=>$seconddate
+                    ));
+                $this->load->template("balance/buy_report",$data);
+            }
+
+            if ($type=="sell"){
+                $data['fact_oilsell_rows']=$this->oil_model->get_where(
+                    array(
+                        'type'=>'fact',
+                        'buy_sell'=>'sell',
+                        'stock'=>0,
+                        'f_date>='=>$firstdate,
+                        'f_date<='=>$seconddate
+                    ));
+                $this->load->template("balance/sell_report",$data);
+            }
         }
 
     }
