@@ -49,6 +49,11 @@ class balance extends CI_Controller {
                 'required'      => 'You have not provided name in name field'
             )
         );
+        $this->form_validation->set_rules('seconddate' , null, 'required',
+            array(
+                'required'      => 'You have not provided name in name field'
+            )
+        );
         $this->form_validation->set_rules('id' , null, 'required',
             array(
                 'required'      => 'You have not provided name in name field'
@@ -497,13 +502,7 @@ class balance extends CI_Controller {
                 );
             }
             $id=  $this->cash_model->insert($cash_information);
-
-
-
-
             //$account_id=$this->balance_model->insert($cantact_info);
-
-
             $data['fu_page_title']="Login Form";
 
             redirect($_SESSION['url']);
@@ -516,17 +515,6 @@ class balance extends CI_Controller {
 
     public function profile($id=0,$type){
         $data['fu_page_title']="Login Form";
-        /*  $data['account_rows']=$this->cash_model->get_balance_credit_debit_single($id);
-          $data['balance_rows']=$this->account_model->get_where(array('id' => $id ,'type' => 'account'));
-		$data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
-		$data['sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'pre'));
-		$data['cash_rows']=$this->cash_model->get_where(array('account_id' => $id));*/
-        //$data['debit']=$this->cash_model->sum_where(array('account_id' => $id, 'transaction_type'=>'debit'));
-        //$data['credit']=$this->cash_model->sum_where(array('account_id' => $id, 'transaction_type'=>'credit'));
-        //$data['balance']=$this->cash_model->get_balance($id);
-
-        //	$this->load->template('accounts/profile',$data);
-
         if($type=="driver"){
             $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
             $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
@@ -579,4 +567,71 @@ class balance extends CI_Controller {
 
         //$this->load->template('accounts/profile',$data);
     }
+
+    public function load_accounts($type){
+
+        if($type=="stock"){
+            $stock=$this->stock_model->get_where(array('type'=>'fact'));
+            echo "<lable>گدام ها</lable>
+                  <select class='form-control' name='id'>";
+
+            foreach ($stock as $key => $value){
+                echo "<option value='".$value->id."'>".$value->name."</option>";
+            }
+
+            echo "</select>";
+        }else if($type=="account"){
+            $stock=$this->account_model->group_by(array(),'type');
+            echo "<lable>حساب ها</lable>
+                  <select class='form-control' id='account'>";
+
+            foreach ($stock as $key => $value){
+                echo "<option value='".$value->type."'>";
+                    switch ($value->type){
+                        case "seller";
+                            echo "فروشنده";
+                            break;
+                        case "customer";
+                            echo "مشتری";
+                            break;
+                        case "exchanger";
+                            echo "صراف";
+                            break;
+                        case "dealer";
+                            echo "کمیشن کار";
+                            break;
+                        case "driver";
+                            echo "راننده";
+                            break;
+                        case "stuff";
+                            echo "کارمند";
+                            break;
+                    }
+                    echo "</option>";
+            }
+
+            echo "</select>";
+        }else{
+            echo "<lable>نمبر فاکتور </lable>";
+            ?>
+        <input type='text'  value='<?php echo set_value('id'); ?>' name='id' class='form-control'/>
+        <span class="help-inline"><?php echo (form_error('id') ) ? form_error('id') : "<span class='red'>*</span>"; ?></span>
+            <?php
+
+
+}
+
+    }
+    public function account($type){
+
+            $stock=$this->account_model->get_where(array('type'=>$type));
+            echo "<lable>ایدی مورد نظر</lable>
+                  <select class='form-control' name='id' id='accounts'>";
+
+            foreach ($stock as $key => $value){
+                echo "<option value='".$value->id."'>".$value->name." ".$value->lname."</option>";
+            }
+
+            echo "</select>";
+        }
 }
