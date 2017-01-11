@@ -456,6 +456,10 @@ label{
 .glyphicon-tasks{
     color: #8702A8;
 }
+.fa-money{
+    color: #0078D7;
+    margin-top: -5px;
+}
 .stock{
     background: #333;
 }
