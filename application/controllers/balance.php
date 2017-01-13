@@ -321,6 +321,10 @@ class balance extends CI_Controller {
     }
     public function get_single_balance($id,$type){
         $data['title']="dashboard";
+        $data['dalar']='';
+        $data['af']='';
+        $data['ir']='';
+        $data['eur']='';
         switch ($type){
             case "stuff":
                 $type=array('af'=>'افغانی');
@@ -352,6 +356,10 @@ class balance extends CI_Controller {
 
         $data['stock_rows']=$this->stock_model->get();
         $data['account_rows']=$this->account_model->order_by('type');
+        $data['dalar']='';
+        $data['af']='';
+        $data['ir']='';
+        $data['eur']='';
 
         $this->load->popupp('balance/get_total_balance_result',$data);
     }

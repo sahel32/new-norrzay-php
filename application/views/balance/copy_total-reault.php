@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-md-12">
         <h2>پروفایل مشتری ها </h2>
@@ -17,7 +16,6 @@
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
-                        <caption> <h2> حساب ها به ترتیب </h2></caption>
                         <thead>
                         <tr>
                             <th>کد</th>
@@ -80,19 +78,15 @@
                                         switch ($bvalue->type) {
                                             case "usa";
                                                 echo "دالر";
-                                                $dalar+=$remain;
                                                 break;
                                             case "af";
                                                 echo "افغانی";
-                                                $af+=$remain;
                                                 break;
                                             case "ir";
                                                 echo "تومان";
-                                                $ir+=$remain;
                                                 break;
                                             case "eur";
                                                 echo "یرو";
-                                                $eur+=$remain;
                                                 break;
                                             default:
                                                 echo "عرض های دیکه ";
@@ -154,19 +148,15 @@
                                                 switch ($type_value->type) {
                                                     case "usa";
                                                         echo "دالر";
-                                                        $dalar+=$remain;
                                                         break;
                                                     case "af";
                                                         echo "افغانی";
-                                                        $af+=$remain;
                                                         break;
                                                     case "ir";
                                                         echo "تومان";
-                                                        $ir+=$remain;
                                                         break;
                                                     case "eur";
                                                         echo "یرو";
-                                                        $eur+=$remain;
                                                         break;
                                                     default:
                                                         echo "عرض های دیکه ";
@@ -184,55 +174,7 @@
                                 }
                             }
                         }
-                        ?>
-                        </tbody>
-                    </table>
-                    <table class="table table-striped table-bordered table-hover">
-                        <caption> <h2> جمع کل همه حساب ها </h2></caption>
-                        <thead>
-                        <tr class="money-amount">
-                            <th class='dalar'>دلار</th>
-                            <th class='af'>افغانی</th>
-                            <th class='ir'>تومان</th>
-                            <th class='eur'>یرو</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        echo "<tr class='money'>
-                                   <th class='dalar'>$dalar</th>
-                                  <th class='af'>$af</th>
-                                  <th class='ir'>$ir</th>
-                                  <th class='eur'>$eur</th>
-                                  </tr>";
-                        ?>
-                        <tr class="input">
-                            <th>
-                                <input name="dalar" id="dalar">
-                            </th>
-                            <th>
-                                <input name="af" id="af">
-                            </th>
-                            <th>
-                                <input name="ir" id="ir">
-                            </th>
-                            <th>
-                                <input name="eur" id="eur">
-                            </th>
-                        </tr>
-                        <tr><td>
-                                <select id="money-type">
-                                    <option>dalar</option>
-                                    <option>af</option>
-                                    <option>ir</option>
-                                    <option>eur</option>
-                                </select>
-                            </td>
-                            <td colspan="3">
-                                <input type="button" value="acount" id="calculate">
-                            </td>
-
-                        </tr>
+                        echo $remain;?>
                         </tbody>
                     </table>
 
@@ -242,7 +184,6 @@
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover" >
-                        <caption> <h2> وضعیت گدام ها</h2></caption>
                         <thead>
                         <tr>
                             <th>کد</th>
@@ -301,7 +242,7 @@
 
                                     ?></td>
                                 <td class="center"><?php echo $value->oil_type;?></td>
-                               
+
                             </tr>
                         <?php }?>
 
@@ -322,42 +263,6 @@
         $('#dataTables-example').dataTable({
             "pageLength": 500
         });
-        $('#dalar').attr('type','hidden')
-        $('#money-type').change(function(){
-
-            var type=$(this).val()
-
-
-            var array_of_name = [];
-            $(".input").each(function(){
-                $(this).find('#dalar').attr('type','text')
-                $(this).find('#ir').attr('type','text')
-                $(this).find('#af').attr('type','text')
-                $(this).find('#eur').attr('type','text')
-                $(this).find('#'+type).attr('type','hidden')
-                $(this).find('#'+type).val('')
-
-                array_of_name.push({'dalar':'hi'});
-            });
-        })
-
-        $("#calculate").click(function(){
-            var total;
-            $(".input").each(function(){
-                $(this).find('#dalar').val()
-                $(this).find('#ir').val()
-                $(this).find('#af').val()
-                $(this).find('#eur').val()
-            });
-
-            $(".money-amount").each(function(){
-                $(this).find('.dalar').val()
-                $(this).find('.ir').val()
-                $(this).find('.af').val()
-                $(this).find('.eur').val()
-            });
-        })
-
     });
 </script>
 <!-- CUSTOM SCRIPTS -->
