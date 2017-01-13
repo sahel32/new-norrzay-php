@@ -3,10 +3,10 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">
-                    <i class="glyphicon glyphicon-user"></i> User Profile
-                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                <h2 class="modal-title">
+                    مشخصات چک
+                </h2>
             </div>
 
             <div class="modal-body">
@@ -18,11 +18,6 @@
                 <!-- mysql data will be load here -->
                 <div id="dynamic-content"></div>
             </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-
         </div>
     </div>
 </div>

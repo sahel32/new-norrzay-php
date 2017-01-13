@@ -43,21 +43,21 @@
                                                     echo  $this->stock_model->get_stock_balance_fact($value->id,$value->type);
                                                     $sufix="fact";
 
-                                                    ?></td>
+                                                    ?> تن </td>
                                                 <?php  }else if($value->type=="sell"){?>
                                                 <td class="center"><?php
                                                     $this->load->model('stock_model');
 
                                                     echo  $this->stock_model->get_stock_balance_pre_sell($value->id);
                                                     $sufix="pre";
-                                                    ?></td>
+                                                    ?> تن </td>
                                                 <?php }else if($value->type=="buy"){?>
                                                     <td class="center"><?php
                                                 $this->load->model('stock_model');
 
                                                 echo  $this->stock_model->get_stock_balance_pre_buy($value->id);
                                                 $sufix="pre";
-                                                ?></td>
+                                                ?> تن </td>
                                                 <?php }?>
                                                 <td class="center"><?php
                                                     switch ($value->type){
@@ -77,7 +77,7 @@
                                                    <!-- <div data-toggle="modal" data-id="<?php /*echo $value->id;*/?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash">
                                                     </div>-->
                                                     <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
-                                                    <a href="<?php echo site_url('stock/profile/'.$value->id.'/'.$sufix); ?>"><span class="glyphicon glyphicon-cog" data-toggle="tooltip" title="پروفایل گدام" data-placement="top"></span></a>
+                                                    <a href="<?php echo site_url('stock/profile/'.$value->id.'/'.$sufix); ?>"><span class="fa fa-database" data-toggle="tooltip" title="پروفایل گدام" data-placement="top"></span></a>
                                                      <?php
                                                     if($value->type=="fact") {
                                                         echo ($value->status) ? "<a href='" . site_url('stock/inactive/' . $value->id . '') . "'><span style='color:blue;' class='glyphicon glyphicon-ok-circle' data-toggle='tooltip' title='غیر فعال کردن گدام' data-placement='top'></span>  </a>" : "<a href='" . site_url('stock/active/' . $value->id . '') . "'>
