@@ -53,18 +53,20 @@
                                     <?php
                                     $this->load->model('oil_model');
                                    echo  $remain=$this->oil_model->get_remain_oil_each_pre($value->id,'sell');
-                                    ?>
+                                    ?> تن
                                 </td>
 
                                 <td class="center"><?php echo $value->car_count;?></td>
-                                <td class="center"><?php echo $value->unit_price;?></td>
+                                <td class="center"><?php echo $value->unit_price;?>
+                                    <span class="glyphicon glyphicon-usd"></span>
+                                </td>
                                 <td class="center">
-                                    <a href="<?php echo site_url('oil/pre_set_end/'.$value->id.'/sell') ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                    <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                    <a href="<?php echo site_url('oil/profile/'.$value->id.'/sell'); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                    <a href="<?php echo site_url('oil/pre_set_end/'.$value->id.'/sell') ?>"><span class="glyphicon glyphicon-trash" ata-toggle="tooltip" title="حذف" data-placement="top"></span></a>
+                                    <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" ata-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
+                                    <a href="<?php echo site_url('oil/profile/'.$value->id.'/sell'); ?>"><span class="glyphicon glyphicon-tint" ata-toggle="tooltip" title="مشاهده فاکتور" data-placement="top"></span></a>
                                     <?php if($remain!=0){ ?>
-                                    <div data-toggle="modal" data-target="#view-modal"  data-remain="<?php echo $remain;?>" data-id="<?php echo $value->id;?>" id="getUser" class="btn btn-sm btn-info">
-                                        <i class="glyphicon glyphicon-eye-open"></i> چک</div>
+                                    <a data-toggle="modal" data-target="#view-modal"  data-remain="<?php echo $remain;?>" data-id="<?php echo $value->id;?>" id="getUser">
+                                        <span class="glyphicon glyphicon-shopping-cart" data-toggle="tooltip" title="مشاهده فورم ثبت فروش" data-placement="top"></span></a>
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -92,5 +94,8 @@
     $(document).ready(function () {
         $('#dataTables-example').dataTable();
     });
+</script>
+<script>
+    $("span").tooltip();
 </script>
 <!-- CUSTOM SCRIPTS -->
