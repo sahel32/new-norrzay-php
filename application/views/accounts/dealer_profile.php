@@ -2,8 +2,8 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-md-12">
-            <h2>پروفایل صراف</h2>
-            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به خریدار و فروشنده مورد نظر را مشاهده کنید.</h5>
+            <h2>پروفایل کمیشن کارها</h2>
+            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به کمیشن کار مورد نظر را مشاهده کنید.</h5>
         </div>
     </div>
     <!-- /. ROW  -->
@@ -12,15 +12,13 @@
         <div class="col-md-12 col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-
-
                     اطلاعات عمومی
                     <div class="btn-group pull-left">
                         <a href="<?php echo site_url('cash/profile_credit_debit/').$this->uri->segment('3')."/".$this->uri->segment('4');?>">
-                            بردگی</a>
+                            بردگی</a> / 
 
                         <a href="<?php echo site_url('cash/debit_deal/').$this->uri->segment('3')."/".$this->uri->segment('4');?>">
-                            رسیدگی</a>
+                             رسیدگی </a>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -32,9 +30,7 @@
                                 <th>نام</th>
                                 <th>تخلص</th>
                                 <th>شماره تماس</th>
-
                                 <th>تغییرات</th>
-                                <th>وضعیت</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,11 +45,9 @@
 
 
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                    </td>
-                                    <td class="center">
-                                        <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'> غیر فعال کردن </a>" : "<a href='".site_url('account/active/'.$value->id.'')."'> فعال کردن </a>"
+                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
+                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
+                                        <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'><span style='color:blue;' class='glyphicon glyphicon-ok-circle' data-toggle='tooltip' title='غیر فعال کردن کمیشن کار' data-placement='top'></span></a>" : "<a href='".site_url('account/active/'.$value->id.'')."'><span style='color: #f90c05;' class='glyphicon glyphicon-ban-circle' data-toggle='tooltip' title='فعال کردن کمیشن کار' data-placement='top'></span></a>"
                                         ; ?>
                                     </td>
                                 </tr>

@@ -2,8 +2,8 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-md-12">
-            <h2>پروفایل صراف</h2>
-            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به خریدار و فروشنده مورد نظر را مشاهده کنید.</h5>
+            <h2>پروفایل صرافی ها</h2>
+            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به صراف مورد نظر را مشاهده کنید.</h5>
         </div>
     </div>
     <!-- /. ROW  -->
@@ -18,10 +18,6 @@
                     <div class="btn-group pull-left">
                         <a href="<?php echo site_url('cash/profile_credit_debit/').$this->uri->segment('3')."/".$this->uri->segment('4');?>">
                             پرداخت/دریافت</a>
-                           <button href="#new-customer" data-toggle="modal" >پرداخت
-                               <i class="fa fa-plus-circle" data-toggle="tooltip" title="ثبت مشتری جدید" data-placement="top"></i></button><button>رسید</button>
-
-                        <i class="fa fa-comments fa-button" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="panel-body">
