@@ -23,8 +23,8 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-md-12">
-            <h2>گرفتن یک کلی </h2>
-            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به خریدار و فروشنده مورد نظر را مشاهده کنید.</h5>
+            <h2>گزارشات</h2>
+            <h5>در این قسمت شما میتوانید از بخش های مختلف سیستم گزارش تهیه کنید</h5>
         </div>
     </div>
     <!-- /. ROW  -->
@@ -36,7 +36,7 @@
 
 
                 <div class="panel-heading">
-                    بالانس گیری جید یا نمایش اخرین بالانس
+                    فورم گزارش گیری
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -49,15 +49,15 @@
 
                                  </div>
                                 <div class="col-md-3 form-group">
-                                    <lable>الی تاریخ</lable>
+                                    <lable>الی این تاریخ</lable>
                                     <input type="text"  value="<?php echo set_value('seconddate'); ?>"id="datepicker1" name="seconddate" class="form-control"/>
                                     <span class="help-inline"><?php echo (form_error('seconddate') ) ? form_error('seconddate') : "<span class='red'>*</span>"; ?></span>
 
                                 </div>
                                 <div class="col-md-3 form-group">
-                                    <label>گزراش از :</label>
+                                    <label>گزارش از</label>
                                     <select class="form-control" name="type" id="load-accounts">
-                                        <option>انتخاب از بیست</option>
+                                        <option class="disable">انتخاب از لیست</option>
                                         <option value="stock">گدام ها</option>
                                         <option value="prebuy">تیل های پیش خرید</option>
                                         <option value="presell">تیل های پیش فروش</option>
@@ -71,12 +71,12 @@
 
 
                                 </div>
-                                <div class="col-md-4 gaps">
+                                <div class="col-md-6 gaps">
                                     <!--<button type="button" class="btn btn-default pull-left" id="get_total_balance"
                                             data-toggle="modal" data-target="#view-modal">جستجو
                                     </button>-->
                                     <button type="submit"  class="btn btn-default pull-left">جستجو</button>
-                                    <button type="submit" name="print" class="btn btn-default pull-left">جستجو پرنت</button>
+                                    <button type="submit" name="print" class="btn btn-default pull-left">جستجو پرینت</button>
 
                                     <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
                                 </div>

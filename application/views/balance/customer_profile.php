@@ -4,8 +4,8 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-md-12">
-            <h2>پروفایل مشتری ها </h2>
-            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به خریدار و فروشنده مورد نظر را مشاهده کنید.</h5>
+            <h2>بردگی و رسیدگی مشتری ها</h2>
+            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به بردگی و رسیدگی فروشنده مورد نظر را مشاهده کنید.</h5>
         </div>
     </div>
     <!-- /. ROW  -->
@@ -15,30 +15,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     اطلاعات عمومی
-                    <div class="btn-group pull-left">
-                        <a href="<?php echo site_url('cash/profile_oil_credit_debit/').$this->uri->segment('3')."/".$this->uri->segment('4');?>">
-                            پرداخت/دریافت</a>
-                        <button href="#new-customer" data-toggle="modal" >پرداخت
-                            <i class="fa fa-plus-circle" data-toggle="tooltip" title="ثبت مشتری جدید" data-placement="top"></i></button><button>رسید</button>
-
-                        <i class="fa fa-comments fa-button" aria-hidden="true"></i>
-
-                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                             <tr>
-                                <th>کد</th>
                                 <th>نام</th>
                                 <th>تخلص</th>
                                 <th>شماره تماس</th>
-                                <!--<th>بردگی</th>
-                                <th>رسیدگی</th>-->
-                                <th>بیلانس (الباقی)</th>
-                                <th>تغییرات</th>
-                                <th>وضعیت</th>
+                                <th>بیلانس</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -48,23 +34,14 @@
                                 $single_balance_rows=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $value->id));
                                 ?>
                                 <tr class="odd gradeX">
-                                    <td><?php echo $value->id;?></td>
                                     <td><?php echo $value->name;?></td>
                                     <td><?php echo $value->lname;?></td>
                                     <td><?php echo $value->phone;?></td>
                                     <?php    foreach ($single_balance_rows as $bkey => $bvalue) {?><?php }?>
                                    <!-- <td class="center"><?php /*echo (isset($bvalue->debit))? $bvalue->debit : "";*/?></td>
                                     <td class="center"><?php /*echo (isset($bvalue->credit))? $bvalue->credit : "";*/?></td>-->
-                                    <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?></td>
-                                    <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-<!--                                        <a href="<?php /*echo site_url('balance/balance_check_out/'.$value->id); */?>"><span class="glyphicon glyphicon-asterisk"></span></a>
--->
-                                    </td>
-                                    <td class="center">
-                                        <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'> غیر فعال کردن </a>" : "<a href='".site_url('account/active/'.$value->id.'')."'> فعال کردن </a>"
-                                        ; ?>
+                                    <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?>
+                                        <span class="glyphicon glyphicon-usd"></span>
                                     </td>
                                 </tr>
                             <?php }  ?>
@@ -85,36 +62,29 @@
         <div class="col-md-12 col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    اطلاعات مالی
-                    <div class="btn-group pull-left">
-                        <select id="filter2">
-                            <option value="debit">debit</option>
-                            <option value="credit">credit</option>
-                        </select>
-                        <i class="fa fa-comments fa-filter" aria-hidden="true"> فیلتر </i>
-
-                    </div>
+                    لیست رسیدگی ها از درک فروش تیل
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="dataTables-example1">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example2">
                             <thead>
-                            <tr>
-                                <th>شماره فاکتور</th>
-                                <th>تاریخ</th>
-                                <th>مقدار پول</th>
-                                <th>نوع پول</th>
-                                <th>نوع دریافت / پرداخت پول</th>
-
-                                <th>تغییرات</th>
-                            </tr>
+                                <tr>
+                                    <th>تاریخ</th>
+                                    <th>مبلغ</th>
+                                    <th>نوع دریافت / پرداخت</th>
+                                    <th class="fix-check">کد چک</th>
+                                    <th class="fix-check">صادر کننده</th>
+                                    <th>تناژ</th>
+                                    <th>نوع تیل</th>
+                                    <th>فی تن</th>
+                                    <th>شرح و تفصیلات</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <?php
-                            foreach ($all_debit_credit as $key => $cash_value) {
+                                <?php
+                                foreach ($all_debit_credit as $key => $cash_value) {
                                 ?>
                                 <tr class="odd gradeX">
-                                    <td><?php  echo $cash_value->id;?></td>
                                     <td><?php  echo $cash_value->date;?></td>
                                     <td><?php  echo $cash_value->cash;?></td>
                                     <td class="center"><?php
@@ -125,10 +95,12 @@
                                             <?php
                                             // echo "<span style='cursor: pointer' onclick='get_check_info(".$cash_value->id.")'>".$cash_value->type."</span>";
                                         }else{
-                                            // echo $cash_value->type;
+                                           // echo $cash_value->type;
                                             echo "پول نقد";
                                         }
                                         ?></td>
+                                    <td class="fix-check"></td>
+                                    <td class="fix-check"></td>
                                     <td class="center"><?php
                                         switch ($cash_value->transaction_type){
                                             case "credit";
@@ -139,12 +111,31 @@
                                                 break;
                                         }
                                         ;?></td>
-                                    <td class="center">
-                                        <a href="<?php echo site_url('account/delete_cash/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                    </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                 </tr>
-                            <?php  }?>
+                                <?php  }?>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th colspan="1"></th>
+                                    <th>مبلغ کل</th>
+                                    <th colspan="1"></th>
+                                    <th colspan="2" class="fix-check"></th>
+                                    <th>جمع کل تناژ</th>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd gradeX">
+                                    <td colspan="1"></td>
+                                    <td><span class="glyphicon glyphicon-usd"></span></td>
+                                    <td colspan="1"></td>
+                                    <td colspan="2" class="fix-check"></td>
+                                    <td> تن </td>
+                                    <td colspan="3"></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -158,232 +149,210 @@
         <div class="col-md-12 col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    اطلاعات خرید و فروش تیل
+                  لیست رسیدگی ها از درک خرید تیل
                 </div>
                 <div class="panel-body">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#buy" data-toggle="tab">خرید</a></li>
-                        <li class=""><a href="#sell" data-toggle="tab">فروش</a></li>
-                        <li class=""><a href="#prebuy" data-toggle="tab">پیش خرید</a></li>
-                        <li class=""><a href="#presell" data-toggle="tab">پیش فروش</a></li>
-
-
-                    </ul>
-
-                    <div class="tab-content">
-                        <div class="tab-pane fade active in" id="buy">
-                            <h4></h4>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example2">
-                                    <thead>
+                    <div class="tab-pane fade active in" id="prebuy">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example1">
+                                <thead>
                                     <tr>
-                                        <th>کد</th>
                                         <th>تاریخ</th>
-                                        <th>تاریخ تحویل</th>
-                                        <th>تعداد موتر</th>
-                                        <th>مقدار تیل (تناژ)</th>
-                                        <th>نوع تیل</th>
-                                        <th>فی تن</th>
-                                        <th>موارد بیشتر</th>
+                                        <th>مبلغ</th>
+                                        <th>نوع دریافت / پرداخت</th>
+                                        <th class="fix-check">کد چک</th>
+                                        <th class="fix-check">صادر کننده</th>
+                                        <th>شرح و تفصیلات</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
+                                </thead>
+                                <tbody>
                                     <?php
                                     foreach ($buy_rows as $key => $value) {?>
-
-                                        <tr class="odd gradeX">
-                                            <td><?php echo $value->id; ?></td>
-                                            <td><?php echo $value->f_date; ?></td>
-                                            <td><?php echo $value->s_date; ?></td>
-                                            <td class="center"><?php echo $value->car_count; ?></td>
-                                            <td class="center"><?php echo $value->amount; ?></td>
-                                            <td class="center"><?php echo $value->name; ?></td>
-                                            <td class="center"><?php echo $value->unit_price; ?></td>
-                                            <td class="center">
-                                                <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                                <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-                                                <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-                                            </td>
-                                        </tr>
-                                    <?php  }?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade " id="sell">
-                            <h4></h4>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example3">
-                                    <thead>
-                                    <tr>
-                                        <th>کد</th>
-                                        <th>تاریخ</th>
-                                        <th>تاریخ تحویل</th>
-                                        <th>تعداد موتر</th>
-                                        <th>مقدار تیل (تناژ)</th>
-                                        <th>نوع تیل</th>
-                                        <th>فی تن</th>
-                                        <th>موارد بیشتر</th>
+                                    <tr class="odd gradeX">
+                                        <td><?php echo $value->id;?></td>
+                                        <td><?php echo $value->f_date;?></td>
+                                        <td><?php echo $value->s_date;?></td>
+                                        <td class="fix-check"></td>
+                                        <td class="fix-check"></td>
+                                        <td class="center"><?php
+                                            $this->load->model('account_model');
+                                            echo $this->account_model->get_where_column(array('id'=>$value->buyer_seller_id),'name');
+                                            echo " - ";
+                                            echo $this->account_model->get_where_column(array('id'=>$value->buyer_seller_id),'lname');
+                                            ?>
+                                        </td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                    foreach ($sell_rows as $key => $value) {?>
-
-                                        <tr class="odd gradeX">
-                                            <td><?php echo $value->id; ?></td>
-                                            <td><?php echo $value->f_date; ?></td>
-                                            <td><?php echo $value->s_date; ?></td>
-                                            <td class="center"><?php echo $value->car_count; ?></td>
-                                            <td class="center"><?php echo $value->amount; ?></td>
-                                            <td class="center"><?php echo $value->name; ?></td>
-                                            <td class="center"><?php echo $value->unit_price; ?></td>
-                                            <td class="center">
-                                                <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                                <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-                                                <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-                                            </td>
-                                        </tr>
-                                    <?php  }?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade " id="prebuy">
-                            <h4></h4>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example4">
-                                    <thead>
+                                <?php  }?>
+                                </tbody>
+                                <thead>
                                     <tr>
-                                        <th>کد</th>
-                                        <th>تاریخ</th>
-                                        <th>تاریخ تحویل</th>
-                                        <th>تعداد موتر</th>
-                                        <th>مقدار تیل (تناژ)</th>
-                                        <th>نوع تیل</th>
-                                        <th>فی تن</th>
-                                        <th>موارد بیشتر</th>
+                                        <th colspan="1"></th>
+                                        <th>مبلغ کل</th>
+                                        <th colspan="2"></th>
+                                        <th colspan="2" class="fix-check"></th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                    foreach ($pre_buy_rows as $key => $value) {?>
-
-                                        <tr class="odd gradeX">
-                                            <td><?php echo $value->id; ?></td>
-                                            <td><?php echo $value->f_date; ?></td>
-                                            <td><?php echo $value->s_date; ?></td>
-                                            <td class="center"><?php echo $value->car_count; ?></td>
-                                            <td class="center"><?php echo $value->amount; ?></td>
-                                            <td class="center"><?php echo $value->name; ?></td>
-                                            <td class="center"><?php echo $value->unit_price; ?></td>
-                                            <td class="center">
-                                                <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                                <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-                                                <a href="<?php echo site_url('oil/profile/'.$value->id.'/buy'); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-                                        </tr>
-                                    <?php  }?>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="tab-pane fade" id="moreinfo2">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="odd gradeX">
-                                            <td class="center">4</td>
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">X</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td colspan="1"></td>
+                                        <td><span class="glyphicon glyphicon-usd"></span></td>
+                                        <td colspan="2"></td>
+                                        <td colspan="2" class="fix-check"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="tab-pane fade " id="presell">
-                            <h4></h4>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example5">
-                                    <thead>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. ROW -->
+    <hr />
+    <div class="row">
+        <div class="col-md-12 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                  لیست بردگی از درک فروش تیل
+                </div>
+                <div class="panel-body">
+                    <div class="tab-pane fade active in" id="prebuy">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example1">
+                                <thead>
                                     <tr>
-                                        <th>کد</th>
                                         <th>تاریخ</th>
-                                        <th>تاریخ تحویل</th>
-                                        <th>تعداد موتر</th>
-                                        <th>مقدار تیل (تناژ)</th>
-                                        <th>نوع تیل</th>
-                                        <th>فی تن</th>
-                                        <th>موارد بیشتر</th>
+                                        <th>مبلغ</th>
+                                        <th>نوع دریافت / پرداخت</th>
+                                        <th class="fix-check">کد چک</th>
+                                        <th class="fix-check">صادر کننده</th>
+                                        <th>شرح و تفصیلات</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
+                                </thead>
+                                <tbody>
                                     <?php
-                                    foreach ($pre_sell_rows as $key => $value) {?>
-
-                                        <tr class="odd gradeX">
-                                            <td><?php echo $value->id; ?></td>
-                                            <td><?php echo $value->f_date; ?></td>
-                                            <td><?php echo $value->s_date; ?></td>
-                                            <td class="center"><?php echo $value->car_count; ?></td>
-                                            <td class="center"><?php echo $value->amount; ?></td>
-                                            <td class="center"><?php echo $value->name; ?></td>
-                                            <td class="center"><?php echo $value->unit_price; ?></td>
-                                            <td class="center">
-                                                <a href="<?php echo site_url('account/delete/'.$value->id); ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                                <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-                                                <a href="<?php echo site_url('oil/profile/'.$value->id.'/sell'); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-                                            </td>
-                                        </tr>
-                                    <?php  }?>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="tab-pane fade" id="moreinfo2">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="odd gradeX">
-                                            <td class="center">4</td>
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">X</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
+                                    foreach ($buy_rows as $key => $value) {?>
+                                    <tr class="odd gradeX">
+                                        <td><?php echo $value->id;?></td>
+                                        <td><?php echo $value->f_date;?></td>
+                                        <td><?php echo $value->s_date;?></td>
+                                        <td class="fix-check"></td>
+                                        <td class="fix-check"></td>
+                                        <td class="center"><?php
+                                            $this->load->model('account_model');
+                                            echo $this->account_model->get_where_column(array('id'=>$value->buyer_seller_id),'name');
+                                            echo " - ";
+                                            echo $this->account_model->get_where_column(array('id'=>$value->buyer_seller_id),'lname');
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php  }?>
+                                </tbody>
+                                <thead>
+                                    <tr>
+                                        <th colspan="1"></th>
+                                        <th>مبلغ کل</th>
+                                        <th colspan="2"></th>
+                                        <th colspan="2" class="fix-check"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td colspan="1"></td>
+                                        <td><span class="glyphicon glyphicon-usd"></span></td>
+                                        <td colspan="2"></td>
+                                        <td colspan="2" class="fix-check"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-
-
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. ROW -->
+    <hr />
+    <div class="row">
+        <div class="col-md-12 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    لیست بردگی از درک خرید تیل
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example2">
+                            <thead>
+                                <tr>
+                                    <th>تاریخ</th>
+                                    <th>مبلغ</th>
+                                    <th>نوع دریافت / پرداخت</th>
+                                    <th class="fix-check">کد چک</th>
+                                    <th class="fix-check">صادر کننده</th>
+                                    <th>تناژ</th>
+                                    <th>نوع تیل</th>
+                                    <th>فی تن</th>
+                                    <th>شرح و تفصیلات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($all_debit_credit as $key => $cash_value) {
+                                ?>
+                                <tr class="odd gradeX">
+                                    <td><?php  echo $cash_value->date;?></td>
+                                    <td><?php  echo $cash_value->cash;?></td>
+                                    <td class="center"><?php
+                                        if($cash_value->type=="check"){
+                                            ?>
+                                            <button data-toggle="modal" data-target="#view-modal" data-id="<?php echo $cash_value->id; ?>" id="getUser" class="btn btn-sm btn-info">
+                                                <i class="glyphicon glyphicon-eye-open"></i> چک</button>
+                                            <?php
+                                            // echo "<span style='cursor: pointer' onclick='get_check_info(".$cash_value->id.")'>".$cash_value->type."</span>";
+                                        }else{
+                                           // echo $cash_value->type;
+                                            echo "پول نقد";
+                                        }
+                                        ?></td>
+                                    <td class="fix-check"></td>
+                                    <td class="fix-check"></td>
+                                    <td class="center"><?php
+                                        switch ($cash_value->transaction_type){
+                                            case "credit";
+                                                echo "رسیدگی";
+                                                break;
+                                            case "debit";
+                                                echo "بردگی";
+                                                break;
+                                        }
+                                        ;?></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                </tr>
+                                <?php  }?>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th colspan="1"></th>
+                                    <th>مبلغ کل</th>
+                                    <th colspan="1"></th>
+                                    <th colspan="2" class="fix-check"></th>
+                                    <th>جمع کل تناژ</th>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd gradeX">
+                                    <td colspan="1"></td>
+                                    <td><span class="glyphicon glyphicon-usd"></span></td>
+                                    <td colspan="1"></td>
+                                    <td colspan="2" class="fix-check"></td>
+                                    <td> تن </td>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
