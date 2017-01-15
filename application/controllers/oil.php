@@ -143,7 +143,7 @@ class oil extends CI_Controller {
 						$this->input->post('car_count');
 				}
 
-				$pre_buy_stock=$this->stock_model->get_column(array('id'=> $this->input->post('stock')),'oil_type');
+				$pre_buy_stock=$this->stock_model->get_where_column(array('id'=> $this->input->post('stock')),'oil_type');
 				$stock_transaction = array(
 					'f_date' => $this->input->post('f_date'),
 					's_date' => $this->db->escape_str($this->input->post('s_date')),
@@ -151,12 +151,12 @@ class oil extends CI_Controller {
 					'buyer_seller_id' => $this->db->escape_str($this->input->post('account_id')),
 					//'name' => $this->db->escape_str($this->input->post('oil_type')),
 					'unit_price' => $this->db->escape_str($this->input->post('unit_price')),
-					'stock_id' => $this->stock_model->get_column(array('type'=>'sell', 'oil_type'=>$pre_buy_stock),'id'),
+					'stock_id' => $this->stock_model->get_where_column(array('type'=>'sell', 'oil_type'=>$pre_buy_stock),'id'),
 					'car_count' => $this->db->escape_str($this->input->post('car_count')),
 					'buy_sell' => $data['buy_sell'],
 					'desc' => $this->db->escape_str($this->input->post('desc')),
 					'amount' => $amount,
-					'stock' => $this->stock_model->get_column(array('type'=>'buy', 'oil_type'=>$pre_buy_stock),'id'),
+					'stock' => $this->stock_model->get_where_column(array('type'=>'buy', 'oil_type'=>$pre_buy_stock),'id'),
 					'unit' => $this->db->escape_str($this->input->post('unit'))
 
 				);
