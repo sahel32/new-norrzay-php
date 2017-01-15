@@ -134,7 +134,7 @@ class balance extends CI_Controller {
                     $data['account_rows'] = $this->account_model->get_where(array('id' => $id));
                     $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 
-                    $this->load->template('accounts/driver_profile',$data);
+                    $this->load->template('balance/driver_profile',$data);
                 }
 
                 if($account_type=="exchanger"){
@@ -143,7 +143,7 @@ class balance extends CI_Controller {
                     $data['exchanger_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'account'));
                     $data['cash_type_rows']=$this->cash_model->group_by(array('account_id' => $id),'type');
 
-                    $this->load->template('accounts/exchanger_profile',$data);
+                    $this->load->template('balance/exchanger_profile',$data);
                 }
 
                 if($account_type=="seller"){
@@ -153,7 +153,7 @@ class balance extends CI_Controller {
                     $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
                     $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 
-                    $this->load->template('accounts/seller_profile',$data);
+                    $this->load->template('balance/seller_profile',$data);
                 }
                 if($account_type=="customer"){
 
@@ -170,7 +170,7 @@ class balance extends CI_Controller {
                     $data['pre_sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'pre'));
                     $data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'fact'));
                     $data['sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'fact'));
-                    $this->load->template('accounts/customer_profile',$data);
+                    $this->load->template('balance/customer_profile',$data);
                 }
 
                 if($account_type=="stuff"){
@@ -183,7 +183,7 @@ class balance extends CI_Controller {
                             'date<='=>$seconddate
                         ));
 
-                    $this->load->template('accounts/stuff_profile',$data);
+                    $this->load->template('balance/stuff_profile',$data);
                 }
 
                 if($account_type=="dealer"){

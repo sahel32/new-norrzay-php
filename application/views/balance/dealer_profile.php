@@ -2,8 +2,8 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-md-12">
-            <h2>پروفایل کمیشن کار</h2>
-            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به خریدار و فروشنده مورد نظر را مشاهده کنید.</h5>
+            <h2>بردگی و رسیدگی کمیشن کارها</h2>
+            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به بردگی و رسیدگی کمیشن کار مورد نظر را مشاهده کنید.</h5>
         </div>
     </div>
     <!-- /. ROW  -->
@@ -12,8 +12,6 @@
         <div class="col-md-12 col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-
-
                     اطلاعات عمومی
                 </div>
                 <div class="panel-body">
@@ -21,11 +19,10 @@
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                             <tr>
-                                <th>کد</th>
                                 <th>نام</th>
                                 <th>تخلص</th>
                                 <th>شماره تماس</th>
-
+                                <th>بیلانس</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -33,10 +30,18 @@
 
                             foreach ($account_rows as $key => $value) {?>
                                 <tr class="odd gradeX">
-                                    <td><?php echo $value->id;?></td>
                                     <td><?php echo $value->name;?></td>
                                     <td><?php echo $value->lname;?></td>
                                     <td><?php echo $value->phone;?></td>
+                                    <td><span class="glyphicon glyphicon-usd"></span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td> AFG </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td> IRN </td>
                                 </tr>
                             <?php }?>
                             </tbody>
@@ -46,103 +51,26 @@
             </div>
         </div>
     </div>
+    <hr />
     <!-- /. ROW -->
     <div class="row">
         <div class="col-md-12 col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-
-                    اطلاعات عمومی
-
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                            <thead>
-                            <tr>
-                                <th>کد</th>
-                                <th>نوع پول</th>
-                                <th>بیلانس (الباقی)</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            foreach ($type_rows as $key => $type_value) {
-                                $this->load->model('cash_model');
-                                //$this->load->model('balance_model');
-
-                                if($type_value->type!="check"){
-                                    // $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$type_value->account_id,'table_name'=>'account','balance_type'=>$type_value->type));
-                                    $all=$this->cash_model->get_balance_credit_debit_mylty_money($type_value->account_id,$type_value->type);
-                                    foreach ($all as $key => $value) {
-                                        ?>
-
-                                        <tr class="odd gradeX">
-                                            <td><?php echo $value->id;?></td>
-
-                                            <td>
-                                                <?php
-                                                if($type_value->type=="check"){
-                                                    ?>
-                                                    <button data-toggle="modal" data-target="#view-modal" data-id="<?php echo $type_value->id; ?>" id="getUser" class="btn btn-sm btn-info">
-                                                        <i class="glyphicon glyphicon-eye-open"></i> چک</button>
-                                                    <?php
-                                                    // echo "<span style='cursor: pointer' onclick='get_check_info(".$cash_value->id.")'>".$cash_value->type."</span>";
-                                                }else{
-                                                    switch ($type_value->type){
-                                                        case "usa";
-                                                            echo "دالر";
-                                                            break;
-                                                        case "af";
-                                                            echo "افغانی";
-                                                            break;
-                                                        case "ir";
-                                                            echo "تومان";
-                                                            break;
-                                                        case "eur";
-                                                            echo "یرو";
-                                                            break;
-                                                        default:
-                                                            echo "عرض های دیکه ";
-                                                    }
-
-                                                }
-                                                ?></td>
-                                            </td>
-
-                                            <!--<td class="center"><?php /*echo $value->debit;*/?></td>
-                                    <td class="center"><?php /*echo $value->credit;*/?></td>-->
-                                            <td class="center"><?php echo $value->balance;?></td>
-
-
-                                        </tr>
-                                    <?php }}}?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-md-12 col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    اطلاعات مالی
+                   لیست رسیدگی ها
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example2">
                             <thead>
                             <tr>
-                                <th>شماره فاکتور</th>
                                 <th>تاریخ</th>
-                                <th>مقدار پول</th>
-                                <th>نوع پول</th>
-                                <th>نوع دریافت / پرداخت پول</th>
-
-
+                                <th>مبلغ</th>
+                                <th>تعداد موتر</th>
+                                <th>تناژ</th>
+                                <th>فی تن</th>
+                                <th>نوع تیل</th>
+                                <th>شرح و تفصیلات</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -155,9 +83,10 @@
                                 foreach ($all_debit_credit as $key => $cash_value) {
                                     ?>
                                     <tr class="odd gradeX">
-                                        <td><?php echo $cash_value->id; ?></td>
                                         <td><?php echo $cash_value->date; ?></td>
-                                        <td><?php echo $cash_value->cash; ?></td>
+                                        <td><?php echo $cash_value->cash; ?>
+                                            <span class="glyphicon glyphicon-usd"></span>
+                                        </td>
                                         <td class="center"><?php
                                             if ($cash_value->type == "check") {
                                                 ?>
@@ -195,12 +124,140 @@
                                                 case "debit";
                                                     echo "بردگی";
                                                     break;
-                                            }; ?></td>
-
-
+                                            }; ?>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 <?php }
                             }?>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th colspan="1"></th>
+                                    <th>مبلغ کل</th>
+                                    <th colspan="1"></th>
+                                    <th>جمع کل تناژ</th>
+                                    <th colspan="3"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="1"></td>
+                                    <td><span class="glyphicon glyphicon-usd"></span></td>
+                                    <td colspan="1"></td>
+                                    <td> تن </td>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <!-- /. ROW -->
+    <div class="row">
+        <div class="col-md-12 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   لیست بردگی ها
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example2">
+                            <thead>
+                            <tr>
+                                <th>تاریخ</th>
+                                <th>مبلغ</th>
+                                <th>نوعیت پول</th>
+                                <th>نوعیت دریافت / پرداخت</th>
+                                <th>شرح و تفصیلات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach ($type_rows as $key => $type_value) {
+                                $this->load->model('balance_model');
+                                $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$type_value->account_id,'table_name'=>'account','balance_type'=>$type_value->type));
+                                $this->load->model('cash_model');
+                               // $all_debit_credit=$this->cash_model->get_where(array('account_id' => $type_value->account_id,'date>='=>$get_balance_date,'type'=>$type_value->type));
+                                foreach ($all_debit_credit as $key => $cash_value) {
+                                    ?>
+                                    <tr class="odd gradeX">
+                                        <td><?php echo $cash_value->date; ?></td>
+                                        <td><?php echo $cash_value->cash; ?>
+                                            <span class="glyphicon glyphicon-usd"></span>
+                                        </td>
+                                        <td class="center"><?php
+                                            if ($cash_value->type == "check") {
+                                                ?>
+                                                <button data-toggle="modal" data-target="#view-modal"
+                                                        data-id="<?php echo $cash_value->id; ?>" id="getUser"
+                                                        class="btn btn-sm btn-info">
+                                                    <i class="glyphicon glyphicon-eye-open"></i> چک
+                                                </button>
+                                                <?php
+                                                // echo "<span style='cursor: pointer' onclick='get_check_info(".$cash_value->id.")'>".$cash_value->type."</span>";
+                                            } else {
+                                                switch ($cash_value->type) {
+                                                    case "usa";
+                                                        echo "دالر";
+                                                        break;
+                                                    case "af";
+                                                        echo "افغانی";
+                                                        break;
+                                                    case "ir";
+                                                        echo "تومان";
+                                                        break;
+                                                    case "eur";
+                                                        echo "یرو";
+                                                        break;
+                                                    default:
+                                                        echo "عرض های دیکه ";
+                                                }
+                                            }
+                                            ?></td>
+                                        <td class="center"><?php
+                                            switch ($cash_value->transaction_type) {
+                                                case "credit";
+                                                    echo "رسیدگی";
+                                                    break;
+                                                case "debit";
+                                                    echo "بردگی";
+                                                    break;
+                                            }; ?>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                <?php }
+                            }?>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th colspan="1"></th>
+                                    <th>مبلغ کل</th>
+                                    <th colspan="5"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>دالر</td>
+                                    <td><span class="glyphicon glyphicon-usd"></span></td>
+                                    <td colspan="5"></td>
+                                </tr>
+                                <tr>
+                                    <td>افغانی</td>
+                                    <td> AFG </td>
+                                    <td colspan="5"></td>
+                                </tr>
+                                <tr>
+                                    <td>تومان</td>
+                                    <td> IRN </td>
+                                    <td colspan="5"></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -209,5 +266,4 @@
         </div>
     </div>
     <!-- /. ROW -->
-
 </div>
