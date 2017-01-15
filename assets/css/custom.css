@@ -487,3 +487,55 @@ label{
 .credits{
     background: #009688;
 }
+
+
+/*......Printing Styles.....*/
+
+.fix-page-wrapper{
+    margin: 0 !important;
+    
+    background: #fff !important;
+}
+
+@media print {
+    .fix-sidebar{
+        display: none !important;
+    }
+    #page-wrapper{
+        margin: 0px;
+        background: #fff !important;
+    }
+    #page-inner{
+        margin-top: 200px;
+    }
+    .table-responsive{
+        border: none !important;
+        overflow: hidden;
+    }
+    .fix-table-style>thead>tr>th{
+        border: none !important;
+        font-size: 15px !important;
+        letter-spacing: 1px;
+    }
+    .fix-border{
+        border-top: 2px solid #333 !important;
+    }
+    #header{
+        padding-top: 30px;
+        position: fixed;
+        top: 0;
+    }
+    #footer{
+        padding-bottom: 30px;
+        padding-right: 30px;
+        position: fixed;
+        bottom: 0;
+    }
+
+}
+
+@media screen {
+  #footer, #header, .fix-hr, .fix-check {
+    display: none;
+  }
+}

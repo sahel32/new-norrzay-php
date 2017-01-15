@@ -1,5 +1,5 @@
        <!-- /. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
+        <nav class="navbar-default navbar-side fix-sidebar" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li class="text-center">
@@ -28,7 +28,7 @@
                         <a  href="tab-panel.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/safebox.png'); ?>" alt="safebox"/></i> صندوق</a>
                     </li>
                     <li  >
-                        <a  href="chart.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/buys.png'); ?>" alt="buys"/></i> خریدها</a>
+                        <a  href="#"><i><img class="sidebar-menu" src="<?php echo asset_url('img/buys.png'); ?>" alt="buys"/></i> خریدها</a>
                         <ul class="nav nav-second-level">
 
                             <li>
