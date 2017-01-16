@@ -42,7 +42,11 @@ class stock_model extends CI_Model{
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
         $query=$this->db->get_where($this->table, $wheres);
         $value =$query->row();
-        return $value->$column;
+        if(isset($value->$column)){
+            return $value->$column;
+        }else{
+            return "";
+        }
     }
     
     

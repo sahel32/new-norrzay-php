@@ -528,7 +528,7 @@ class balance extends CI_Controller {
             $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
             $data['driver_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'driver_transaction'));
             $data['driver_oil_rows']=$this->driver_model->get_where_oil(array('driver_transaction.driver_id' => $id));
-            $this->load->template('accounts/driver_profile',$data);
+            $this->load->template('balance/driver_profile',$data);
         }
 
         if($type=="exchanger"){
@@ -538,12 +538,12 @@ class balance extends CI_Controller {
             $data['exchanger_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'account'));
             $data['cash_type_rows']=$this->cash_model->group_by(array('account_id' => $id),'type');
 
-            $this->load->template('accounts/exchanger_profile',$data);
+            $this->load->template('balance/exchanger_profile',$data);
         }
 
         if($type=="seller"){
             $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
-            $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
+            $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id,'transaction_type'=>'debit'));
             $data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
             $this->load->template('accounts/seller_profile',$data);
         }
@@ -555,19 +555,19 @@ class balance extends CI_Controller {
             $data['pre_sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'pre'));
             $data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'fact'));
             $data['sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'fact'));
-            $this->load->template('accounts/customer_profile',$data);
+            $this->load->template('balance/customer_profile',$data);
         }
 
         if($type=="stuff"){
             $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
             $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
-            $this->load->template('accounts/stuff_profile',$data);
+            $this->load->template('balance/stuff_profile',$data);
         }
 
         if($type=="dealer"){
             $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
             $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
-            $this->load->template('accounts/dealer_profile',$data);
+            $this->load->template('balance/dealer_profile',$data);
         }
     }
     public function delete($id=0){
@@ -591,7 +591,8 @@ class balance extends CI_Controller {
         }else if($type=="account"){
             $stock=$this->account_model->group_by(array(),'type');
             echo "<lable>حساب ها</lable>
-                  <select class='form-control' id='account'>";
+                  <select class='form-control' id='account'>
+                  <option>انتخاب یک گروه</option>";
 
             foreach ($stock as $key => $value){
                 echo "<option value='".$value->type."'>";
