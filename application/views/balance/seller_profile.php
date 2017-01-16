@@ -71,8 +71,10 @@
                                     <th>تاریخ</th>
                                     <th>مبلغ</th>
                                     <th>نوع دریافت / پرداخت</th>
+                                    <th>نوع پول</th>
                                     <th class="fix-check">کد چک</th>
                                     <th class="fix-check">صادر کننده</th>
+
                                     <th>تناژ</th>
                                     <th>نوع تیل</th>
                                     <th>فی تن</th>
@@ -81,11 +83,24 @@
                             </thead>
                             <tbody>
                             <?php
+                            $cash=0;
+                            $amount=0;
                             foreach ($all_debit_credit as $key => $cash_value) {
+
                                 ?>
                                 <tr class="odd gradeX">
                                     <td><?php  echo $cash_value->date;?></td>
-                                    <td><?php  echo $cash_value->cash;?></td>
+                                    <td><?php  echo $cash+=$cash_value->cash;?></td>
+                                    <td class="center"><?php
+                                        switch ($cash_value->transaction_type){
+                                            case "credit";
+                                                echo "رسیدگی";
+                                                break;
+                                            case "debit";
+                                                echo "بردگی";
+                                                break;
+                                        }
+                                        ;?></td>
                                     <td class="center"><?php
                                         if($cash_value->type=="check"){
                                             ?>
@@ -98,20 +113,25 @@
                                             echo "پول نقد";
                                         }
                                         ?></td>
-                                    <td class="fix-check"></td>
-                                    <td class="fix-check"></td>
-                                    <td class="center"><?php
-                                        switch ($cash_value->transaction_type){
-                                            case "credit";
-                                                echo "رسیدگی";
-                                                break;
-                                            case "debit";
-                                                echo "بردگی";
-                                                break;
-                                        }
-                                        ;?></td>
-                                        <td></td>
-                                        <td></td>
+                                    <td>
+                                        <?php
+                                        $this->load->model("oil_model");
+                                        echo $amount+=$this->oil_model->get_where_column(array('id'=>$cash_value->table_id),'amount');
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $this->load->model("stock_model");
+                                        $stock_id=$this->oil_model->get_where_column(array('id'=>$cash_value->table_id),'stock_id');
+                                        echo $this->stock_model->get_where_column(array('id'=>$stock_id),'oil_type');
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $this->load->model("oil_model");
+                                        echo $this->oil_model->get_where_column(array('id'=>$cash_value->table_id),'unit_price');
+                                        ?>
+                                    </td>
                                         <td></td>
                                 </tr>
                             <?php  }?>
@@ -120,8 +140,7 @@
                             <tr>
                                 <th colspan="1"></th>
                                 <th>مبلغ کل</th>
-                                <th colspan="1"></th>
-                                <th colspan="2" class="fix-check"></th>
+                                <th colspan="2"></th>
                                 <th>جمع کل تناژ</th>
                                 <td colspan="3"></td>
                             </tr>
@@ -130,10 +149,9 @@
                             
                                 <tr class="odd gradeX">
                                     <td colspan="1"></td>
-                                    <td><span class="glyphicon glyphicon-usd"></span></td>
-                                    <td colspan="1"></td>
-                                    <td colspan="2" class="fix-check"></td>
-                                    <td> تن </td>
+                                    <td><?php echo $cash; ?><span class="glyphicon glyphicon-usd"></span></td>
+                                    <td colspan="2"></td>
+                                    <td> <?php echo $amount; ?> تن</td>
                                     <td colspan="3"></td>
                                 </tr>
                             

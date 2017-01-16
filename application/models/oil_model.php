@@ -70,7 +70,12 @@ WHERE parent_id != \'\'
     function get_where_column($wheres,$column){
         $query=$this->db->get_where($this->table, $wheres);
         $value=$query->row();
-        return $value->$column;
+        if(isset($value->$column)){
+            return $value->$column;
+        }else{
+            return "";
+        }
+
 
     }
     function get_oil_profile($id){

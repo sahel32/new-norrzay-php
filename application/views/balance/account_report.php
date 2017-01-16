@@ -75,7 +75,7 @@
                                     <!--<button type="button" class="btn btn-default pull-left" id="get_total_balance"
                                             data-toggle="modal" data-target="#view-modal">جستجو
                                     </button>-->
-                                    <button type="submit"  class="btn btn-default pull-left">جستجو</button>
+                                    <!--<button type="submit"  class="btn btn-default pull-left">جستجو</button>-->
                                     <button type="submit" name="print" class="btn btn-default pull-left">جستجو پرینت</button>
 
                                     <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
