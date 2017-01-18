@@ -81,7 +81,7 @@
 
                 <div class="tab-content">
                     <div class="panel-heading">
-                       لیست تیل های حقیقی خریده شده
+                       لیست خرید
                     </div>
                     <div id="buy-list">
                         <h4></h4>
@@ -133,7 +133,7 @@
                         </div>
                     </div>
                     <div class="panel-heading">
-                        لیست تیل های اضافه بار
+                        لیست اضافه بار
                     </div>
                     <div  id="overload">
                         <h4></h4>
@@ -184,7 +184,7 @@
                         </div>
                     </div>
                     <div class="panel-heading">
-                        لیست تیل های حقیقی فروخته شده
+                        لیست فروش
 
                     </div>
                     <div  id="sell-list">
@@ -194,9 +194,9 @@
                                 <thead>
                                 <tr>
                                     <th>کد</th>
-                                    <th>کد پیش خرید</th>
+                                    <th>کد پیش فروش</th>
                                     <th>تاریخ</th>
-                                    <th>فروشنده</th>
+                                    <th>خریدار</th>
                                     <th>نوع تیل</th>
                                     <th>تناژ</th>
                                     <th>فی</th>
@@ -238,7 +238,7 @@
                         </div>
                     </div>
                     <div class="panel-heading">
-                       لیست تیل های انتاقالی
+                       لیست تیل های انتقالی
                     </div>
                     <div  id="transfer-list">
                         <h4></h4>
