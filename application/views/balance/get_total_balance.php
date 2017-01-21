@@ -44,18 +44,5 @@
         </div>
     </div>
 </div>
-<link href="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet"
-      type="text/css">
 
-<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap.min.js'); ?>"></link>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <
-    script
-    src = "<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>" ></script>
-<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); ?>"></script>
-<script>
-    $(document).ready(function () {
-        $("#datepicker").datepicker();
-    });
-</script>
 

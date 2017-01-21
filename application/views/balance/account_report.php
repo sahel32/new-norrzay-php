@@ -2,22 +2,6 @@
 <link href="<?php echo asset_url('js/bootstrap-datepicker/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" >
 <link href="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css" >
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
-<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); ?>"></script>
-
-<script type="text/javascript">
-    $(function(){
-        $("#datepicker").datepicker({
-            dateFormat: "yy/mm/dd",
-            showOtherMonths: true,
-            selectOtherMonths: true
-        });
-        $("#datepicker1").datepicker({
-            dateFormat: "yy/mm/dd"
-        });
-    });
-</script>
 <?php $this->load->view('balance/ajax_account_report'); ?>
 
 <div id="page-inner">
@@ -91,6 +75,21 @@
         </div>
     </div>
 </div>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); ?>"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $("#datepicker").datepicker({
+            dateFormat: "yy/mm/dd",
+            showOtherMonths: true,
+            selectOtherMonths: true
+        });
+        $("#datepicker1").datepicker({
+            dateFormat: "yy/mm/dd"
+        });
+    });
+</script>
 <script>
 
     $(document).ready(function(){

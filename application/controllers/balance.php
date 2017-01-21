@@ -18,6 +18,11 @@ class balance extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
+    public function __construct()
+    {
+        parent::__construct();
+        permission();
+    }
     public function index()
     {
         $data['title']="dashboard";
@@ -133,7 +138,20 @@ class balance extends CI_Controller {
 
                     $data['account_rows'] = $this->account_model->get_where(array('id' => $id));
                     $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
-
+                    $data['all_credit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'credit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                        ));
+                    $data['all_debit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'debit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                        ));
                     $this->load->template('balance/driver_profile',$data);
                 }
 
@@ -141,17 +159,46 @@ class balance extends CI_Controller {
                     $data['type_rows']=$this->cash_model->group_by(array('account_id'=>$id),'type');
                     $data['account_rows']=$this->account_model->get_where(array('id'=>$id));
                     $data['exchanger_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'account'));
+                    $data['all_credit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'debit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                        ));
+                    $data['all_debit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'credit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                        ));
+                    $data['firstdate']=$firstdate;
+                    $data['seconddate']=$seconddate;
                     $data['cash_type_rows']=$this->cash_model->group_by(array('account_id' => $id),'type');
 
                     $this->load->template('balance/exchanger_profile',$data);
                 }
 
                 if($account_type=="seller"){
-                    $data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
+                   // $data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
 
                     $data['account_rows'] = $this->account_model->get_where(array('id' => $id));
                     $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
-                    $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
+                    $data['all_credit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'credit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                        ));
+                    $data['all_debit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'debit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                        ));
 
                     $this->load->template('balance/seller_profile',$data);
                 }
@@ -160,12 +207,40 @@ class balance extends CI_Controller {
                     $data['account_rows'] = $this->account_model->get_where(array('id' => $id));
                     $data['cash_rows']=$this->cash_model->get_where(array('account_id' => $id));
                     $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
-                    $data['all_debit_credit']=$this->cash_model->get_where(
+                    $data['all_credit_sell']=$this->cash_model->get_where_oil(
                         array(
                             'account_id' => $id,
+                            'transaction_type'=>'credit',
                             'date>='=>$firstdate,
-                            'date<='=>$seconddate
-                        ));
+                            'date<='=>$seconddate,
+                            'table_name'=>'stock_transaction'
+                        ),'sell');
+
+                    $data['all_debit_buy']=$this->cash_model->get_where_oil(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'debit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate,
+                            'table_name'=>'stock_transaction'
+                        ),'buy');
+                    $data['all_debit_sell']=$this->cash_model->get_where_oil(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'debit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate,
+                            'table_name'=>'stock_transaction'
+                        ),'sell');
+
+                    $data['all_credit_buy']=$this->cash_model->get_where_oil(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'credit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate,
+                            'table_name'=>'stock_transaction'
+                        ),'buy');
                     $data['pre_buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
                     $data['pre_sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'pre'));
                     $data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'fact'));
@@ -193,12 +268,27 @@ class balance extends CI_Controller {
                             'date>='=>$firstdate,
                             'date<='=>$seconddate
                             ));
+                    $data['all_credit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'debit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                        ));
+                    $data['all_debit']=$this->cash_model->get_where(
+                        array(
+                            'account_id' => $id,
+                            'transaction_type'=>'credit',
+                            'date>='=>$firstdate,
+                            'date<='=>$seconddate
+                        ));
 
                     $data['type_rows']=$this->cash_model->group_by(array('account_id'=>$id),'type');
                     $data['account_rows']=$this->account_model->get_where(array('id'=>$id));
                     $data['exchanger_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'account'));
                     $data['cash_type_rows']=$this->cash_model->group_by(array('account_id' => $id),'type');
-
+                    $data['firstdate']=$firstdate;
+                    $data['seconddate']=$seconddate;
                     $this->load->template('balance/dealer_profile',$data);
                 }
             }
@@ -520,56 +610,6 @@ class balance extends CI_Controller {
 
     }
 
-
-    public function profile($id=0,$type){
-        $data['fu_page_title']="Login Form";
-        if($type=="driver"){
-            $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
-            $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
-            $data['driver_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'driver_transaction'));
-            $data['driver_oil_rows']=$this->driver_model->get_where_oil(array('driver_transaction.driver_id' => $id));
-            $this->load->template('balance/driver_profile',$data);
-        }
-
-        if($type=="exchanger"){
-            $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
-            $data['type_rows']=$this->cash_model->group_by(array('account_id'=>$id),'type');
-            $data['account_rows']=$this->cash_model->get_balance_credit_debit_single($id);
-            $data['exchanger_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'account'));
-            $data['cash_type_rows']=$this->cash_model->group_by(array('account_id' => $id),'type');
-
-            $this->load->template('balance/exchanger_profile',$data);
-        }
-
-        if($type=="seller"){
-            $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
-            $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id,'transaction_type'=>'debit'));
-            $data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
-            $this->load->template('accounts/seller_profile',$data);
-        }
-        if($type=="customer"){
-            $data['cash_rows']=$this->cash_model->get_where(array('account_id' => $id));
-            $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
-            $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
-            $data['pre_buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'pre'));
-            $data['pre_sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'pre'));
-            $data['buy_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'buy', 'type'=> 'fact'));
-            $data['sell_rows']=$this->oil_model->get_where(array('buyer_seller_id' => $id ,'buy_sell' => 'sell', 'type'=> 'fact'));
-            $this->load->template('balance/customer_profile',$data);
-        }
-
-        if($type=="stuff"){
-            $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
-            $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
-            $this->load->template('balance/stuff_profile',$data);
-        }
-
-        if($type=="dealer"){
-            $data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
-            $data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
-            $this->load->template('balance/dealer_profile',$data);
-        }
-    }
     public function delete($id=0){
 
 
