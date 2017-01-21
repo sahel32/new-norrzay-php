@@ -83,8 +83,8 @@
 
                                 <select class="form-control" name="transaction_type">
 
-                                    <option value="credit">رسیدگی </option>
-                                    <option value="debit">بردگی </option>
+                                    <option value="debit">رسیدگی </option>
+                                    <option value="credit">بردگی </option>
                                 </select>
 
                             </div>

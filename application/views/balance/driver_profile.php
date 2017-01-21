@@ -77,6 +77,7 @@
                                 <th>نام</th>
                                 <th>تخلص</th>
                                 <th>شماره تماس</th>
+                                <th>بیلانس</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -90,6 +91,12 @@
                                     <td><?php echo $value->name;?></td>
                                     <td><?php echo $value->lname;?></td>
                                     <td><?php echo $value->phone;?></td>
+                                    <?php    foreach ($single_balance_rows as $bkey => $bvalue) {?><?php }?>
+                                    <!--<td class="center"><?php /*echo (isset($bvalue->debit))? $bvalue->debit : "";*/?></td>
+                                    <td class="center"><?php /*echo (isset($bvalue->credit))? $bvalue->credit : "";*/?></td>-->
+                                    <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?>
+                                        <span class="glyphicon glyphicon-usd"></span>
+                                    </td>
                                 </tr>
                             <?php }  ?>
                             </tbody>
@@ -115,6 +122,7 @@
                                 <th>تاریخ</th>
                                 <th>نام مشتری</th>
                                 <th>مبلغ</th>
+                                <th> نوع پول</th>
                                 <th>اضافه بار</th>
                                 <th>نوع تیل</th>
                                 <th>شرح و تفصیلات</th>
@@ -122,31 +130,75 @@
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($all_debit_credit as $key => $cash_value) {
+                            $cash=0;
+                            $amount=0;
+                            foreach ($all_credit as $key => $cash_value) {
+
                                 ?>
                                 <tr class="odd gradeX">
                                     <td><?php  echo $cash_value->date;?></td>
-                                    <td></td>
-                                    <td><?php  echo $cash_value->cash;?></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="center"></td>
+                                    <th>نام مشتری</th>
+                                    <td><?php  echo $cashh=$cash_value->cash;
+                                        $cash+=$cashh;?></td>
+                                    <td class="center"><?php
+                                        if($cash_value->type=="check"){
+                                            ?>
+                                            <button data-toggle="modal" data-target="#view-modal" data-id="<?php echo $cash_value->id; ?>" id="getUser" class="btn btn-sm btn-info">
+                                                <i class="glyphicon glyphicon-eye-open"></i> چک</button>
+                                            <?php
+                                            // echo "<span style='cursor: pointer' onclick='get_check_info(".$cash_value->id.")'>".$cash_value->type."</span>";
+                                        }else{
+                                            // echo $cash_value->type;
+                                            echo "پول نقد";
+                                        }
+                                        ?></td>
+
+                                    <td>
+                                        <?php
+                                        $this->load->model("oil_model");
+                                        $this->load->model("driver_model");
+                                        $oil_id=$this->driver_model->get_where_column(array('id'=>$cash_value->table_id),'st_id');
+
+                                        echo $amountt=$this->oil_model->get_where_column(array('id'=>$oil_id),'amount');
+                                        $amount+=$amountt;
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $this->load->model("stock_model");
+                                        $oil_id=$this->driver_model->get_where_column(array('id'=>$cash_value->table_id),'st_id');
+
+                                        $stock_id=$this->oil_model->get_where_column(array('id'=>$oil_id),'stock_id');
+
+                                        echo $this->stock_model->get_where_column(array('id'=>$stock_id),'oil_type');
+                                        ?>
+                                    </td>
+
+                                    <td>
+                                        <?php echo $cash_value->desc; ?>
+                                    </td>
                                 </tr>
                             <?php  }?>
                             </tbody>
                             <thead>
-                                <tr>
-                                    <th colspan="2"></th>
-                                    <th>مبلغ کل</th>
-                                    <th colspan="3"></th>
-                                </tr>
+                            <tr>
+                                <th colspan="2"></th>
+                                <th>مبلغ کل</th>
+                                <th colspan="1"></th>
+                                <th>جمع کل تناژ</th>
+                                <td colspan="3"></td>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td colspan="2"></td>
-                                    <td> IRN </td>
-                                    <td colspan="3"></td>
-                                </tr>
+
+                            <tr class="odd gradeX">
+                                <td colspan="2"></td>
+                                <td><?php echo $cash; ?><span class="glyphicon glyphicon-usd"></span></td>
+                                <td colspan="1"></td>
+                                <td> <?php echo $amount; ?> تن</td>
+                                <td colspan="3"></td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -156,25 +208,3 @@
     </div>
     <!-- /. ROW -->
 </div>
-<!-- /. PAGE INNER  -->
-<script src="<?php echo asset_url('js/dataTables/jquery.dataTables.js'); ?>"></script>
-<script src="<?php echo asset_url('js/dataTables/dataTables.bootstrap.js'); ?>"></script>
-
-<script>
-    $(document).ready(function () {
-        $('#dataTables-example2').dataTable();
-
-    });
-
-    $(document).ready(function () {
-        $('#dataTables-example3').dataTable();
-
-    });
-
-
-    $('#filter2').change( function() {
-        var filtervalue = this.value;
-        var table2= $('#dataTables-example2').dataTable();
-        table2.fnFilter(filtervalue );
-    });
-</script>

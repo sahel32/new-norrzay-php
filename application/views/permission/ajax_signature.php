@@ -20,21 +20,20 @@
 </div>
 <script>
     $(document).ready(function(){
-        function isValidEmailAddress(emailAddress) {
-            var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
-            return pattern.test(emailAddress);
-        }
         $(document).on('click', '#signature', function(){
-            alert(isValidEmailAddress(email))
+
+            //alert(isValidEmailAddress(email))
             var times=0
             var email=$("#email").val();
-            alert(email)
-            if(email=="" || isValidEmailAddress(email)){
+            var result='';
+            //alert(email)
+            //if(email=="" || isValidEmailAddress(email)){
+            //if(email==""){
+            if(false){
                 setTimeout(function () {
                     $('#modal-loader').hide();
                     $('#dynamic-content').html("<center><h4>لطفا ایمل خودرا وارد کنید</h4></center>")
                 }, 2500);
-
             }else {
                 var loop = setInterval(function () {
                     times++;
@@ -43,18 +42,25 @@
                         $('#view-modal').modal('hide');
                     }
                     $.ajax({
-                        url: '<?php echo site_url('Anvander/check_permission'); ?>',
+                        type: 'POST',
+                        url: '<?php echo site_url('anvander/check_permission'); ?>',
                         data: {re_email: email},
-                        type: 'POST'
+                        dataType: 'html'
                     })
                         .done(function (data) {
-                            var result = times * 3;
+
+                            if(data==1){
+                                result="درحال ری دایرکت کردن"
+                                var  url='<?php echo site_url(''); ?>';
+                                window.location.href=url;
+                            }
+                                result = times * 3;
                             $('#dynamic-content').html("<center><h4>" + result + " ثانبه</4></center>")
                         })
                         .fail(function () {
                             $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
                             $('#view-modal').modal('hide');
-                            clearInterval(loop);
+                           // clearInterval(loop);
                         });
                 }, 3000);
             }

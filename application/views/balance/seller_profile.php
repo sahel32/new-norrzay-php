@@ -85,12 +85,13 @@
                             <?php
                             $cash=0;
                             $amount=0;
-                            foreach ($all_debit_credit as $key => $cash_value) {
+                            foreach ($all_credit as $key => $cash_value) {
 
                                 ?>
                                 <tr class="odd gradeX">
                                     <td><?php  echo $cash_value->date;?></td>
-                                    <td><?php  echo $cash+=$cash_value->cash;?></td>
+                                    <td><?php  echo $cashh=$cash_value->cash;
+                                                    $cash+=$cashh;?></td>
                                     <td class="center"><?php
                                         switch ($cash_value->transaction_type){
                                             case "credit";
@@ -116,7 +117,8 @@
                                     <td>
                                         <?php
                                         $this->load->model("oil_model");
-                                        echo $amount+=$this->oil_model->get_where_column(array('id'=>$cash_value->table_id),'amount');
+                                        echo $amountt=$this->oil_model->get_where_column(array('id'=>$cash_value->table_id),'amount');
+                                        $amount+=$amountt;
                                         ?>
                                     </td>
                                     <td>
@@ -178,7 +180,6 @@
                                     <tr>
                                         <th>تاریخ</th>
                                         <th>مبلغ</th>
-                                        <th>نوع دریافت / پرداخت</th>
                                         <th class="fix-check">کد چک</th>
                                         <th class="fix-check">صادر کننده</th>
                                         <th>شرح و تفصیلات</th>
@@ -186,19 +187,21 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    foreach ($buy_rows as $key => $value) {?>
+                                    $amounts=0;
+                                    foreach ($all_debit as $key => $value) {?>
 
                                         <tr class="odd gradeX">
-                                            <td><?php echo $value->id;?></td>
-                                            <td><?php echo $value->f_date;?></td>
-                                            <td><?php echo $value->s_date;?></td>
+                                            <td><?php echo $value->date;?></td>
+                                            <td><?php echo $amountt=$value->cash;
+                                                            $amounts+=$amountt?></td>
                                             <td class="fix-check"></td>
                                             <td class="fix-check"></td>
                                             <td class="center"><?php
-                                                $this->load->model('account_model');
+                                                /*$this->load->model('account_model');
                                                 echo $this->account_model->get_where_column(array('id'=>$value->buyer_seller_id),'name');
                                                 echo " - ";
-                                                echo $this->account_model->get_where_column(array('id'=>$value->buyer_seller_id),'lname');
+                                                echo $this->account_model->get_where_column(array('id'=>$value->buyer_seller_id),'lname');*/
+                                                echo $value->desc;
                                                 ?>
                                             </td>
                                         </tr>
@@ -209,16 +212,14 @@
                                             <th colspan="1"></th>
                                             <th>مبلغ کل</th>
                                             <th colspan="2"></th>
-                                            <th colspan="2" class="fix-check"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         
                                         <tr class="odd gradeX">
                                             <td colspan="1"></td>
-                                            <td><span class="glyphicon glyphicon-usd"></span></td>
+                                            <td><span class="glyphicon glyphicon-usd"><?php echo $amounts;?></span></td>
                                             <td colspan="2"></td>
-                                            <td colspan="2" class="fix-check"></td>
                                         </tr>
                                     
                                     </tbody>
@@ -237,13 +238,6 @@
 <script src="<?php echo asset_url('js/dataTables/dataTables.bootstrap.js'); ?>"></script>
 
 <script>
-    $(document).ready(function () {
-        $('#dataTables-example2').dataTable();
-        $('#dataTables-example1').dataTable();
-
-    });
-
-
     $('#filter2').change( function() {
         var filtervalue = this.value;
         var table2= $('#dataTables-example2').dataTable();

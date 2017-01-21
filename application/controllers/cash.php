@@ -19,6 +19,11 @@ class cash extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
+    public function __construct()
+    {
+        parent::__construct();
+        permission();
+    }
     public function index()
     {
 
@@ -53,13 +58,17 @@ class cash extends CI_Controller {
                     'usa'=>'دالر',
                     'af'=>'افغانی',
                     'eur'=>'یرو',
-                    'ir'=>'تومان'
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
             );
                 break;
             case "dealer":
                 $money_type=array(
                     'usa'=>'دالر',
-                    'ir'=>'تومان'
+                    'af'=>'افغانی',
+                    'eur'=>'یرو',
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
                 );
                 break;
             default:
@@ -125,9 +134,9 @@ class cash extends CI_Controller {
                 $money_type=array(
                     'usa'=>'دالر',
                     'af'=>'افغانی',
-                    'usa'=>'دالر',
                     'eur'=>'یرو',
-                    'ir'=>'تومان'
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
                 );
                 break;
 
@@ -191,9 +200,9 @@ class cash extends CI_Controller {
                 $money_type=array(
                     'usa'=>'دالر',
                     'af'=>'افغانی',
-                    'usa'=>'دالر',
                     'eur'=>'یرو',
-                    'ir'=>'تومان'
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
                 );
                 break;
 
@@ -262,9 +271,9 @@ class cash extends CI_Controller {
                 $money_type=array(
                     'usa'=>'دالر',
                     'af'=>'افغانی',
-                    'usa'=>'دالر',
                     'eur'=>'یرو',
-                    'ir'=>'تومان'
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
                 );
                 break;
 
@@ -390,7 +399,8 @@ class cash extends CI_Controller {
                     'usa'=>'دالر',
                     'af'=>'افغانی',
                     'eur'=>'یرو',
-                    'ir'=>'تومان'
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
                 );
                 break;
 

@@ -6,6 +6,7 @@
  * Time: 19:04
  */
 $this->load->view("permission/ajax_signature");
+
 ?>
 
 <div class="container">
@@ -25,7 +26,7 @@ $this->load->view("permission/ajax_signature");
                     <strong>وارد نمودن امضای دیجیتالی</strong>  
                 </div>
                 <div class="panel-body">
-                    <form role="form">
+
                    	 <br />
 						<div class="form-group input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-barcode" ></i></span>
@@ -35,7 +36,7 @@ $this->load->view("permission/ajax_signature");
 	        				value="request signature" name="signature" id="signature">درخواست امضای دیجیتالی
 	        			</button>
                          <hr />
-                    </form>
+                   
                 </div>   
             </div>
         </div>       

@@ -11,29 +11,42 @@ class Anvander extends CI_Controller{
     public function index(){
         echo "index";
     }
-    public function  lock_form(){
-
-$this->load->view("anvander/lock_form");
+    public function logout(){
+        $data['title']="dashboard";
+        $this->Anvander_model->update(array('status'=>3),array('email'=>$this->session->userdata('re_email')));
+        $this->session->sess_destroy();
+        redirect("permission/signature");
 }
-    public function fetchMac($m=0){
-        echo $m;
-    }
     public function check_permission(){
-        $this->session->set_userdata('re_email',$this->input->get('re_email'));
-        $check=$this->Anvander_model->update(array('status'=>2),array('email'=>$this->session->userdata("re_email")));
-        if($check) {
-            $status = $this->Anvander_model->get_where_column(array('email' =>$this->session->userdata("re_email")), 'status');
+        if(!isset($_SESSION['re_email']) and $_SESSION['re_email']==""){
+            $this->session->set_userdata('re_email',$this->input->get('re_email'));
+        }else{
+            $this->session->userdata('re_email');
+        }
+
+        $status = $this->Anvander_model->get_where_column(array('email' =>$this->session->userdata('re_email')), 'status');
+        if($status==3){
+            $this->Anvander_model->update(array('status'=>2),array('email'=>$this->session->userdata('re_email')));
+        }
+
+            $status = $this->Anvander_model->get_where_column(array('email' =>$this->session->userdata('re_email')), 'status');
             if ($status == 1) {
-                $this->session->set_userdata('re_email','');
-                redirect("dashboard/index");
+                $this->session->set_tempdata(
+                    array(
+                        'allowed'=>true,
+                        'email'=>$this->input->get('re_email'),
+                        'status'=>$status
+                    ),
+                    1
+                );
+                echo $status;
             } else {
+                //$this->session->sess_destroy();
                 echo "error";
             }
-        }else{
-            echo "notexist";
-        }
+
     }
-public function update_premission($mac,$pass){
+public function update_permission($mac,$pass){
 
 $this->Anvander_model->update_premission(array('status'=>1),array('mac'=>$mac, 'lasnord'=>$pass));
 }

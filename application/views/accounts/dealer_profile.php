@@ -90,7 +90,8 @@
 
                                 if($type_value->type!="check"){
                                     // $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$type_value->account_id,'table_name'=>'account','balance_type'=>$type_value->type));
-                                    $all=$this->cash_model->get_balance_credit_debit_mylty_money($type_value->account_id,$type_value->type);
+                                    $all=$this->cash_model->get_balance_credit_debit_mylty_money(array('account_id'=>$type_value->account_id,'type'=>$type_value->type));
+
                                     foreach ($all as $key => $value) {
                                         ?>
 
@@ -118,6 +119,9 @@
                                                             break;
                                                         case "eur";
                                                             echo "یرو";
+                                                            break;
+                                                        case "klp";
+                                                            echo "کلدار";
                                                             break;
                                                         default:
                                                             echo "عرض های دیکه ";
@@ -210,6 +214,9 @@
                                                     case "eur";
                                                         echo "یرو";
                                                         break;
+                                                    case "klp";
+                                                        echo "کلدار";
+                                                        break;
                                                     default:
                                                         echo "عرض های دیکه ";
                                                 }
@@ -217,10 +224,10 @@
                                             ?></td>
                                         <td class="center"><?php
                                             switch ($cash_value->transaction_type) {
-                                                case "credit";
+                                                case "debit";
                                                     echo "رسیدگی";
                                                     break;
-                                                case "debit";
+                                                case "credit";
                                                     echo "بردگی";
                                                     break;
                                             }; ?></td>
