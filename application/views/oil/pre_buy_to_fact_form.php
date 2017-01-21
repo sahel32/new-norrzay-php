@@ -1,20 +1,15 @@
-<link type="text/css" href="<?php echo asset_url('js/datepicker/styles/jquery-ui-1.8.14.css'); ?>" rel="stylesheet" />
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery-1.6.2.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.core.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/calendar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-ar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-fa.js'); ?>"></script>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); ?>"></script>
+<link href="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css" >
 
 <script type="text/javascript">
-    $(function() {
-        // حالت پیشفرض
-        $('#date-picker').datepicker({
-            showButtonPanel: true
+    $(function(){
+        $("#date-picker").datepicker({
+            dateFormat: "yy/mm/dd"
         });
-        //-----------------------------------
     });
 </script>
+
 
     <div class="row">
         <div class="col-md-12">
@@ -26,7 +21,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form role="form" action="<?php echo site_url('oil/pre_buy_to_fact_form'); ?>" method="post">
+                            <form role="form" action="<?php echo site_url('oil/pre_buy_to_fact_form/template/'.$popupp_pre_buy_sell_id.'/'.$remain); ?>" method="post">
 
                                 <div class="col-md-3 form-group">
                                     <label>کد پیش خرید</label>
@@ -54,8 +49,9 @@
                                 </div>
 
                                 <div class="col-md-3 form-group">
-                                    <label>فروشنده دست اول</label><br>
-                                    <?php echo $first_hand; ?>
+                                    <label>فروشنده دست اول</label>
+                                    <h4 style="margin-top: 0px;height: 35px; font-size: 14px; line-height: 1.42857143; padding: 6px 12px; border-radius: 4px; border: 1px solid #ccc;">
+                                        <?php echo $first_hand; ?></h4>
                                 </div>
                                 <input class="form-control" type="hidden" value="<?php echo $account_id;?>" name="account_id">
                                 <div class="col-md-3 form-group">

@@ -17,3 +17,23 @@ if (!function_exists('asset_url')) {
         }
     }
 }
+
+if (!function_exists('permission')) {
+    function permission() {
+        $CI = & get_instance();
+       $session=$CI->session->tempdata('allowed');
+        $CI->load->model('anvander_model');
+        if($session!=1){
+        $CI->Anvander_model->update(array('status'=>3),array('email'=>$_SESSION['re_email']));
+            $CI->session->sess_destroy();
+            redirect("permission/signature");
+        }else{
+            $status=$CI->anvander_model->get_where_column(array('email'=>$_SESSION['re_email']),'status');
+            if($status!=1){
+                $CI->session->sess_destroy();
+                redirect("permission/signature");
+            }
+        }
+
+    }
+}

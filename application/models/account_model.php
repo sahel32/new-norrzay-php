@@ -33,6 +33,7 @@ class account_model extends CI_Model{
 
     function accounts_json($q){
         $this->db->select('name');
+        $this->db->where('status=1');
         $this->db->like('name', $q);
         $query = $this->db->get($this->table);
         if($query->num_rows() > 0){
@@ -53,6 +54,13 @@ class account_model extends CI_Model{
       return $query->result();
     }
 
+    function order_by($order_by){
+        //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
+        $this->db->order_by($order_by);
+        $query=$this->db->get($this->table);
+        return $query->result();
+    }
+
     function get_where($wheres){
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
         $query=$this->db->get_where($this->table, $wheres);
@@ -64,21 +72,21 @@ class account_model extends CI_Model{
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
         $query=$this->db->get_where($this->table, $wheres);
         $value =$query->row();
-        return $value->$column;
+        return (isset($value->$column))? $value->$column : "";
     }
 
-    function get_or_where($wheres,$or_wheres){
+    function get_or_where(){
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
-        $this->db->where($wheres);
-        $this->db->or_where($or_wheres);
-        $query=$this->db->get($this->table);
+        $query=$this->db->query("
+        select * from account where status='1' and (type='seller' or type='customer')
+        ");
         return $query->result();
     }
     function get_name($wheres){
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
         $query=$this->db->get_where($this->table, $wheres);
         $value =$query->row();
-        return $value->name;
+        return (isset($value->name))? $value->name : "";
     }
     
     //deletes data from table by condtion or array of condition

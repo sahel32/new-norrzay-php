@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Free Bootstrap Admin Template : Binary Admin</title>
 	<!-- BOOTSTRAP STYLES-->
-    
-   
+
+
     <link href="<?php echo asset_url('css/bootstrap.rtl.min.css'); ?>" rel="stylesheet" type="text/css">
      <!-- FONTAWESOME STYLES-->
 

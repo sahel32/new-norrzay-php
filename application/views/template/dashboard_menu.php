@@ -1,5 +1,5 @@
        <!-- /. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
+        <nav class="navbar-default navbar-side fix-sidebar" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li class="text-center">
@@ -19,14 +19,16 @@
                             <li>
                                 <a href="<?php  echo site_url('stock/lists');?>">گدام ها</a>
                             </li>
-
+                            <li>
+                                <a href="<?php  echo site_url('stock/transfer');?>"> ترانسفر بین گدام ها </a>
+                            </li>
                         </ul>
                     </li>
                     <li>
                         <a  href="tab-panel.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/safebox.png'); ?>" alt="safebox"/></i> صندوق</a>
                     </li>
                     <li  >
-                        <a  href="chart.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/buys.png'); ?>" alt="buys"/></i> خریدها</a>
+                        <a  href="#"><i><img class="sidebar-menu" src="<?php echo asset_url('img/buys.png'); ?>" alt="buys"/></i> خریدها</a>
                         <ul class="nav nav-second-level">
 
                             <li>
@@ -55,6 +57,12 @@
 
                               <li>
                                   <a href="<?php  echo site_url('balance/get_total_balance');?>">گرفتن گزارش کلی</a>
+                              </li>
+                              <li>
+                                  <a href="<?php  echo site_url('balance/account_report');?>">/گزارش حساب ها/گدام ها</a>
+                              </li>
+                              <li>
+                                  <a href="<?php  echo site_url('balance/oil_report');?>">گزارش از تیل ها</a>
                               </li>
                           </ul>
                     </li>

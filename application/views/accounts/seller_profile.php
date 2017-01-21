@@ -2,8 +2,8 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-md-12">
-            <h2>پروفایل فروشنده ها </h2>
-            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به خریدار و فروشنده مورد نظر را مشاهده کنید.</h5>
+            <h2>پروفایل فروشنده ها</h2>
+            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به شخص مورد نظر را مشاهده کنید.</h5>
         </div>
     </div>
     <!-- /. ROW  -->
@@ -16,10 +16,6 @@
                     <div class="btn-group pull-left">
                         <a href="<?php echo site_url('cash/profile_oil_credit_debit/').$this->uri->segment('3')."/".$this->uri->segment('4');?>">
                             پرداخت/دریافت</a>
-                        <button href="#new-customer" data-toggle="modal" >پرداخت
-                            <i class="fa fa-plus-circle" data-toggle="tooltip" title="ثبت مشتری جدید" data-placement="top"></i></button><button>رسید</button>
-
-                        <i class="fa fa-comments fa-button" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -33,7 +29,7 @@
                                 <th>شماره تماس</th>
                                 <!--<th>بردگی</th>
                                 <th>رسیدگی</th>-->
-                                <th>بیلانس (الباقی)</th>
+                                <th>بیلانس</th>
                                 <th>تغییرات</th>
                             </tr>
                             </thead>
@@ -52,11 +48,17 @@
                                     <?php    foreach ($single_balance_rows as $bkey => $bvalue) {?><?php }?>
                                     <!--<td class="center"><?php /*echo (isset($bvalue->debit))? $bvalue->debit : "";*/?></td>
                                     <td class="center"><?php /*echo (isset($bvalue->credit))? $bvalue->credit : "";*/?></td>-->
-                                    <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?></td>
+                                    <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?>
+                                      <span class="glyphicon glyphicon-usd"></span>  
+                                    </td>
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('balance/balance_check_out/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
+                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
+                                        <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'><span style='color:blue;' class='glyphicon glyphicon-ok-circle' data-toggle='tooltip' title='غیر فعال کردن مشتری' data-placement='top'></span></a>" : "<a href='".site_url('account/active/'.$value->id.'')."'><span style='color: #f90c05;' class='glyphicon glyphicon-ban-circle' data-toggle='tooltip' title='فعال کردن مشتری' data-placement='top'></span></a>"
+                                        ; ?>
+                                        <a href="#"><span class="glyphicon glyphicon-tasks" data-toggle='tooltip' title='مشاهده گزارشات بردگی و رسیدگی' data-placement='top'></span></a>
+<!--                                        <a href="<?php /*echo site_url('balance/balance_check_out/'.$value->id); */?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+-->
                                     </td>
                                 </tr>
                             <?php }  ?>
@@ -78,14 +80,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     اطلاعات مالی
-                    <div class="btn-group pull-left">
-                        <select id="filter2">
-                            <option value="debit">debit</option>
-                            <option value="credit">credit</option>
-                        </select>
-                        <i class="fa fa-comments fa-filter" aria-hidden="true"> فیلتر </i>
-
-                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -97,7 +91,6 @@
                                 <th>مقدار پول</th>
                                 <th>نوع پول</th>
                                 <th>نوع دریافت / پرداخت پول</th>
-
                                 <th>تغییرات</th>
                             </tr>
                             </thead>
@@ -236,4 +229,7 @@
         var table2= $('#dataTables-example2').dataTable();
         table2.fnFilter(filtervalue );
     });
+</script>
+<script>
+    $("span").tooltip();
 </script>

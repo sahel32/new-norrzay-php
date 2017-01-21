@@ -2,8 +2,8 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-md-12">
-            <h2>پروفایل کار کنان</h2>
-            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به خریدار و فروشنده مورد نظر را مشاهده کنید.</h5>
+            <h2>پروفایل کارکنان</h2>
+            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به کارمند مورد نظر را مشاهده کنید.</h5>
         </div>
     </div>
     <!-- /. ROW  -->
@@ -29,7 +29,7 @@
                                 <th>شماره تماس</th>
                                 <!--<th>بردگی</th>
                                 <th>رسیدگی</th>-->
-                                <th>بیلانس (الباقی)</th>
+                                <th>بیلانس</th>
                                 <th>تغییرات</th>
                             </tr>
                             </thead>
@@ -50,11 +50,14 @@
                                             <?php    foreach ($single_balance_rows as $bkey => $bvalue) {?><?php }?>
                                            <!-- <td class="center"><?php /*echo (isset($bvalue->debit))? $bvalue->debit : "";*/?></td>
                                             <td class="center"><?php /*echo (isset($bvalue->credit))? $bvalue->credit : "";*/?></td>-->
-                                            <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?></td>
+                                            <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?>
+                                                افغانی 
+                                            </td>
                                             <td class="center">
-                                                <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                                <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                                <a href="<?php echo site_url('balance/balance_check_out/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                                <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
+                                                <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" class="glyphicon glyphicon-trash" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
+                                                <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'><span style='color:blue;' class='glyphicon glyphicon-ok-circle' data-toggle='tooltip' title='غیر فعال کردن کارمند' data-placement='top'></span></a>" : "<a href='".site_url('account/active/'.$value->id.'')."'><span style='color: #f90c05;' class='glyphicon glyphicon-ban-circle' data-toggle='tooltip' title='فعال کردن کارمند' data-placement='top'></span></a>"
+                                                ; ?>
                                             </td>
                                         </tr>
                                     <?php }  ?>
@@ -74,14 +77,7 @@
                 <div class="panel-heading">
                     اطلاعات مالی
                     <div class="btn-group pull-left">
-
                         <a href="<?php echo site_url('cash/credit_debit');?>">پرداخت/دریافت</a>
-                        <select id="filter2">
-                            <option value="debit">debit</option>
-                            <option value="credit">credit</option>
-                        </select>
-                        <i class="fa fa-comments fa-filter" aria-hidden="true"> فیلتر </i>
-
                     </div>
                 </div>
                 <div class="panel-body">
@@ -104,7 +100,7 @@
                                 <tr class="odd gradeX">
                                     <td><?php  echo $cash_value->id;?></td>
                                     <td><?php  echo $cash_value->date;?></td>
-                                    <td><?php  echo $cash_value->cash;?></td>
+                                    <td><?php  echo $cash_value->cash;?> افغانی </td>
                                     <td class="center"><?php
                                         if($cash_value->type=="check"){
                                             ?>
@@ -129,9 +125,8 @@
                                         ;?></td>
 
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
+                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
                                     </td>
                                 </tr>
                             <?php  }?>
@@ -161,4 +156,7 @@
         var table2= $('#dataTables-example2').dataTable();
         table2.fnFilter(filtervalue );
     });
+</script>
+<script>
+    $("span").tooltip();
 </script>

@@ -1,41 +1,27 @@
-<link type="text/css" href="<?php echo asset_url('js/datepicker/styles/jquery-ui-1.8.14.css'); ?>" rel="stylesheet" />
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery-1.6.2.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.core.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/calendar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-ar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-fa.js'); ?>"></script>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); ?>"></script>
+<link href="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css" >
 
 <script type="text/javascript">
-    $(function() {
-        // حالت پیشفرض
-        $('#date-picker').datepicker({
-            showButtonPanel: true
+    $(function(){
+        $("#date-picker").datepicker({
+            dateFormat: "yy/mm/dd"
         });
-        //-----------------------------------
     });
 </script>
-<div id="page-inner">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>خرید</h2>
-            <h5>از این قسمت میتوانید تیل خریداری شده را وارد نمایید. </h5>
 
-        </div>
-    </div>
-    <!-- /. ROW  -->
-    <hr />
-    <div class="row">
+
+<div class="row">
         <div class="col-md-12">
             <!-- Form Elements -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    فورم ثبت خرید
+                    فورم ثبت فروش
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form role="form" action="<?php echo site_url('oil/pre_sell_to_fact_form'); ?>" method="post">
+                            <form role="form" action="<?php echo site_url('oil/pre_sell_to_fact_form/template'.'/'.$popupp_pre_buy_sell_id.'/'.$remain); ?>" method="post">
 
                                 <div class="col-md-3 form-group">
                                    
@@ -48,7 +34,7 @@
                                         echo "<input type='hidden'  value='$popupp_pre_buy_sell_id' name='pre_buy_sell_id' >";
                                     }?>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-9 form-group">
                                     <label>مقدار موجود</label>
                                     <?php
                                     echo $remain;
@@ -59,14 +45,13 @@
                                     <label>تاریخ</label>
                                     <input class="form-control" name="received_date" id="date-picker" />
                                 </div>
-                                <div class="col-md-3 form-group">
-                                    <label>تاریخ</label>
-                                    <input type="text" class="form-control" name="account_id" value="<?php
+                              
+                                    <input type=hidden class="form-control" name="account_id" value="<?php
                                     $this->load->model('oil_model');
                                     echo $this->oil_model->get_where_column(array('id'=>$popupp_pre_buy_sell_id),
                                         'buyer_seller_id')
                                     ?>" />
-                                </div>
+
 
 
                                 <div class="col-md-3 form-group">
@@ -89,7 +74,7 @@
 
 
                                 <div class="col-md-3 form-group">
-                                    <label>نمبر گمرک فروش</label>
+                                    <label>ناحیه بارگیری</label>
                                     <select class="form-control" name="stock_id" >
                                         <?php
 
@@ -98,14 +83,17 @@
                                             <option value="<?php echo $value->id;?>"><?php echo $value->name;?></option>
 
                                         <?php }?>
-
                                     </select>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>ناحیه تخلیه</label>
+                                    <input type="text" class="form-control" name="">
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label>شرح و تفصیلات</label>
                                     <textarea name="desc" class="form-control" rows="1" data-toggle="tooltip" title="نکات بیشتر را میتوانید در این قسمت ذکر کنید." data-placement="top"></textarea>
                                 </div>
-                                <div class="col-md-3 gaps">
+                                <div class="col-md-offset-3 col-md-3 gaps">
                                     <button type="submit" class="btn btn-default pull-left" id="submit">تائید</button>
                                     <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
                                 </div>

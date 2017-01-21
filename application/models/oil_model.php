@@ -36,7 +36,24 @@ class oil_model extends CI_Model{
 
        // $this->get_balance(array('stock_id'=>$this->stock_id));
     }
+    function get_sum_dealer($id){
+        $query=$this->db->query('
+SELECT
+  IFNULL(stock_transaction.`amount`,0) + IFNULL(driver_transaction.`amount`,0) AS amount
+FROM
+  stock_transaction,
+  driver_transaction
+WHERE parent_id != \'\'
+  AND buy_sell = \'buy\'
+  AND stock_transaction.id = driver_transaction.`st_id`
+  AND st_id=?
+        ', array($id));
+        //$query =$query->row();
+        $value=$query->row();
+        return $value->amount;
 
+
+    }
     //get all rows of table
     function get(){
         //  $this->db->order_by($this->id,'desc');
@@ -53,7 +70,12 @@ class oil_model extends CI_Model{
     function get_where_column($wheres,$column){
         $query=$this->db->get_where($this->table, $wheres);
         $value=$query->row();
-        return $value->$column;
+        if(isset($value->$column)){
+            return $value->$column;
+        }else{
+            return "";
+        }
+
 
     }
     function get_oil_profile($id){
@@ -88,16 +110,17 @@ WHERE stock_transaction.id = cash.`table_id`
 
     }
 
-    function get_remain_oil_each_pre_buy($id,$buy_sell){
+    function get_remain_oil_each_pre($id,$buy_sell){
         $query=$this->db->query('
-SELECT
+ SELECT
   (buy-sell) AS remain
 FROM
   (SELECT
     IFNULL(SUM(amount), 0) AS sell
   FROM
     stock_transaction
-  WHERE parent_id = ?) AS result,
+  WHERE parent_id = ?
+  AND TYPE=\'fact\') AS result,
   (SELECT
     amount AS buy
   FROM
@@ -111,7 +134,7 @@ FROM
 
     }
 
-    function get_remain_oil_each_pre($id,$buy_sell){
+    function get_remain_oil_each_pre2($id,$buy_sell){
         $query=$this->db->query('
 SELECT (sell2-sell1) AS remain FROM (SELECT
   IFNULL(amount,0) AS sell2
@@ -197,6 +220,19 @@ WHERE parent_id IN
         if($query->num_rows() > 0){
             foreach ($query->result_array() as $row){
                // $row_set[] = htmlentities(stripslashes(' شماره فاکتور-'.$row['id'].' - '.$row['name'])); //build an array
+                $row_set[] = htmlentities(stripslashes($row['id'])); //build an array
+            }
+            echo json_encode($row_set); //format the array into json data
+        }
+    }
+    function get_real_oil_id_json($q){
+        $this->db->select('id');
+        $this->db->where(array('parent_id!='=>'','buy_sell'=>'buy'));
+        $this->db->like('id', $q);
+        $query = $this->db->get($this->table);
+        if($query->num_rows() > 0){
+            foreach ($query->result_array() as $row){
+                // $row_set[] = htmlentities(stripslashes(' شماره فاکتور-'.$row['id'].' - '.$row['name'])); //build an array
                 $row_set[] = htmlentities(stripslashes($row['id'])); //build an array
             }
             echo json_encode($row_set); //format the array into json data

@@ -18,20 +18,34 @@ class account extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	public function __construct()
+	{
+		parent::__construct();
+		permission();
+	}
 	public function index()
 	{
 		 $data['title']="dashboard";
-		 $this->load->template("Accounts/index", $data);
+		 redirect('anvander/logout');
 	}
 
 	public function lists($type)
 	{
+		$this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method().'/'.$this->uri->segment(3));
 		 $data['title']="dashboard";
 
 		$data['account_rows'] = $this->account_model->get_where(array('type'=>$type));
 		 $this->load->template("Accounts/lists", $data);
 	}
 
+	public function inactive($id){
+		$this->account_model->update(array('status'=>0),array('id'=>$id));
+		redirect($_SESSION['url']);
+	}
+	public function active($id){
+		$this->account_model->update(array('status'=>1),array('id'=>$id));
+		redirect($_SESSION['url']);
+	}
 	public function add(){
 
         $this->form_validation->set_rules('name' , null, 'alpha_int|required',
@@ -94,13 +108,13 @@ class account extends CI_Controller {
 			//$data['account_rows'] = $this->account_model->get_where(array('id' => $id));
 			//$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
 		//	$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
-			$data['driver_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'driver_transaction'));
+			//$data['driver_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'driver_transaction'));
 			$data['driver_oil_rows']=$this->driver_model->get_where_oil(array('driver_transaction.driver_id' => $id));
 
-			$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
+			//$data['get_balance_date']=$this->balance_model->get_balance_datetime(array('table_id'=>$id,'table_name'=>'account'));
 
 			$data['account_rows'] = $this->account_model->get_where(array('id' => $id));
-			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
+			//$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
 			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 
 			$this->load->template('accounts/driver_profile',$data);
@@ -163,12 +177,62 @@ class account extends CI_Controller {
 			$data['single_balance_rows']=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $id));
 			$data['all_debit_credit']=$this->cash_model->get_where(array('account_id' => $id));
 
+			$data['type_rows']=$this->cash_model->group_by(array('account_id'=>$id),'type');
+			$data['account_rows']=$this->account_model->get_where(array('id'=>$id));
+			$data['exchanger_cash_rows']=$this->cash_model->get_where(array('account_id' => $id, 'table_name'=>'account'));
+			$data['cash_type_rows']=$this->cash_model->group_by(array('account_id' => $id),'type');
+			
 			$this->load->template('accounts/dealer_profile',$data);
 		}
     }
-	public function delete($id=0){
+	public function delete_review($id){
+		$data['account']=$this->account_model->get_where(array('id'=>$id));
+		$data['cash']=$this->cash_model->get_where(array('account_id'=>$id));
+		$data['stock_transaction']=$this->oil_model->get_where(array('buyer_seller_id'=>$id));
+		$data['driver_transaction']=$this->driver_model->get_where(array('driver_id'=>$id));
+		$data['check']=$this->check_model->get_where(array('cash_id'=>$id));
+		$data['dealer_transaction']=$this->dealer_model->get_where(array('id'=>$id));
 
+		$data['id']=$id;
 
-		//$this->load->template('accounts/profile',$data);
+		$this->load->popupp('accounts/delete_review',$data);
+	}
+
+	public function delete_cash($id){
+
+		$cash_detail=$this->cash_model->get_where(array('id'=>$id));
+		foreach ($cash_detail as $key =>$value){
+			if($value->table_name=="stock_transaction"){
+				$dr_id=$this->driver_model->get_where_column(array('st_id'=>$value->table_id),'id');
+				$this->driver_model->delete(array('id'=>$dr_id));
+				$this->oil_model->delete(array('id'=>$value->table_id));
+				$this->cash_model->delete(array('id'=>$id));
+			}elseif ($value->table_name=="driver_transaction"){
+				$st_id=$this->driver_model->get_where_column(array('id'=>$value->table_id),'st_id');
+				$this->driver_model->delete(array('id'=>$value->table_id));
+				$this->oil_model->delete(array('id'=>$st_id));
+				$this->cash_model->delete(array('id'=>$id));
+			}else{
+				$this->check_model->delete(array('cash_id'=>$id));
+				$this->cash_model->delete(array('id'=>$id));
+			}
+			redirect($_SESSION['url']);
+		}
+		$this->driver_model->delete(array('driver_id'=>$id));
+		$this->oil_model->delete(array('buyer_seller_id'=>$id));
+		$this->dealer_model->delete(array('dealer_id'=>$id));
+		$this->cash_model->delete(array('account_id'=>$id));
+		$this->account_model->delete(array('id'=>$id));
+
+		redirect($_SESSION['url']);
+	}
+	public function delete($id){
+		$this->driver_model->delete(array('driver_id'=>$id));
+		$this->oil_model->delete(array('buyer_seller_id'=>$id));
+		$this->dealer_model->delete(array('dealer_id'=>$id));
+		$this->cash_model->delete(array('account_id'=>$id));
+		$this->account_model->delete(array('id'=>$id));
+
+		redirect($_SESSION['url']);
 	}
 }

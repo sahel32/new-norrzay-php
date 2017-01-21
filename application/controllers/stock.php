@@ -18,13 +18,82 @@ class stock extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	public function __construct()
+	{
+		parent::__construct();
+		permission();
+	}
 
 	public function index()
 	{
 		 $data['title']="dashboard";
 		 $this->load->template("stock/index", $data);
 	}
+	public function transfer()
+	{
 
+		$data['main_title'] = "add stock";
+		$data['sub_title'] = "add stock form ";
+		$data['desc'] = "add stock decription";
+		$data['oil_type_rows'] = $this->stock_model->get_group_by('oil_type');
+		$data['stocks'] = $this->stock_model->get_where(array('type' => 'fact'));
+		$data['drivers'] = $this->account_model->get_where(array('type' => 'driver'));
+
+
+
+
+
+		function check_exist_pre_buy_sell_id($id)
+		{
+			$ci = get_instance();
+			$con = $ci->oil_model->check_exist(array('id' => $id));
+			return $con;
+		}
+
+		$this->form_validation->set_rules('transit', null, 'required',
+			array(
+				'required' => 'ضروری'
+			)
+		);
+		$this->form_validation->set_rules('amount', null, 'required',
+			array(
+				'required' => 'ضروری'
+			)
+		);
+		if ($this->form_validation->run() == false) {
+			$data['oil_type_rows'] = $this->stock_model->get_group_by('oil_type');
+			$data['stocks'] = $this->stock_model->get_where(array('type' => 'fact','status'=>1));
+			$data['drivers'] = $this->account_model->get_where(array('type' => 'driver'));
+			$this->load->template('stock/transfer', $data);
+		} else {
+			$fact_transaction = array(
+				'f_date' => $this->input->post('date'),
+				'amount' => $this->db->escape_str($this->input->post('amount')),
+				'stock_id' => $this->input->post('stock_source'),
+				'unit_price' => $this->input->post('unit_price'),
+				'stock' => $this->input->post('stock_target'),
+				'unit' => 'ton',
+				'type' => "fact",
+				'buyer_seller_id'=>0,
+				'buy_sell' => 'sell',
+			);
+
+			$id = $this->oil_model->insert($fact_transaction);
+			$extra_transaction = array(
+				'st_id' => $id,
+				'name' => $this->input->post('driver_name'),
+				'transit' => $this->db->escape_str($this->input->post('transit'))
+			);
+
+
+			$d_id = $this->driver_model->insert($extra_transaction);
+			$this->load->template('stock/transfer', $data);
+		}
+
+
+
+
+	}
 	public function add(){
 
 				$data['main_title']="add stock";
@@ -85,8 +154,9 @@ class stock extends CI_Controller {
     }
 
     public function profile($id=0,$type){
-    	  $data['fu_page_title']="Login Form";
-          $data['stock_rows']=$this->stock_model->get_where(array('id' => $id));
+		$this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method().'/'.$this->uri->segment(3).'/'.$this->uri->segment(4));
+		$data['fu_page_title']="Login Form";
+		$data['stock_rows']=$this->stock_model->get_where(array('id' => $id));
 		$data['main_title']="stock profile";
 		$data['sub_title']="stock details";
 		$data['desc']="stick descipttion";
@@ -94,7 +164,11 @@ class stock extends CI_Controller {
 
 		$data['pre_oil_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'pre'));
 
-		$data['fact_oil_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact'));
+		$data['fact_oilbuy_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact','buy_sell'=>'buy','buyer_seller_id!='=>''));
+		$data['fact_oilsell_rows']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact','buy_sell'=>'sell','buyer_seller_id!='=>''));
+
+		$data['transfer_in']=$this->oil_model->get_where(array('stock_id' => $id,'type'=>'fact','buyer_seller_id'=>0));
+		$data['transfer_out']=$this->oil_model->get_where(array('stock' => $id,'type'=>'fact','buyer_seller_id'=>0));
 		$data['driver_oil_rows']=$this->driver_model->get_where_oil(array('stock_id' => $id,'type'=>'fact'));
 
        	$this->load->template('stock/profile_'.$type,$data);
@@ -102,6 +176,7 @@ class stock extends CI_Controller {
 
 	public function lists()
 	{
+		$this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method());
 		$data['main_title']="stock profile";
 		$data['sub_title']="stock details";
 		$data['buy_sell']="stock details";
@@ -110,4 +185,46 @@ class stock extends CI_Controller {
 		 $this->load->template("stock/lists", $data);
 	}
 
+	public function inactive($id){
+		$this->stock_model->update(array('status'=>0),array('id'=>$id));
+		redirect($_SESSION['url']);
+	}
+	public function active($id){
+		$this->stock_model->update(array('status'=>1),array('id'=>$id));
+		redirect($_SESSION['url']);
+	}
+	public function delete_review($id){
+
+		$data['id']=$id;
+
+		$this->load->popupp('accounts/delete_review',$data);
+	}
+
+
+	public function transfer_delete($stock,$stock_id,$st_id){
+		$this->driver_model->delete(array('st_id'=>$st_id));
+		$this->oil_model->delete(array('stock'=>$stock,'stock_id'=>$stock_id));
+		redirect($_SESSION['url']);
+	}
+	public function fact_oil_delete($st_id){
+		$this->driver_model->delete(array('st_id'=>$st_id));
+		$this->oil_model->delete(array('id'=>$st_id));
+		$this->cash_model->delete(array('table_id'=>$st_id,'table_name'=>'stock_transaction'));
+		redirect($_SESSION['url']);
+
+	}
+
+	public function driver_oil_delete($id){
+		echo $oil_id=$this->driver_model->get_where_column(array('id'=>$id),'st_id');
+		$this->driver_model->delete(array('id'=>$id));
+		$this->oil_model->delete(array('id'=>$oil_id));
+		$this->cash_model->delete(array('table_id'=>$id,'table_name'=>'driver_transaction'));
+		redirect($_SESSION['url']);
+
+	}
+	public function delete($id){
+
+
+		redirect($_SESSION['url']);
+	}
 }

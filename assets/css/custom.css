@@ -136,33 +136,6 @@ text-align: center;
 font-size: 25px;
 padding-top: 10px;
 }
-.stock{
-    background: #333;
-}
-.safebox{
-    background: #3c763d;
-}
-.reports{
-    background: #AF0000;
-}
-.backup{
-    background: #0078D7;
-}
-.buys{
-    background: #db0630;
-}
-.sells{
-    background: #4d3fb5;
-}
-.accounts{
-    background: #8702A8;
-}
-.debits{
-    background: #b94a00;
-}
-.credits{
-    background: #009688;
-}
 .back-dash {
     padding:20px;
     font-size:20px;
@@ -453,7 +426,7 @@ label{
     color: #18c318;
 }
 .glyphicon-cog{
-    color: rgb(9, 87, 241);
+    color: brown;
 }
 .glyphicon-user{
     color: rgb(43, 62, 81);
@@ -467,4 +440,101 @@ label{
 }
 .align{
     text-align: center;
+}
+.glyphicon-tint{
+    color: black;
+}
+.fa-database{
+    color: black;
+}
+.glyphicon-usd{
+    font-size: 12px;
+}
+.glyphicon-shopping-cart{
+    color: blue;
+}
+.glyphicon-tasks{
+    color: #8702A8;
+}
+.fa-money{
+    color: #0078D7;
+    margin-top: -5px;
+}
+.stock{
+    background: #333;
+}
+.safebox{
+    background: #3c763d;
+}
+.reports{
+    background: #AF0000;
+}
+.backup{
+    background: #0078D7;
+}
+.buys{
+    background: #db0630;
+}
+.sells{
+    background: #4d3fb5;
+}
+.accounts{
+    background: #8702A8;
+}
+.debits{
+    background: #b94a00;
+}
+.credits{
+    background: #009688;
+}
+
+
+/*......Printing Styles.....*/
+
+.fix-page-wrapper{
+    margin: 0 !important; 
+    background: #fff !important;
+}
+
+@media print {
+    .fix-sidebar{
+        display: none !important;
+    }
+    #page-wrapper{
+        margin: 0px;
+        background: #fff !important;
+    }
+    #page-inner{
+        margin-top: 200px;
+    }
+    .table-responsive{
+        border: none !important;
+        overflow: hidden;
+    }
+    .fix-table-style>thead>tr>th{
+        border: none !important;
+        font-size: 15px !important;
+        letter-spacing: 1px;
+    }
+    .fix-border{
+        border-top: 2px solid #333 !important;
+    }
+    #header{
+        padding-top: 30px;
+        position: fixed;
+        top: 0;
+    }
+    #footer{
+        padding-bottom: 30px;
+        padding-right: 30px;
+        position: fixed;
+        bottom: 0;
+    }
+
+}
+
+@media screen {
+  #footer, #header, .fix-hr, .fix-check {
+    display: none;
+  }
 }

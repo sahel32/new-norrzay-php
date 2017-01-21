@@ -42,8 +42,14 @@ class stock_model extends CI_Model{
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
         $query=$this->db->get_where($this->table, $wheres);
         $value =$query->row();
-        return $value->$column;
+        if(isset($value->$column)){
+            return $value->$column;
+        }else{
+            return "";
+        }
     }
+    
+    
     function get_remain_oil($id,$buy_sell){
         $query=$this->db->query('
         SELECT
@@ -74,9 +80,14 @@ SELECT (buy-sell) AS remain FROM (SELECT (driver+buy1) AS buy FROM (SELECT
 FROM
   stock,
   stock_transaction
-WHERE stock.id = ?
+WHERE (stock_transaction.stock = ?
   AND stock.id = stock_transaction.`stock_id`
-  AND buy_sell = \'buy\' AND stock_transaction.type=\'fact\') AS t,
+  AND buy_sell = \'sell\' AND stock_transaction.type=\'fact\' )
+  OR (
+  stock.id = ?
+  AND stock.id = stock_transaction.`stock_id`
+  AND buy_sell = \'buy\' AND stock_transaction.type=\'fact\'
+  )) AS t,
   (SELECT
   IFNULL(SUM(driver_transaction.amount),0) AS driver
 FROM
@@ -91,10 +102,45 @@ FROM
 WHERE stock.id = ?
   AND stock.id = stock_transaction.`stock_id`
   AND buy_sell = \'sell\' AND stock_transaction.type=\'fact\') AS t1
-        ', array($id,$id,$id));
+        ', array($id,$id,$id,$id));
         $value =$query->row();
         return $value->remain;
     }
+
+    function get_stock_balance_fact_filter($id){
+        $query=$this->db->query('
+SELECT (buy-sell) AS remain FROM (SELECT (driver+buy1) AS buy FROM (SELECT
+  IFNULL(SUM(amount),0) AS buy1
+FROM
+  stock,
+  stock_transaction
+WHERE (stock_transaction.stock = ?
+  AND stock.id = stock_transaction.`stock_id`
+  AND buy_sell = \'sell\' AND stock_transaction.type=\'fact\' )
+  OR (
+  stock.id = ?
+  AND stock.id = stock_transaction.`stock_id`
+  AND buy_sell = \'buy\' AND stock_transaction.type=\'fact\'
+  )) AS t,
+  (SELECT
+  IFNULL(SUM(driver_transaction.amount),0) AS driver
+FROM
+  driver_transaction,
+  stock_transaction
+WHERE stock_transaction.id = driver_transaction.`st_id` AND stock_id=?) AS t1) AS t ,
+  (SELECT
+   IFNULL(SUM(amount),0) AS sell
+FROM
+  stock,
+  stock_transaction
+WHERE stock.id = ?
+  AND stock.id = stock_transaction.`stock_id`
+  AND buy_sell = \'sell\' AND stock_transaction.type=\'fact\') AS t1
+        ', array($id,$id,$id,$id));
+        $value =$query->row();
+        return $value->remain;
+    }
+
 
     function get_stock_balance_pre($id,$buy_sell){
         $query=$this->db->query('

@@ -232,7 +232,7 @@ jQuery(function($){
 		dayNamesShort: ['یک', 'دو', 'سه', 'چهار', 'پنج', 'جمعه', 'شنبه'],
 		dayNamesMin: ['ی','د','س','چ','پ','ج','ش'],
 		weekHeader: 'ه',
-		dateFormat: 'dd/mm/yy',
+		dateFormat: 'yy/mm/dd',
 		firstDay: 6,
 		isRTL: true,
 		showMonthAfterYear: false,

@@ -1,31 +1,24 @@
 
-<link type="text/css" href="<?php echo asset_url('js/datepicker/styles/jquery-ui-1.8.14.css'); ?>" rel="stylesheet" />
-
-    <script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery-1.6.2.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.core.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/calendar.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-ar.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-fa.js'); ?>"></script>
-
-
-
-    <script type="text/javascript">
-        $(function() {
-            // حالت پیشفرض
-            $('#datepicker').datepicker({
-                showButtonPanel: true
-            });
-            //-----------------------------------
-              $('#datepicker2').datepicker({
-                showButtonPanel: true
-            });
+<link href="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css" >
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap.min.js'); ?>" ></link>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); ?>"></script>
+<script>
+    $(document).ready(function() {
+        $("#datepicker").datepicker({
+            dateFormat: "yy/mm/dd"
         });
-    </script>
+        $("#datepicker2").datepicker({
+            dateFormat: "yy/mm/dd"
+        });
+
+    });
+</script>
  <div class="row">
                     <div class="col-md-12">
-                     <h2><?php  echo $main_title; ?></h2>   
-                        <h5><?php  echo $desc; ?></h5>
+                     <h2>پیش خرید</h2>   
+                        <h5>در این قسمت میتوانید با استفاده از فورم ذیل پیش خرید خود را ثبت نمایید.</h5>
                        
                     </div>
                 </div>
@@ -36,7 +29,7 @@
                     <!-- Form Elements -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           <?php  echo $sub_title; ?>
+                           فورم ثبت پیش خرید
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -44,34 +37,27 @@
                                     <form role="form" action="<?php echo site_url('oil/pre_buy/'.$buy_sell); ?>" method="post" >
 
                                         <div class="col-md-3 form-group">
-                                            <label><?php echo $pre_date;?></label>
+                                            <label>تاریخ پیش خرید</label>
 
                                             <input type="text"  value="<?php echo set_value('f_date'); ?>" name="f_date" class="form-control"  id="datepicker"/>
                                             <span class="help-inline"><?php echo (form_error('f_date') ) ? form_error('f_date') : "<span class='red'>*</span>"; ?></span>
 
                                         </div>
                                         <div class="col-md-3 form-group">
-                                            <label><?php echo $pre_date_2;?></label>
+                                            <label>تاریخ تقریبی دریافت</label>
 
                                             <input type="text"  value="<?php echo set_value('s_date'); ?>" name="s_date" class="form-control"  id="datepicker2"/>
                                             <span class="help-inline"><?php echo (form_error('s_date') ) ? form_error('s_date') : "<span class='red'>*</span>"; ?></span>
 
                                         </div>
 
-                                      <!--  <div class="col-md-3 form-group">
-                                            <label>نوع تیل</label>
-                                            <select class="form-control" name="oil_type">
-                                                <option value="petrol">پطرول</option>
-                                                <option value="desail">دیزل</option>
-                                            </select>
-                                        </div>-->
                                         <div class="col-md-3 form-group">
                                             <label>فروشنده دست اول</label>
 
                                             <input type="text"   name="first_hand" class="form-control"/>
                                         </div>
                                         <div class="col-md-3 form-group">
-                                            <label><?php echo $account_label;?></label>
+                                            <label>خرید از </label>
                                             <select class="form-control" name="account_id">
                                             <?php 
 
@@ -83,8 +69,9 @@
                                             
                                             </select>
                                         </div>
+                                        <div class="clearfix"></div>
                                         <div class="col-md-3 form-group">
-                                            <label>stock</label>
+                                            <label>نوع تیل</label>
                                             <select class="form-control" name="stock">
                                         <?php
 
@@ -99,24 +86,6 @@
                                         <?php }?>
                                         </select>
                                             </div>
-                                        <!--<div class="col-md-3 form-group">
-                                            <label>to stock</label>
-                                            <select class="form-control" name="stock_id" >
-                                                <?php
-/*
-                                                foreach ($stock_rows as $key => $value) {*/?>
-
-                                                    <option value="<?php /*echo $value->id;*/?>">
-                                                        <?php /*echo $value->name." - ";
-                                                        $this->load->model('stock_model');
-                                                        echo $this->stock_model->get_stock_balance_pre_buy($value->id,$buy_sell)." -Ton";
-                                                        */?></option>
-
-                                                <?php /*}*/?>
-
-                                            </select>
-                                        </div>-->
-
                                         <div class="col-md-3 form-group">
                                             <label>نوع فروش</label>
                                             <select class="form-control" id="measurement-type" name="unit" >
@@ -146,20 +115,11 @@
                                             <span class="help-inline"><?php echo (form_error('unit_price') ) ? form_error('unit_price') : "<span class='red'>*</span>"; ?></span>
 
                                         </div>
-                                        <!--<div class="col-md-3 form-group">
-                                            <label>poney type</label>
-                                            <select class="form-control"  name="money_type" >
-
-                                                <option value="usa">$</option>
-                                                <option value="usa">ریال</option>
-
-                                            </select>
-                                        </div>-->
                                         <div class="col-md-6 form-group">
                                             <label>شرح و تفصیلات</label>
-                                            <textarea class="form-control" rows="3" name="desc" ></textarea>
+                                            <textarea class="form-control" rows="1" name="desc" ></textarea>
                                         </div>
-                                        <div class="col-md-offset-3 col-md-3 gap">
+                                        <div class="col-md-3 gaps">
                                         <button type="submit" class="btn btn-default pull-left">تائید</button>
                                         <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
                                         </div>
@@ -172,14 +132,6 @@
              <!-- /. PAGE INNER  -->
 
              <script>
-
-             	$(document).ready(function(){
-
-             		
-             		//alert("hi")
-             	})
-             	
-
              	$("#measurement-type").change(function (){
              		var value=$(this).val()
                     if(value=="ton"){
@@ -189,13 +141,6 @@
                         $("#car-ton").text('تعداد موتر')
                         $("#car-count").prop('disabled', false);
                     }
-             		/*if(value=="ton"){
-             			$("#car-number").attr('disabled','disabled');  
-             		}else{
-             			$("#car-number").attr('enabled','enabled'); 
-             		}*/
-
-
              	})
-             	
+
              </script>

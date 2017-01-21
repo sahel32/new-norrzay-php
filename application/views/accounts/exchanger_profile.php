@@ -2,8 +2,8 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-md-12">
-            <h2>پروفایل صراف</h2>
-            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به خریدار و فروشنده مورد نظر را مشاهده کنید.</h5>
+            <h2>پروفایل صرافی ها</h2>
+            <h5>در این قسمت شما میتوانید تمام اطلاعات مربوط به صراف مورد نظر را مشاهده کنید.</h5>
         </div>
     </div>
     <!-- /. ROW  -->
@@ -18,10 +18,6 @@
                     <div class="btn-group pull-left">
                         <a href="<?php echo site_url('cash/profile_credit_debit/').$this->uri->segment('3')."/".$this->uri->segment('4');?>">
                             پرداخت/دریافت</a>
-                           <button href="#new-customer" data-toggle="modal" >پرداخت
-                               <i class="fa fa-plus-circle" data-toggle="tooltip" title="ثبت مشتری جدید" data-placement="top"></i></button><button>رسید</button>
-
-                        <i class="fa fa-comments fa-button" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -51,7 +47,10 @@
                                     <td class="center">
                                         <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                    </td>
+                                    <td class="center">
+                                        <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'> غیر فعال کردن </a>" : "<a href='".site_url('account/active/'.$value->id.'')."'> فعال کردن </a>"
+                                        ; ?>
                                     </td>
                                 </tr>
                             <?php }?>
@@ -93,8 +92,9 @@
 
                                 if($type_value->type!="check"){
                                    // $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$type_value->account_id,'table_name'=>'account','balance_type'=>$type_value->type));
-                                $all=$this->cash_model->get_balance_credit_debit_mylty_money($type_value->account_id,$type_value->type);
-                            foreach ($all as $key => $value) {
+                                    $all=$this->cash_model->get_balance_credit_debit_mylty_money(array('account_id'=>$type_value->account_id,'type'=>$type_value->type));
+
+                                    foreach ($all as $key => $value) {
                                 ?>
 
                                 <tr class="odd gradeX">
@@ -121,6 +121,9 @@
                                                     break;
                                                 case "eur";
                                                     echo "یرو";
+                                                    break;
+                                                case "klp";
+                                                    echo "کلدار";
                                                     break;
                                                 default:
                                                     echo "عرض های دیکه ";
@@ -215,6 +218,9 @@
                                                     case "eur";
                                                         echo "یرو";
                                                         break;
+                                                    case "klp";
+                                                        echo "کلدار";
+                                                        break;
                                                     default:
                                                         echo "عرض های دیکه ";
                                                 }
@@ -222,10 +228,10 @@
                                             ?></td>
                                         <td class="center"><?php
                                             switch ($cash_value->transaction_type) {
-                                                case "credit";
+                                                case "debit";
                                                     echo "رسیدگی";
                                                     break;
-                                                case "debit";
+                                                case "credit";
                                                     echo "بردگی";
                                                     break;
                                             }; ?></td>

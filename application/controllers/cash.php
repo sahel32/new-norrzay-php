@@ -19,6 +19,11 @@ class cash extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
+    public function __construct()
+    {
+        parent::__construct();
+        permission();
+    }
     public function index()
     {
 
@@ -52,12 +57,20 @@ class cash extends CI_Controller {
                 $money_type=array(
                     'usa'=>'دالر',
                     'af'=>'افغانی',
-                    'usa'=>'دالر',
                     'eur'=>'یرو',
-                    'ir'=>'تومان'
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
             );
                 break;
-
+            case "dealer":
+                $money_type=array(
+                    'usa'=>'دالر',
+                    'af'=>'افغانی',
+                    'eur'=>'یرو',
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
+                );
+                break;
             default:
                 $money_type=array('usa'=>'دالر');
         }
@@ -121,9 +134,9 @@ class cash extends CI_Controller {
                 $money_type=array(
                     'usa'=>'دالر',
                     'af'=>'افغانی',
-                    'usa'=>'دالر',
                     'eur'=>'یرو',
-                    'ir'=>'تومان'
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
                 );
                 break;
 
@@ -187,9 +200,9 @@ class cash extends CI_Controller {
                 $money_type=array(
                     'usa'=>'دالر',
                     'af'=>'افغانی',
-                    'usa'=>'دالر',
                     'eur'=>'یرو',
-                    'ir'=>'تومان'
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
                 );
                 break;
 
@@ -258,9 +271,9 @@ class cash extends CI_Controller {
                 $money_type=array(
                     'usa'=>'دالر',
                     'af'=>'افغانی',
-                    'usa'=>'دالر',
                     'eur'=>'یرو',
-                    'ir'=>'تومان'
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
                 );
                 break;
 
@@ -315,6 +328,61 @@ class cash extends CI_Controller {
         }
 
     }
+    public function debit_deal($id,$type){
+        $this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method().'/'.$this->uri->segment(3).'/'.$this->uri->segment(4));
+
+        $data['id']=$id;
+        $data['type']=$type;
+        $data['money_type']=$money_type=array(
+            'usa'=>'دالر',
+            'ir'=>'تومان'
+        );
+       // $data['account_id']=$account_id;
+        $data['title']="dashboard";
+        $data['date']=$this->shamci_date->get_today_datetime();
+        $this->form_validation->set_rules('st_id' , null, 'required',
+            array(
+                'required'      => 'You have not provided name in name field'
+            )
+        );
+
+        function alpha_int($str)
+        {
+            $ci =& get_instance();
+            $str = (strtolower($ci->config->item('charset')) != 'utf-8') ? utf8_encode($str) : $str;
+
+            return ( ! preg_match("/^[[:alpha:]- چجحخهعغفقثصضشسیبلاتنمکگپظطزرذدئو_.]+$/", $str)) ? FALSE : TRUE;
+        }
+        if($this->form_validation->run()==false){
+            $data['signup_form']="active";
+            $this->load->template('cash/debit_deal', $data);
+        }else {
+            $dealer_information = array(
+                'st_id' => $this->db->escape_str($this->input->post('st_id')),
+                'unit_price' => $this->db->escape_str($this->input->post('unit_price')),
+                'date' =>  $this->db->escape_str($this->input->post('date')),
+                'dealer_id' =>  $id
+
+            );
+            $dealer_id=  $this->dealer_model->insert($dealer_information);
+          echo   $amount=$this->oil_model->get_sum_dealer($this->db->escape_str($this->input->post('st_id'))) *
+                $this->db->escape_str($this->input->post('unit_price'));
+            $cash_information = array(
+                'cash' => $amount,
+                'type' =>   $this->db->escape_str($this->input->post('date')),
+                'date' => $this->input->post('date'),
+                'transaction_type' => 'credit',
+                'table_name' => 'dealer_transaction',
+                'table_id' => $dealer_id,
+                'account_id' => $id
+
+            );
+
+            $cash_id=  $this->cash_model->insert($cash_information);
+            redirect($_SESSION['url']);
+        }
+
+    }
     function check_type($cash_id,$account_type){
         echo $this->uri->segment(2);
         switch ($account_type){
@@ -331,7 +399,8 @@ class cash extends CI_Controller {
                     'usa'=>'دالر',
                     'af'=>'افغانی',
                     'eur'=>'یرو',
-                    'ir'=>'تومان'
+                    'ir'=>'تومان',
+                    'klp'=>'کلدار'
                 );
                 break;
 
@@ -382,7 +451,14 @@ class cash extends CI_Controller {
 
         if (isset($_GET['term'])){
             $q = strtolower($_GET['term']);
-            print_r( $this->oil_model->srock_transactions_json($q));
+            echo  $this->oil_model->srock_transactions_json($q);
+        }
+    }
+    function get_real_oil_id_json(){
+
+        if (isset($_GET['term'])){
+            $q = strtolower($_GET['term']);
+            echo  $this->oil_model->get_real_oil_id_json($q);
         }
     }
     public function add(){
@@ -439,6 +515,8 @@ class cash extends CI_Controller {
     }
 
     public function profile($id=0,$type){
+        $this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method().'/'.$this->uri->segment(3).'/'.$this->uri->segment(4));
+
         $data['fu_page_title']="Login Form";
         $data['account_rows']=$this->cash_model->get_balance_credit_debit($id);
         $data['balance_rows']=$this->account_model->get_where(array('id' => $id ,'type' => 'account'));
@@ -485,9 +563,19 @@ class cash extends CI_Controller {
             $this->load->template('accounts/dealer_profile',$data);
         }
     }
-    public function delete($id=0){
+    public function delete($id){
+        $cash=$this->cash_model->get_where(array('id'=>$id));
+        foreach ($cash as $key => $value){
+                $driver=$this->driver_model->get_where(array('id'=>$value->table_id));
+                foreach ($driver as $key => $dvalue){
+                    $this->check_model->delete(array('cash_id'=>$id));
+                    $this->driver_model->delete(array('id'=>$value->table_id));
+                    $this->oil_model->delete(array('id'=>$dvalue->st_id));
+                    $this->cash_model->delete(array('id'=>$id));
+            }
+        }
 
-
-        //$this->load->template('accounts/profile',$data);
+    redirect($_SESSION['url']);
     }
+    
 }

@@ -19,7 +19,13 @@ class driver_model extends CI_Model{
         $this->driver_id="driver_id";
 
     }
+    function get_where_column($wheres,$column){
 
+        //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
+        $query=$this->db->get_where($this->table, $wheres);
+        $value =$query->row();
+        return (isset($value->$column))? $value->$column : "";
+    }
     //get all rows of table
     function get(){
         //  $this->db->order_by($this->id,'desc');
@@ -38,7 +44,7 @@ class driver_model extends CI_Model{
 
     function get_where_oil($wheres){
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
-        $this->db->select("parent_id,buyer_seller_id,driver_transaction.id as id,stock_transaction.name,driver_id as buy_sell_id,
+        $this->db->select("parent_id,buyer_seller_id,driver_transaction.id as id,stock_transaction.name,driver_id,
         driver_transaction.amount as amount,unit_price,transit,type, car_count,f_date,st_id,first_hand,stock_id");
         $this->db->from($this->table);
         $this->db->join('stock_transaction','stock_transaction.id=driver_transaction.st_id');

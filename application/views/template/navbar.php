@@ -11,7 +11,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: left;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> 
+font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="<?php echo site_url('anvander/logout') ?>" class="btn btn-danger square-btn-adjust">Logout</a>
 </div>
         </nav>   
            <!-- /. NAV TOP  -->

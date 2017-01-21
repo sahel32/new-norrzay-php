@@ -1,30 +1,26 @@
 
-<link type="text/css" href="<?php echo asset_url('js/datepicker/styles/jquery-ui-1.8.14.css'); ?>" rel="stylesheet" />
-
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery-1.6.2.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.core.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/calendar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-ar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo asset_url('js/datepicker/scripts/jquery.ui.datepicker-cc-fa.js'); ?>"></script>
-
-<script type="text/javascript">
-    $(function() {
-        // حالت پیشفرض
-        $('#datepicker').datepicker({
-            showButtonPanel: true
+<link href="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css" >
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap.min.js'); ?>" ></link>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); ?>"></script>
+<script>
+    $(document).ready(function() {
+        $("#datepicker").datepicker({
+            dateFormat: "yy/mm/dd",
+            ShowButtonPanel:true
         });
-        //-----------------------------------
-        $('#datepicker2').datepicker({
-            showButtonPanel: true
+        $("#datepicker2").datepicker({
+            dateFormat: "yy/mm/dd"
         });
+
     });
 </script>
 
 <div class="row">
     <div class="col-md-12">
-        <h2><?php  echo $main_title; ?></h2>
-        <h5><?php  echo $desc; ?></h5>
+        <h2>پیش فروش</h2>
+        <h5>در این قسمت میتوانید توسط فورم ذیل پیش فروش خود را ثبت نمایید.</h5>
 
     </div>
 </div>
@@ -35,21 +31,21 @@
         <!-- Form Elements -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                <?php  echo $sub_title; ?>
+                فورم ثبت پیش فروش
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
                         <form role="form" action="<?php echo site_url('oil/pre_sell'); ?>" method="post" >
                             <div class="col-md-3 form-group">
-                                <label><?php echo $pre_date;?></label>
+                                <label>تاریخ پیش فروش</label>
 
                                 <input type="text"  value="<?php echo set_value('f_date'); ?>" name="f_date" class="form-control"  id="datepicker"/>
                                 <span class="help-inline"><?php echo (form_error('f_date') ) ? form_error('f_date') : "<span class='red'>*</span>"; ?></span>
 
                             </div>
                             <div class="col-md-3 form-group">
-                                <label><?php echo $pre_date_2;?></label>
+                                <label>تاریخ تقریبی تحویل</label>
 
                                 <input type="text"  value="<?php echo set_value('s_date'); ?>" name="s_date" class="form-control"  id="datepicker2"/>
                                 <span class="help-inline"><?php echo (form_error('s_date') ) ? form_error('s_date') : "<span class='red'>*</span>"; ?></span>
@@ -65,7 +61,7 @@
                               </div>-->
 
                             <div class="col-md-3 form-group">
-                                <label><?php echo $account_label;?></label>
+                                <label>فروش به</label>
                                 <select class="form-control" name="account_id">
                                     <?php
 
@@ -78,7 +74,7 @@
                                 </select>
                             </div>
                             <div class="col-md-3 form-group">
-                                <label>stock</label>
+                                <label>نوع تیل</label>
                                 <select class="form-control" name="stock">
                                     <?php
 
@@ -110,7 +106,7 @@
 
                                             </select>
                                         </div>-->
-
+                            <div class="clearfix"></div>
                             <div class="col-md-3 form-group">
                                 <label>نوع فروش</label>
                                 <select class="form-control" id="measurement-type" name="unit" >
@@ -151,9 +147,9 @@
                             </div>-->
                             <div class="col-md-6 form-group">
                                 <label>شرح و تفصیلات</label>
-                                <textarea class="form-control" rows="3" name="desc" ></textarea>
+                                <textarea class="form-control" rows="1" name="desc" ></textarea>
                             </div>
-                            <div class="col-md-offset-3 col-md-3 gap">
+                            <div class="col-md-3 gaps">
                                 <button type="submit" class="btn btn-default pull-left">تائید</button>
                                 <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
                             </div>

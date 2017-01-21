@@ -39,11 +39,76 @@ class cash_model extends CI_Model{
         $query=$this->db->get($this->table);
         return $query->result();
     }
-
-    function get_balance_credit_debit_mylty_money($id,$type){
+    function get_balance_credit_debit_mylti_money_date($wheres){
         $query=$this->db->query("
 SELECT
-  ( debit-credit) AS balance,
+  ( credit - debit) AS balance,
+  credit,
+  debit,
+  NAME,
+  lname,
+  phone,
+  account.id,
+  cash.type AS TYPE
+FROM
+  (SELECT
+    (debit1 + debit2) AS credit
+  FROM
+    (SELECT
+      IFNULL(SUM(cash), 0) AS debit1
+    FROM
+      cash
+    WHERE transaction_type = 'debit'
+      AND account_ID =  ".$wheres['account_id']."
+      AND TYPE = '".$wheres['type']."'
+      AND DATE >= '".$wheres['firstdate']."'
+      AND DATE <= '".$wheres['seconddate']."') AS t1,
+    (SELECT
+      IFNULL(SUM(cash.`cash`), 0) AS debit2
+    FROM
+      cash,
+      check_option
+    WHERE cash.id = check_option.`cash_id`
+      AND cash.`account_id` =  ".$wheres['account_id']."
+      AND check_option.`type` = '".$wheres['type']."'
+      AND cash.`transaction_type` = 'debit'
+      AND cash.`date` >= '".$wheres['firstdate']."'
+      AND cash.`date` <= '".$wheres['seconddate']."') AS t2) AS result,
+  (SELECT
+    (credit1 + credit2) AS debit
+  FROM
+    (SELECT
+      IFNULL(SUM(cash), 0) AS credit1
+    FROM
+      cash
+    WHERE transaction_type = 'credit'
+      AND account_ID =  ".$wheres['account_id']."
+      AND TYPE = '".$wheres['type']."'
+      AND DATE >= '".$wheres['firstdate']."'
+      AND DATE <= '".$wheres['seconddate']."') AS t1,
+    (SELECT
+      IFNULL(SUM(cash.`cash`), 0) AS credit2
+    FROM
+      cash,
+      check_option
+    WHERE cash.id = check_option.`cash_id`
+      AND cash.`account_id` =  ".$wheres['account_id']."
+      AND check_option.`type` = '".$wheres['type']."'
+      AND cash.`transaction_type` = 'credit'
+      AND cash.`date` >= '".$wheres['firstdate']."'
+      AND cash.`date` <= '".$wheres['seconddate']."') AS t2) AS result1,
+  account,
+  cash
+WHERE cash.`account_id` = account.id
+  AND account.`id` =  ".$wheres['account_id']."
+GROUP BY account.`id`
+        ");
+        return  $query->result();
+    }
+    function get_balance_credit_debit_mylty_money($wheres){
+        $query=$this->db->query("
+SELECT
+  ( credit - debit ) AS balance,
   credit,
   debit,
   NAME,
@@ -58,7 +123,8 @@ SELECT
   FROM
     cash
   WHERE transaction_type = 'debit'
-    AND account_ID = ? AND type=? 
+    AND account_ID = ".$wheres['account_id']."
+    AND type='".$wheres['type']."'
 ) AS t1,
 (SELECT
   IFNULL(SUM(cash.`cash`),0) AS debit2
@@ -66,8 +132,8 @@ FROM
   cash,
   check_option
 WHERE cash.id = check_option.`cash_id`
-  AND cash.`account_id` = ?
-  AND check_option.`type` = ?
+  AND cash.`account_id` = ".$wheres['account_id']."
+  AND check_option.`type` = '".$wheres['type']."'
   AND cash.`transaction_type`='debit'
 ) AS t2) AS result,
   (SELECT (credit1+credit2) AS debit FROM (
@@ -76,7 +142,8 @@ SELECT
   FROM
     cash
   WHERE transaction_type = 'credit'
-    AND account_ID = ? AND type=?
+    AND account_ID = ".$wheres['account_id']." 
+    AND type='".$wheres['type']."'
 ) AS t1,
 (SELECT
   IFNULL(SUM(cash.`cash`),0) AS credit2
@@ -84,18 +151,17 @@ FROM
   cash,
   check_option
 WHERE cash.id = check_option.`cash_id`
-  AND cash.`account_id` = ?
-  AND check_option.`type` = ? 
+  AND cash.`account_id` = ".$wheres['account_id']."
+  AND check_option.`type` = '".$wheres['type']."' 
   AND cash.`transaction_type`='credit'
 ) AS t2) AS result1,
   account,
   cash
 WHERE cash.`account_id` = account.id
-  AND account.`id` = ?
+  AND account.`id` = ".$wheres['account_id']."
 GROUP BY account.`id`
-        ", array($id,$type,$id,$type,$id,$type,$id,$type,$id));
+        ");
         return  $query->result();
-
     }
 
 
@@ -108,7 +174,8 @@ SELECT
   name,
   lname,
   phone,
-  account.id
+  account.id,
+  cash.type as type
 FROM
   (SELECT
     IFNULL(SUM(cash),0) AS debit
@@ -157,6 +224,15 @@ GROUP BY account.`id`
         //$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
         $query=$this->db->get_where($this->table, $wheres);
         return $query->result();
+    }
+
+    function get_where_oil($wheres,$buy_sell){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where($wheres);
+        $this->db->join('stock_transaction', "stock_transaction.id = cash.table_id and stock_transaction.type='fact' and stock_transaction.buy_sell='".$buy_sell."'");
+        $query = $this->db->get();
+        return $query->result();;
     }
 
     //deletes data from table by condtion or array of condition
