@@ -43,8 +43,8 @@
 </style>
 <div class="row">
     <div class="col-md-12">
-        <h2>پرداخت و دریافت </h2>
-        <h5>پول یا چک برای مشتری و فروشنده های تیل</h5>
+        <h2>دریافت / پرداخت</h2>
+        <h5>از این قسمت میتوانید بردگی و رسیدگی شخص مورد نظر را ثبت نمایید.</h5>
 
     </div>
 </div>
@@ -55,7 +55,7 @@
         <!-- Form Elements -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                فورم ثبت درایور
+                فورم ثبت دریافت / پرداخت
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -66,7 +66,7 @@
 
                             <div class="col-md-3 form-group">
 
-                                <label>مقدار پول</label>
+                                <label>مبلغ</label>
 
                                 <input type="text"  value="<?php echo set_value('amount'); ?>"name="amount" class="form-control" data-trigger="hover"/>
                                 <span class="help-inline"><?php echo (form_error('amount') ) ? form_error('amount') : "<span class='red'>*</span>"; ?></span>
@@ -76,7 +76,7 @@
 
                             <div class="col-md-3 form-group">
 
-                                <label>دریافت یا پرداخت</label>
+                                <label>دریافت / پرداخت</label>
 
                                 <select class="form-control" name="transaction_type">
 
@@ -93,12 +93,12 @@
 
                             <div class="col-md-3 form-group">
 
-                                <label>نوع پول</label>
+                                <label>نوعیت پول</label>
 
 
                                 <select class="form-control" name="type" id="type">
-                                    <option value="usa">usa</option>
-                                    <option value="check" >check</option>
+                                    <option value="usa">دالر</option>
+                                    <option value="check" >چک</option>
 
 
                                 </select>
