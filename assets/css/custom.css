@@ -488,7 +488,13 @@ label{
     background: #009688;
 }
 
-
+.fix-color{
+    color: #fff !important;
+}
+.fix-color:hover, .fix-color:focus, .fix-color:active{
+    color: #ccc!important;
+    
+}
 /*......Printing Styles.....*/
 
 .fix-page-wrapper{
