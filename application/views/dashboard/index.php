@@ -134,17 +134,19 @@
                 <div class="main-temp-back debits">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-xs-6"> <i><img src="<?php echo asset_url('../assets/img/debits.png'); ?>" alt="User"/></i></div>
-                            <div class="col-xs-6">
-                                <div class="text-temp"> دریافت / پرداخت </div>
-                            </div>
+                            <a href="<?php echo site_url("cash/credit_debit/exchanger") ?>" class="fix-color">
+                                <div class="col-xs-6"> <i><img src="<?php echo asset_url('../assets/img/debit-credit.png'); ?>" alt="User"/></i></div>
+                                <div class="col-xs-6">
+                                    <div class="text-temp"> دریافت / پرداخت </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4 col-sm-6 col-xs-12 ">
+        <!-- <div class="col-md-4 col-sm-6 col-xs-12 "> 
             <div class="panel ">
                 <div class="main-temp-back credits">
                     <div class="panel-body">
@@ -157,7 +159,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
 
