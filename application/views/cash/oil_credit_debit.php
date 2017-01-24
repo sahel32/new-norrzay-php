@@ -24,8 +24,8 @@
 </style>
 <div class="row">
     <div class="col-md-12">
-        <h2>پرداخت و دریافت </h2>
-        <h5>پول یا چک برای مشتری و فروشنده های تیل</h5>
+        <h2>دریافت / پرداخت</h2>
+        <h5>از این قسمت شما میتوانید دریافت و پرداخت را بر اساس فاکتور مورد نظر برای مشتری ها انجام دهید.</h5>
 
     </div>
 </div>
@@ -36,7 +36,7 @@
         <!-- Form Elements -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                فورم ثبت درایور
+                فورم ثبت دریافت / پرداخت
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -47,12 +47,12 @@
                                 <!-- <a href="#new-driver" data-toggle="modal">
                                      <i class="fa fa-plus-circle" data-toggle="tooltip" title="ثبت درایور جدید" data-placement="top"></i>
                                  </a>-->
-                                <label>فاکتور مربوظ </label>
+                                <label>شماره فاکتور</label>
                                 <input type="text" name="st_id"  id="stock_transactions" class="form-control">
                             </div>
                             <div class="col-md-3 form-group">
 
-                                <label>مقدار پول</label>
+                                <label>مبلغ</label>
 
                                 <input type="text"  value="<?php echo set_value('amount'); ?>"name="amount" class="form-control" data-trigger="hover"/>
                                 <span class="help-inline"><?php echo (form_error('amount') ) ? form_error('amount') : "<span class='red'>*</span>"; ?></span>
@@ -62,7 +62,7 @@
 
                             <div class="col-md-3 form-group">
 
-                                <label>دریافت یا پرداخت</label>
+                                <label>دریافت / پرداخت</label>
 
                                 <select class="form-control" name="transaction_type">
 
@@ -79,12 +79,12 @@
 
                             <div class="col-md-3 form-group">
 
-                                <label>نوع پول</label>
+                                <label>نوعیت پول</label>
 
 
                                 <select class="form-control" name="type" id="type">
-                                    <option value="usa">usa</option>
-                                    <option value="check" >check</option>
+                                    <option value="usa">دالر</option>
+                                    <option value="check" >چک</option>
 
 
                                 </select>
@@ -98,7 +98,7 @@
                                 <input type="text" name="account_name"  id="birds" class="form-control">
                             </div>
 -->
-                            <div class="col-md-3 gaps">
+                            <div class="col-md-3 col-md-offset-3 gaps">
                                 <button type="submit" class="btn btn-default pull-left">تائید</button>
                                 <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
                             </div>

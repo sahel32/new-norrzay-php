@@ -2,16 +2,11 @@
         <nav class="navbar-default navbar-side fix-sidebar" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-                    <li class="text-center">
-                        <img src="<?php echo asset_url('img/find_user.png'); ?>" class="user-image img-responsive"/>
-                    </li>
-                
-                    
                     <li>
                         <a  href="<?php echo site_url('dashboard/index'); ?> "><i class="fa fa-dashboard fa-3x"></i> داشبورد</a>
                     </li>
                     <li>
-                        <a  href="ui.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/stock.png'); ?>" alt="stock"/></i> گدام</a>
+                        <a  href="#"><i><img class="sidebar-menu" src="<?php echo asset_url('img/stock.png'); ?>" alt="stock"/></i> گدام</a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="<?php  echo site_url('stock/add');?>">گدام جدید</a>
@@ -25,7 +20,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a  href="tab-panel.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/safebox.png'); ?>" alt="safebox"/></i> صندوق</a>
+                        <a  href="#"><i><img class="sidebar-menu" src="<?php echo asset_url('img/safebox.png'); ?>" alt="safebox"/></i> صندوق</a>
                     </li>
                     <li  >
                         <a  href="#"><i><img class="sidebar-menu" src="<?php echo asset_url('img/buys.png'); ?>" alt="buys"/></i> خریدها</a>
@@ -56,10 +51,10 @@
                           <ul class="nav nav-second-level">
 
                               <li>
-                                  <a href="<?php  echo site_url('balance/get_total_balance');?>">گرفتن گزارش کلی</a>
+                                  <a href="<?php  echo site_url('balance/get_total_balance');?>">گزارش کلی</a>
                               </li>
                               <li>
-                                  <a href="<?php  echo site_url('balance/account_report');?>">/گزارش حساب ها/گدام ها</a>
+                                  <a href="<?php  echo site_url('balance/account_report');?>">گزارش حساب ها / گدام ها</a>
                               </li>
                               <li>
                                   <a href="<?php  echo site_url('balance/oil_report');?>">گزارش از تیل ها</a>
@@ -70,22 +65,22 @@
                         <a  href="chart.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/accounts.png'); ?>" alt="accounts"/></i> حساب ها</a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="<?php echo site_url('account/lists/seller');?>">حساب فروشنده های تیل</a>
+                                <a href="<?php echo site_url('account/lists/seller');?>">فروشنده ها</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('account/lists/customer');?>">حساب خریدار های تیل</a>
+                                <a href="<?php echo site_url('account/lists/customer');?>">فروشنده ها و خریداران</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('account/lists/exchanger');?>">حساب صرافی ها</a>
+                                <a href="<?php echo site_url('account/lists/exchanger');?>">صرافی ها</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('account/lists/dealer');?>">حساب کمیشن کار ها</a>
+                                <a href="<?php echo site_url('account/lists/dealer');?>">کمیشن کارها</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('account/lists/driver');?>">حساب راننده ها</a>
+                                <a href="<?php echo site_url('account/lists/driver');?>">درایور ها</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('account/lists/stuff');?>">حساب کارکنان</a>
+                                <a href="<?php echo site_url('account/lists/stuff');?>">کارکنان</a>
                             </li>
                             <li>
                                 <a href="<?php echo site_url("account/add") ?>">حساب جدید</a>
@@ -93,24 +88,17 @@
                         </ul>
                     </li>
                      <li  >
-                        <a  href="chart.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/debits.png'); ?>" alt="debits"/></i> پرداخت ها</a>
+                        <a  href="#"><i><img class="sidebar-menu" src="<?php echo asset_url('img/debit-credit.png'); ?>" alt="debits"/></i> دریافت / پرداخت</a>
                         <ul class="nav nav-second-level">
 
                             <li>
-                                <a href="<?php echo site_url("cash/credit_debit/exchanger") ?>"> کارمند، راننده، کمیشن کار،صراف</a>
+                                <a href="<?php echo site_url("cash/credit_debit/exchanger") ?>"> بر اساس نام</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url("cash/oil_credit_debit/exchanger") ?>">فرشنده و خریدار های تیل</a>
+                                <a href="<?php echo site_url("cash/oil_credit_debit/exchanger") ?>">بر اساس نمبر فاکتور</a>
                             </li>
                         </ul>
                     </li>
-                    <li  >
-                        <a  href="chart.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/credits.png'); ?>" alt="credits"/></i> دریافت ها</a>
-                        <ul class="nav nav-second-level">
-
-                        </ul>
-                    </li>
-                        
                 </ul>
                
             </div>

@@ -42,8 +42,8 @@
 </style>
 <div class="row">
     <div class="col-md-12">
-        <h2>ثبت درایور</h2>
-        <h5>از این قسمت میتوانید مشخصات درایور را ثبت نمایید. </h5>
+        <h2>مشخصات چک</h2>
+        <h5>از این قسمت میتوانید مشخصات چک را ثبت نمایید. </h5>
 
     </div>
 </div>
@@ -54,7 +54,7 @@
         <!-- Form Elements -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                فورم ثبت درایور
+                فورم ثبت مشخصات چک
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -63,7 +63,7 @@
                                 <input type="hidden" name="cash_id" value="<?php echo $cash_id;?>">
                             <div class="col-md-3 form-group">
 
-                                <label>کد چک</label>
+                                <label>کد نمبر</label>
 
                                 <input type="text"  value="<?php echo set_value('code'); ?>"name="code" class="form-control" data-trigger="hover"/>
                                 <span class="help-inline"><?php echo (form_error('code') ) ? form_error('code') : "<span class='red'>*</span>"; ?></span>
@@ -72,7 +72,7 @@
 
                             <div class="col-md-3 form-group">
 
-                                <label>اسم صاحب چک</label>
+                                <label>صادر کننده</label>
 
                                 <input type="text"  value="<?php echo set_value('name'); ?>"name="name" class="form-control" data-trigger="hover"/>
                                 <span class="help-inline"><?php echo (form_error('name') ) ? form_error('name') : "<span class='red'>*</span>"; ?></span>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-md-3 form-group">
 
-                                <label>نوع پول</label>
+                                <label>نوعیت پول</label>
 
 
                                 <select class="form-control" name="type" id="type">
@@ -98,17 +98,17 @@
                             </div>
                             <div class="col-md-3 form-group">
 
-                                <label>چک بانک یا صراف</label>
+                                <label>نوعیت چک</label>
 
                                 <select class="form-control" name="check_type">
 
-                                    <option value="excheck">چک صراف </option>
+                                    <option value="excheck">چک صرافی</option>
                                     <option value="bankcheck">چک بانک</option>
 
                                 </select>
 
                             </div>
-                            <div class="col-md-3 gaps">
+                            <div class="col-md-3 col-md-offset-3 gaps">
                                 <button type="submit" class="btn btn-default pull-left">تائید</button>
                                 <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>
                             </div>
