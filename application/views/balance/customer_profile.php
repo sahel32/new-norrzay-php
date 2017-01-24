@@ -411,15 +411,3 @@
     <!-- /. ROW -->
 </div>
 <!-- /. PAGE INNER  -->
-<script src="<?php echo asset_url('js/dataTables/jquery.dataTables.js'); ?>"></script>
-<script src="<?php echo asset_url('js/dataTables/dataTables.bootstrap.js'); ?>"></script>
-
-<script>
-
-
-    $('#filter2').change( function() {
-        var filtervalue = this.value;
-        var table2= $('#dataTables-example2').dataTable();
-        table2.fnFilter(filtervalue );
-    });
-</script>

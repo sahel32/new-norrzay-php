@@ -1,23 +1,10 @@
 
-<link href="<?php echo asset_url('jquery-ui-1.10.4/jquery-ui.css'); ?>" rel="stylesheet" type="text/css" />
 
 
-
-
-<script type="text/javascript" src="<?php echo asset_url('jquery-ui-1.10.4/external/jquery/jquery.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo asset_url('jquery-ui-1.10.4/jquery-ui.js'); ?>"></script>
 
 <script type="text/javascript" src="<?php echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.autocomplete.js'); ?>"></script>
 
-<!--<link rel="stylesheet" href="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/themes/base/jquery.ui.all.css'); */?>">
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/jquery-1.10.2.js'); */?>"></script>
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.core.js'); */?>"></script>
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.widget.js'); */?>"></script>
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.position.js'); */?>"></script>
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.menu.js'); */?>"></script>
-<script src="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/ui/jquery.ui.autocomplete.js'); */?>"></script>
-<link rel="stylesheet" href="<?php /*echo asset_url('jquery-ui-1.10.4/jquery-ui-1.10.4/demos.css'); */?>">
--->
 <script type="text/javascript">
     $(function(){
         $("#stock_transactions").autocomplete({
@@ -27,14 +14,7 @@
 
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modal.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/css/bootstrap-modal.css" type="text/css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/css/bootstrap-modal.min.css" type="text/css" />
 
-<link rel="stylesheet" href="<?php echo asset_url('js/modal.css'); ?>" type="text/css" />
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />
 <style>
     .ui-autocomplete-loading {
@@ -127,28 +107,7 @@
                 </div>
             </div>
         </div>
-        <script>
 
-            $("#type").change(function () {
-                if(this.value=="check") {
-                    //$('#new-driver').modal('toggle');
-                }
-            })
-
-
-        </script>
-        <!-- Start Modal driver -->
-        <div id="new-driver" class="modal fade" tabindex="-1">
-            <script>
-
-
-                $("#insert-check").click(function () {
-                    alert("hi")
-                })
-
-            </script>
-
-        <!-- End Modal driver -->
 
  
 
