@@ -90,7 +90,10 @@
                                 <span class="help-inline"><?php echo (form_error('unit_price') ) ? form_error('unit_price') : "<span class='red'>*</span>"; ?></span>
 
                             </div>
-
+                            <div class="col-md-6 form-group">
+                                <label>شرح و تفصیلات</label>
+                                <textarea class="form-control" rows="1" name="desc" ></textarea>
+                            </div>
                             <div class="col-md-offset-9 col-md-3 gaps">
                                 <button type="submit" class="btn btn-default pull-left">تائید</button>
                                 <button type="reset" class="btn btn-primary pull-left">تنظیم مجدد</button>

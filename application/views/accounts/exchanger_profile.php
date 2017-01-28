@@ -47,9 +47,7 @@
                                     <td class="center">
                                         <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                    </td>
-                                    <td class="center">
-                                        <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'> غیر فعال کردن </a>" : "<a href='".site_url('account/active/'.$value->id.'')."'> فعال کردن </a>"
+                                        <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'><span style='color:blue;' class='glyphicon glyphicon-ok-circle' data-toggle='tooltip' title='غیر فعال کردن مشتری' data-placement='top'></span></a>" : "<a href='".site_url('account/active/'.$value->id.'')."'><span style='color: #f90c05;' class='glyphicon glyphicon-ban-circle' data-toggle='tooltip' title='فعال کردن مشتری' data-placement='top'></span></a>"
                                         ; ?>
                                     </td>
                                 </tr>
@@ -78,10 +76,7 @@
                                 <th>کد</th>
 
                                 <th>نوع پول</th>
-                               <!-- <th>رسیدگی</th>
-                                <th>بردگی</th>-->
                                 <th>بیلانس (الباقی)</th>
-                                <th>تغییرات</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -132,16 +127,8 @@
                                         }
                                         ?></td>
                                     </td>
-
-                                    <!--<td class="center"><?php /*echo $value->debit;*/?></td>
-                                    <td class="center"><?php /*echo $value->credit;*/?></td>-->
                                     <td class="center"><?php echo $value->balance;?></td>
 
-                                    <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('balance/balance_check_out_multy/'.$value->id."/".$type_value->type); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
-                                    </td>
                                 </tr>
                             <?php }}}?>
                             </tbody>
@@ -160,8 +147,8 @@
                     <div class="btn-group pull-left">
 
                         <select id="filter2">
-                            <option value="debit">debit</option>
-                            <option value="credit">credit</option>
+                            <option value="بردگی">بردگی</option>
+                            <option value="رسیدگی">رسیدگی</option>
                         </select>
                         <i class="fa fa-comments fa-filter" aria-hidden="true"> فیلتر </i>
 
@@ -177,7 +164,7 @@
                                 <th>مقدار پول</th>
                                 <th>نوع پول</th>
                                 <th>نوع دریافت / پرداخت پول</th>
-
+                                <th>توضیحات</th>
                                 <th>تغییرات</th>
                             </tr>
                             </thead>
@@ -235,14 +222,13 @@
                                                     echo "بردگی";
                                                     break;
                                             }; ?></td>
-
+                                        <td><?php echo $cash_value->desc; ?></td>
                                         <td class="center">
-                                            <a href="<?php echo site_url('account/delete/' . $value->id) ?>"><span
+                                            <a href="<?php echo site_url('cash/delete/' . $cash_value->id) ?>"><span
                                                     class="glyphicon glyphicon-trash"></span></a>
-                                            <a href="<?php echo site_url('account/edit/' . $value->id) ?>"><span
+                                            <a href="<?php echo site_url('account/edit/' . $cash_value->id) ?>"><span
                                                     class="glyphicon glyphicon-edit"></span></a>
-                                            <a href="<?php echo site_url('account/profile/' . $value->id); ?>"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></a>
+                                         
                                         </td>
                                     </tr>
                                 <?php }

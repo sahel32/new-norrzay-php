@@ -90,6 +90,7 @@
                                 <th>مقدار پول</th>
                                 <th>نوع پول</th>
                                 <th>نوع دریافت / پرداخت پول</th>
+                                <th>توضیحات</th>
                                 <th>تغییرات</th>
                             </tr>
                             </thead>
@@ -123,10 +124,11 @@
                                                 break;
                                         }
                                         ;?></td>
-
+                                    <td><?php  echo $cash_value->desc;?></td>
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
-                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
+                                        <a href="<?php echo site_url('cash/delete/' . $cash_value->id) ?>"><span
+                                                class="glyphicon glyphicon-trash"></span></a>
+                                        <a href="<?php echo site_url('account/edit/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
                                     </td>
                                 </tr>
                             <?php  }?>

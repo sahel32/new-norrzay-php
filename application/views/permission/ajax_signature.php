@@ -52,6 +52,7 @@
                             if(data==1){
                                 result="درحال ری دایرکت کردن"
                                 var  url='<?php echo site_url(''); ?>';
+                                
                                 window.location.href=url;
                             }
                                 result = times * 3;

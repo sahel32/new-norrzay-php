@@ -74,12 +74,9 @@
                             <thead>
                             <tr>
                                 <th>کد</th>
-
                                 <th>نوع پول</th>
-                                <!-- <th>رسیدگی</th>
-                                 <th>بردگی</th>-->
                                 <th>بیلانس (الباقی)</th>
-                                <th>تغییرات</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -130,14 +127,7 @@
                                                 }
                                                 ?></td>
                                             </td>
-
-                                            <!--<td class="center"><?php /*echo $value->debit;*/?></td>
-                                    <td class="center"><?php /*echo $value->credit;*/?></td>-->
                                             <td class="center"><?php echo $value->balance;?></td>
-
-                                            <td class="center">
-                                                <!--                                                <a href="<?php /*echo site_url('balance/balance_check_out_multy/'.$value->id."/".$type_value->type); */?>"><span class="glyphicon glyphicon-asterisk"></span></a>
--->                                            </td>
                                         </tr>
                                     <?php }}}?>
                             </tbody>
@@ -156,8 +146,8 @@
                     <div class="btn-group pull-left">
 
                         <select id="filter2">
-                            <option value="debit">debit</option>
-                            <option value="credit">credit</option>
+                            <option value="بردگی">بردگی</option>
+                            <option value="رسیدگی">رسیدگی</option>
                         </select>
                         <i class="fa fa-comments fa-filter" aria-hidden="true"> فیلتر </i>
 
@@ -173,8 +163,9 @@
                                 <th>مقدار پول</th>
                                 <th>نوع پول</th>
                                 <th>نوع دریافت / پرداخت پول</th>
-
+                                <th>توضیحات</th>
                                 <th>تغییرات</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -231,13 +222,12 @@
                                                     echo "بردگی";
                                                     break;
                                             }; ?></td>
-
+                                        <td><?php echo $cash_value->desc; ?></td>
                                         <td class="center">
                                             <a href="<?php echo site_url('account/delete_cash/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                             <a href="<?php echo site_url('account/edit/' . $value->id) ?>"><span
                                                     class="glyphicon glyphicon-edit"></span></a>
-                                            <a href="<?php echo site_url('account/profile/' . $value->id); ?>"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></a>
+
                                         </td>
                                     </tr>
                                 <?php }

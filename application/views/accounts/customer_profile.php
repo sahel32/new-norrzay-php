@@ -92,6 +92,7 @@
                                 <th>مبلغ</th>
                                 <th>نوع پول</th>
                                 <th>نوع دریافت / پرداخت پول</th>
+                                <th>توضیحات</th>
                                 <th>تغییرات</th>
                             </tr>
                             </thead>
@@ -125,10 +126,10 @@
                                                 break;
                                         }
                                         ;?></td>
+                                    <td><?php  echo $cash_value->desc;?></td>
                                     <td class="center">
                                         <a href="<?php echo site_url('account/delete_cash/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
-                                        <a href="#"><span class="glyphicon glyphicon-tint" data-toggle='tooltip' title='مشاهده فاکتور' data-placement='top'></span></a>
                                     </td>
                                 </tr>
                             <?php  }?>
@@ -191,7 +192,6 @@
                                             <td class="center">
                                                 <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
                                                 <a href="#"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
-                                                <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-tint" data-toggle='tooltip' title='مشاهده فاکتور' data-placement='top'></span></a>
                                             </td>
                                         </tr>
                                     <?php  }?>
@@ -232,7 +232,6 @@
                                             <td class="center">
                                                 <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
                                                 <a href="#"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
-                                                <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-tint" data-toggle='tooltip' title='مشاهده فاکتور' data-placement='top'></span></a>
                                             </td>
                                         </tr>
                                     <?php  }?>
@@ -311,7 +310,7 @@
                                                 <span class="glyphicon glyphicon-usd"></span>
                                             </td>
                                             <td class="center">
-                                                <a href="<?php echo site_url('account/delete/'.$value->id); ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
+                                                <a href="<?php echo site_url('stock/fact_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
                                                 <a href="#"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
                                                 <a href="<?php echo site_url('oil/profile/'.$value->id.'/sell'); ?>"><span class="glyphicon glyphicon-tint" data-toggle='tooltip' title='مشاهده فاکتور' data-placement='top'></span></a>
                                             </td>

@@ -64,7 +64,6 @@
                                 <!-- <th>رسیدگی</th>
                                  <th>بردگی</th>-->
                                 <th>بیلانس (الباقی)</th>
-                                <th>تغییرات</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -123,11 +122,6 @@
                                             <!--<td class="center"><?php /*echo $value->debit;*/?></td>
                                     <td class="center"><?php /*echo $value->credit;*/?></td>-->
                                             <td class="center"><?php echo $value->balance;?></td>
-
-                                            <td class="center">
-                                                <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-                                                <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                            </td>
                                         </tr>
                                     <?php }}}?>
                             </tbody>
@@ -287,19 +281,3 @@
 
 </div>
 <!-- /. PAGE INNER  -->
-<script src="<?php echo asset_url('js/dataTables/jquery.dataTables.js'); ?>"></script>
-<script src="<?php echo asset_url('js/dataTables/dataTables.bootstrap.js'); ?>"></script>
-
-<script>
-    $(document).ready(function () {
-        $('#dataTables-example2').dataTable();
-
-    });
-
-
-    $('#filter2').change( function() {
-        var filtervalue = this.value;
-        var table2= $('#dataTables-example2').dataTable();
-        table2.fnFilter(filtervalue );
-    });
-</script>

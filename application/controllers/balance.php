@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class balance extends CI_Controller {
+class Balance extends CI_Controller {
 
     /**
      * Index Page for this controller.

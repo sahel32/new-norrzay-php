@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class account extends CI_Controller {
+class Account extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -185,18 +185,6 @@ class account extends CI_Controller {
 			$this->load->template('accounts/dealer_profile',$data);
 		}
     }
-	public function delete_review($id){
-		$data['account']=$this->account_model->get_where(array('id'=>$id));
-		$data['cash']=$this->cash_model->get_where(array('account_id'=>$id));
-		$data['stock_transaction']=$this->oil_model->get_where(array('buyer_seller_id'=>$id));
-		$data['driver_transaction']=$this->driver_model->get_where(array('driver_id'=>$id));
-		$data['check']=$this->check_model->get_where(array('cash_id'=>$id));
-		$data['dealer_transaction']=$this->dealer_model->get_where(array('id'=>$id));
-
-		$data['id']=$id;
-
-		$this->load->popupp('accounts/delete_review',$data);
-	}
 
 	public function delete_cash($id){
 
