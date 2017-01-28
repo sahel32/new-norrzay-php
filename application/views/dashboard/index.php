@@ -17,6 +17,7 @@
                         <div class="row">
                             <a href="<?php  echo site_url('stock/lists');?>" class="fix-color">
                                 <div class="col-xs-6"> <i><img src="<?php echo asset_url('img/stock.png'); ?>" alt="User"/></i></div>
+
                                 <div class="col-xs-6">
                                     <div class="text-temp">گدام ها</div>
                                 </div>
@@ -34,6 +35,7 @@
                         <div class="row">
                             <a href="<?php  echo site_url('stock/lists');?>" class="fix-color">
                                 <div class="col-xs-6"> <i><img src="<?php echo asset_url('img/safebox.png'); ?>" alt="User"/></i></div>
+
                                 <div class="col-xs-6">
                                     <div class="text-temp"> صندوق </div>
                                 </div>
@@ -51,6 +53,7 @@
                         <div class="row">
                             <a href="<?php  echo site_url('oil/lists_pre_buy');?>" class="fix-color">
                                 <div class="col-xs-6"> <i><img src="<?php echo asset_url('img/buys.png'); ?>" alt="User"/></i></div>
+
                                 <div class="col-xs-6">
                                     <div class="text-temp"> پیش خریدها </div>
                                 </div>
@@ -68,6 +71,7 @@
                         <div class="row">
                             <a href="<?php  echo site_url('oil/lists_pre_sell');?>" class="fix-color">
                                 <div class="col-xs-6"> <i><img src="<?php echo asset_url('img/sells.png'); ?>" alt="User"/></i></div>
+
                                 <div class="col-xs-6">
                                     <div class="text-temp">پیش فروش ها</div>
                                 </div>
@@ -87,6 +91,7 @@
                         <div class="row">
                             <a href="<?php  echo site_url('balance/get_total_balance');?>" class="fix-color">
                                 <div class="col-xs-6"> <i><img src="<?php echo asset_url('img/reports.png'); ?>" alt="User"/></i></div>
+
                                 <div class="col-xs-6">
                                     <div class="text-temp"> گزارشات </div>
                                 </div>
@@ -103,6 +108,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-6"> <i><img src="<?php echo asset_url('img/backup.png'); ?>" alt="User"/></i></div>
+
                             <div class="col-xs-6">
                                 <div class="text-temp"> پشتیبان گیری </div>
                             </div>
@@ -119,6 +125,7 @@
                         <div class="row">
                             <a href="<?php echo site_url("account/add") ?>" class="fix-color">
                                 <div class="col-xs-6"> <i><img src="<?php echo asset_url('img/accounts.png'); ?>" alt="User"/></i></div>
+
                                 <div class="col-xs-6">
                                     <div class="text-temp"> افتتاح حساب </div>
                                 </div>
@@ -136,6 +143,7 @@
                         <div class="row">
                             <a href="<?php echo site_url("cash/credit_debit/exchanger") ?>" class="fix-color">
                                 <div class="col-xs-6"> <i><img src="<?php echo asset_url('img/debit-credit.png'); ?>" alt="User"/></i></div>
+
                                 <div class="col-xs-6">
                                     <div class="text-temp"> دریافت / پرداخت </div>
                                 </div>
