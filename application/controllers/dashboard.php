@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class dashboard extends CI_Controller {
+class Dashboard extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -22,7 +22,7 @@ class dashboard extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// permission();
+		permission();
 	}
 	public function index()
 	{

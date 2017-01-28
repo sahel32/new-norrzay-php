@@ -1,7 +1,7 @@
 <?php
 
 
-class permission extends CI_Controller {
+class Permission extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -26,6 +26,10 @@ class permission extends CI_Controller {
     }
     public function signature()
     {
+$session=$this->session->tempdata('allowed');
+if($session){
+redirect('dashboard');
+}
         $data['title']="dashboard";
         $this->load->popupp("permission/signature", $data);
     }

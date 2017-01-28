@@ -38,8 +38,9 @@
 
                                 <select class="form-control" name="transaction_type">
 
-                                    <option value="debit">رسیدگی </option>
-                                    <option value="credit">بردگی </option>
+                                    <option value="credit">رسیدگی </option>
+                                    <option value="debit">بردگی </option>
+
 
                                 </select>
 
@@ -61,6 +62,10 @@
 
                                 </select>
 
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>شرح و تفصیلات</label>
+                                <textarea class="form-control" rows="1" name="desc" ></textarea>
                             </div>
                             <div class="col-md-3 gaps">
                                 <button type="submit" class="btn btn-default pull-left">تائید</button>

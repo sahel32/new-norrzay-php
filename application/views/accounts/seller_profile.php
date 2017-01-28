@@ -91,6 +91,7 @@
                                 <th>مقدار پول</th>
                                 <th>نوع پول</th>
                                 <th>نوع دریافت / پرداخت پول</th>
+                                <th>توضیحات</th>
                                 <th>تغییرات</th>
                             </tr>
                             </thead>
@@ -124,11 +125,10 @@
                                                 break;
                                         }
                                         ;?></td>
-
+                                    <td><?php  echo $cash_value->desc;?></td>
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a href="<?php echo site_url('account/delete_cash/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <a href="<?php echo site_url('balance/balance_check_out/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                     </td>
                                 </tr>
                             <?php  }?>
@@ -195,9 +195,10 @@
                                             <td class="center"><?php echo $value->car_count;?></td>
                                             <td class="center"><?php echo $value->unit_price;?></td>
                                             <td class="center">
-                                                <a href="<?php echo site_url('account/delete/'.$value->id); ?>"><span class="glyphicon glyphicon-trash"></span></a>
+                                                <a href="<?php echo site_url('oil/pre_set_end/'.$value->id.'/buy') ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></a>
+
                                                 <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-                                                <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                                <a href="<?php echo site_url('oil/profile/'.$value->id.'/buy'); ?>"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="مشاهده فاکتور" data-placement="top"></span></a>
                                             </td>
                                         </tr>
                                     <?php  }?>

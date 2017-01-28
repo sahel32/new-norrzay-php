@@ -137,6 +137,7 @@
                                 <th>مبلغ</th>
                                 <th>نوع پول</th>
                                 <th>نوع دریافت / پرداخت پول</th>
+                                <th>توضیحات</th>
                                 <th>تغییرات</th>
                             </tr>
                             </thead>
@@ -172,10 +173,10 @@
                                                 break;
                                         }
                                         ;?></td>
+                                    <td><?php  echo $cash_value->desc;?></td>
                                     <td class="center">
-                                        <a href="<?php echo site_url('cash/delete/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
+                                        <a href="<?php echo site_url('cash/driver_cash_delete/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
-                                        <a href="<?php echo site_url('balance/balance_check_out/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
                                     </td>
                                 </tr>
                             <?php  }?>
@@ -235,11 +236,9 @@
                                         <td class="center"><?php echo $value->first_hand;?></td>
                                         <td class="center"><?php echo $value->transit;?></td>
                                         <td class="center">
-                                           <!-- <a href="<?php /*echo site_url('cash/delete/'.$cash_value->id) */?>"><span class="glyphicon glyphicon-trash"></span></a>-->
-                                            <a data-toggle="modal" data-id="<?php echo $value->id;?>" data-target="#view-modal" id="getUser"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'>
-                                            </a>
+                                            <a href="<?php echo site_url('account/driver_oil_delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
                                             <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
-                                            <a href="<?php echo site_url('account/profile/'.$value->id); ?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                            <a href="<?php echo site_url('oil/profile/'.$value->parent_id.'/buy'); ?>"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="مشاهده فاکتور" data-placement="top"></span></a>
                                         </td>
                                     </tr>
                                 <?php }  ?>

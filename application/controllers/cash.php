@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class cash extends CI_Controller {
+class Cash extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -106,6 +106,7 @@ class cash extends CI_Controller {
                 'cash' => $this->db->escape_str($this->input->post('amount')),
                 'type' => $this->input->post('type'),
                 'date' => $this->input->post('date'),
+                'desc' =>$this->db->escape_str($this->input->post('desc')),
                 'transaction_type' => $this->input->post('transaction_type'),
                 'account_id' => $this->account_model->get_where_column(array('name'=>$this->input->post('account_name')),'id')
 
@@ -170,6 +171,7 @@ class cash extends CI_Controller {
                 'cash' => $this->db->escape_str($this->input->post('amount')),
                 'type' => $this->input->post('type'),
                 'date' => $this->input->post('date'),
+                'desc' => $this->db->escape_str($this->input->post('desc')),
                 'transaction_type' => $this->input->post('transaction_type'),
                 'account_id' => $this->input->post('account_id')
 
@@ -240,6 +242,7 @@ class cash extends CI_Controller {
                 'cash' => $this->db->escape_str($this->input->post('amount')),
                 'type' => $this->input->post('type'),
                 'date' => $this->input->post('date'),
+                'desc' =>$this->db->escape_str($this->input->post('desc')),
                 'transaction_type' => $this->input->post('transaction_type'),
                 'account_id' => $this->oil_model->get_column(array('id'=>$this->db->escape_str($this->input->post('st_id'))),'buyer_seller_id'),
                 'table_id'=>$this->db->escape_str($this->input->post('st_id')),
@@ -310,6 +313,7 @@ class cash extends CI_Controller {
 
             $cash_information = array(
                 'cash' => $this->db->escape_str($this->input->post('amount')),
+                'desc' => $this->db->escape_str($this->input->post('desc')),
                 'type' => $this->input->post('type'),
                 'date' => $this->input->post('date'),
                 'transaction_type' => $this->input->post('transaction_type'),
@@ -371,10 +375,12 @@ class cash extends CI_Controller {
                 'cash' => $amount,
                 'type' =>   $this->db->escape_str($this->input->post('date')),
                 'date' => $this->input->post('date'),
-                'transaction_type' => 'credit',
+                'transaction_type' => 'debit',
                 'table_name' => 'dealer_transaction',
                 'table_id' => $dealer_id,
-                'account_id' => $id
+                'account_id' => $id,
+                'desc' =>   $this->db->escape_str($this->input->post('desc'))
+
 
             );
 
@@ -563,7 +569,7 @@ class cash extends CI_Controller {
             $this->load->template('accounts/dealer_profile',$data);
         }
     }
-    public function delete($id){
+    public function driver_cash_delete($id){
         $cash=$this->cash_model->get_where(array('id'=>$id));
         foreach ($cash as $key => $value){
                 $driver=$this->driver_model->get_where(array('id'=>$value->table_id));
@@ -576,6 +582,12 @@ class cash extends CI_Controller {
         }
 
     redirect($_SESSION['url']);
+    }
+
+    public function delete($id){
+                 $this->check_model->delete(array('cash_id'=>$id));
+                $this->cash_model->delete(array('id'=>$id));
+        redirect($_SESSION['url']);
     }
     
 }

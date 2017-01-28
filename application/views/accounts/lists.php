@@ -33,30 +33,19 @@
                                             <th>نام</th>
                                             <th>تخلص</th>
                                             <th>شماره تماس</th>
-                                            <th>بیلانس</th>
+
                                             <th>تغییرات</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php
                                     foreach ($account_rows as $key => $value) {
-                                       // $this->load->model('cash_model');
-                                        $this->load->model('balance_model');
-                                       // $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$value->id,'table_name'=>'account'));
-                                        $single_balance_rows=$this->cash_model->get_balance_credit_debit_single(array('account_id' => $value->id));
-                                       ?>
+                                        ?>
                                         <tr class="odd gradeX"  >
                                             <td><?php echo $value->id;?></td>
                                             <td><?php echo $value->name;?></td>
                                             <td><?php echo $value->lname;?></td>
                                             <td><?php echo $value->phone;?></td>
-                                <?php    foreach ($single_balance_rows as $bkey => $bvalue) {?><?php }?>
-                                     <!--       <td class="center"><?php /*echo (isset($bvalue->debit))? $bvalue->debit : "";*/?></td>
-                                            <td class="center"><?php /*echo (isset($bvalue->credit))? $bvalue->credit : "";*/?></td>-->
-                                            <td class="center"><?php echo (isset($bvalue->balance))? $bvalue->balance : "";?>
-                                                <span class="glyphicon glyphicon-usd"></span>
-                                            </td>
-
                                             <td class="center" >
                                                 <span data-toggle="modal" data-id="<?php echo $value->id;?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top">
                                                 </span>

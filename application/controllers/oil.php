@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class oil extends CI_Controller {
+class Oil extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -77,8 +77,6 @@ class oil extends CI_Controller {
 	}
 	public function pre_sell($buy_sell="sell")
 		{
-
-
 			$data = array(
 				'main_title' => "pre sell",
 				'sub_title' => "pre sell sub title",
@@ -313,7 +311,7 @@ class oil extends CI_Controller {
 				'stock_label' => 'from stock',
 				'stock_disable' => 'enabled',
 				'buy_sell' => 'sell',
-				'transaction_type' => 'credit',
+				'transaction_type' => 'debit',
 				'type' => 'customer',
 				'popupp_pre_buy_sell_id' => $popupp_pre_buy_sell_id,
 				'remain' => $remain
@@ -399,7 +397,7 @@ class oil extends CI_Controller {
 			'stock_label' => 'from stock',
 			'stock_disable'=>'enabled',
 			'buy_sell' => 'buy',
-			'transaction_type'=>'debit',
+			'transaction_type'=>'credit',
 			'type'=>'customer',
 			'popupp_pre_buy_sell_id'=>$popupp_pre_buy_sell_id,
 			'remain'=>$remain
