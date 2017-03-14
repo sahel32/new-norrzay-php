@@ -62,6 +62,16 @@
                           </ul>
                     </li>
                     <li  >
+                        <a  href="table.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/reports.png'); ?>" alt="reports"/></i> مفادو ضرر</a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="<?php  echo site_url('balance/benefit');?>">مفاد و ضرر</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li  >
                         <a  href="chart.html"><i><img class="sidebar-menu" src="<?php echo asset_url('img/accounts.png'); ?>" alt="accounts"/></i> حساب ها</a>
                         <ul class="nav nav-second-level">
                             <li>

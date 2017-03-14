@@ -26,6 +26,7 @@ class cash_model extends CI_Model{
         $this->transaction_type="transaction_type";
 
 
+
     }
     function get_where_column($wheres,$column){
         $query=$this->db->get_where($this->table, $wheres);
@@ -115,7 +116,8 @@ SELECT
   lname,
   phone,
   account.id,
-  cash.type as type
+  cash.type as type,
+  account.id
 FROM
   (SELECT (debit1+debit2) AS credit FROM (
 SELECT
@@ -123,8 +125,8 @@ SELECT
   FROM
     cash
   WHERE transaction_type = 'debit'
-    AND account_ID = ".$wheres['account_id']."
-    AND type='".$wheres['type']."'
+    AND account_id = '.$wheres->account_id.'
+    AND type='".$wheres->type."'
 ) AS t1,
 (SELECT
   IFNULL(SUM(cash.`cash`),0) AS debit2
@@ -132,8 +134,8 @@ FROM
   cash,
   check_option
 WHERE cash.id = check_option.`cash_id`
-  AND cash.`account_id` = ".$wheres['account_id']."
-  AND check_option.`type` = '".$wheres['type']."'
+  AND cash.`account_id` = '.$wheres->account_id.'
+  AND check_option.`type` = '".$wheres->type."'
   AND cash.`transaction_type`='debit'
 ) AS t2) AS result,
   (SELECT (credit1+credit2) AS debit FROM (
@@ -142,8 +144,8 @@ SELECT
   FROM
     cash
   WHERE transaction_type = 'credit'
-    AND account_ID = ".$wheres['account_id']." 
-    AND type='".$wheres['type']."'
+    AND account_ID = '.$wheres->account_id.'
+    AND type='".$wheres->type."'
 ) AS t1,
 (SELECT
   IFNULL(SUM(cash.`cash`),0) AS credit2
@@ -151,14 +153,14 @@ FROM
   cash,
   check_option
 WHERE cash.id = check_option.`cash_id`
-  AND cash.`account_id` = ".$wheres['account_id']."
-  AND check_option.`type` = '".$wheres['type']."' 
+  AND cash.`account_id` = '.$wheres->account_id.'
+  AND check_option.`type` = '".$wheres->type."' 
   AND cash.`transaction_type`='credit'
 ) AS t2) AS result1,
   account,
   cash
 WHERE cash.`account_id` = account.id
-  AND account.`id` = ".$wheres['account_id']."
+  AND account.`id` = '.$wheres->account_id.'
 GROUP BY account.`id`
         ");
         return  $query->result();
@@ -166,6 +168,7 @@ GROUP BY account.`id`
 
 
     function get_balance_credit_debit_single($id){
+
         $query=$this->db->query("
 SELECT
   (credit-debit) AS balance,
@@ -193,10 +196,71 @@ FROM
   cash
 WHERE cash.`account_id` = account.id
   AND account.`id` = ? 
-GROUP BY account.`id`
+GROUP BY account.id
         ", array($id,$id,$id));
         return  $query->result();
 
+    }
+
+    function benefit($wheres){
+
+        $query=$this->db->query("
+SELECT
+  ( credit - debit ) AS balance,
+  credit,
+  debit,
+  NAME,
+  lname,
+  phone,
+  account.id,
+  cash.type as type,
+  account.id
+FROM
+  (SELECT (debit1+debit2) AS credit FROM (
+SELECT
+    IFNULL(SUM(cash),0)  AS debit1
+  FROM
+    cash
+  WHERE transaction_type = 'debit'
+    AND account_id = '.$wheres->account_id.'
+    AND type='".$wheres->type."'
+) AS t1,
+(SELECT
+  IFNULL(SUM(cash.`cash`),0) AS debit2
+FROM
+  cash,
+  check_option
+WHERE cash.id = check_option.`cash_id`
+  AND cash.`account_id` = '.$wheres->account_id.'
+  AND check_option.`type` = '".$wheres->type."'
+  AND cash.`transaction_type`='debit'
+) AS t2) AS result,
+  (SELECT (credit1+credit2) AS debit FROM (
+SELECT
+    IFNULL(SUM(cash),0)  AS credit1
+  FROM
+    cash
+  WHERE transaction_type = 'credit'
+    AND account_ID = '.$wheres->account_id.'
+    AND type='".$wheres->type."'
+) AS t1,
+(SELECT
+  IFNULL(SUM(cash.`cash`),0) AS credit2
+FROM
+  cash,
+  check_option
+WHERE cash.id = check_option.`cash_id`
+  AND cash.`account_id` = '.$wheres->account_id.'
+  AND check_option.`type` = '".$wheres->type."' 
+  AND cash.`transaction_type`='credit'
+) AS t2) AS result1,
+  account,
+  cash
+WHERE cash.`account_id` = account.id
+  AND account.`id` = '.$wheres->account_id.'
+GROUP BY account.`id`
+        ");
+        return  $query->result();
     }
     //get data from table by condition or array of condition
     function group_by($wheres=array(),$group_by){
