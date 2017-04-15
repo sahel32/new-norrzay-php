@@ -31,6 +31,7 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         <?php
                         foreach ($account_rows as $key => $value) {
 
@@ -39,6 +40,7 @@
                                 $this->load->model('balance_model');
                                 // $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$value->id,'table_name'=>'account'));
                                 $single_balance_rows = $this->cash_model->get_balance_credit_debit_single(array('account_id' => $value->id));
+
                                 ?>
                                 <tr class="odd gradeX">
                                     <td><?php echo $value->id; ?></td>
@@ -69,15 +71,11 @@
                                         }
                                         ?></td>
                                     <?php foreach ($single_balance_rows as $bkey => $bvalue) { ?><?php } ?>
-                                    <!--       <td class="center"><?php /*echo (isset($bvalue->debit))? $bvalue->debit : "";*/
-                                    ?></td>
-                                            <td class="center"><?php /*echo (isset($bvalue->credit))? $bvalue->credit : "";*/
-                                    ?></td>-->
                                     <td class="center"><?php echo (isset($bvalue->balance)) ? $remain=$bvalue->balance : ""; ?></td>
                                     <td>
                                         <?php
 
-                                        switch ($bvalue->type) {
+                                        switch (@$bvalue->type) {
                                             case "usa";
                                                 echo "دالر";
                                                 $dalar+=$remain;
@@ -102,8 +100,10 @@
                                         ?></td>
                                 </tr>
                                 <?php
-                            } elseif ($value->type == 'dealer' or $value->type == 'exchanger') {
+                            }
+                            elseif ($value->type == 'dealer' or $value->type == 'exchanger') {
                                 ?>
+                                <tr>
                                 <td><?php echo $value->id; ?></td>
                                 <td><?php echo $value->name; ?></td>
                                 <td><?php echo $value->lname; ?></td>
@@ -131,26 +131,23 @@
                                             break;
                                     } ?></td>
                                 <td colspan="2"></td>
+                                </tr>
                                 <?php
                                 $type_rows = $this->cash_model->group_by(array('account_id' => $value->id), 'type');
                                 foreach ($type_rows as $key => $type_value) { ?>
                                     <tr class="odd gradeX">
-                                    <td colspan="6"></td>
                                     <?php
                                     $this->load->model('cash_model');
                                     //$this->load->model('balance_model');
-
                                     if ($type_value->type != "check") {
                                         // $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$type_value->account_id,'table_name'=>'account','balance_type'=>$type_value->type));
-                                        $all = $this->cash_model->get_balance_credit_debit_mylty_money($type_value->account_id, $type_value->type);
+                                        $all = $this->cash_model->get_balance_credit_debit_mylty_money($type_value);
                                         foreach ($all as $key => $value) {
                                             ?>
-                                            <!--<td class="center"><?php /*echo $value->debit;*/ ?></td>
-                                    <td class="center"><?php /*echo $value->credit;*/ ?></td>-->
+                                            <td colspan="6"></td>
                                             <td class="center"><?php echo $remain+=$value->balance; ?></td>
                                             <td>
                                                 <?php
-
                                                 switch ($type_value->type) {
                                                     case "usa";
                                                         echo "دالر";
@@ -322,42 +319,79 @@
         $('#dataTables-example').dataTable({
             "pageLength": 500
         });
-        $('#dalar').attr('type','hidden')
-        $('#money-type').change(function(){
+        $('#dalar').attr('type', 'hidden')
+        $('#dalar').val('1')
+        $('#money-type').change(function () {
 
-            var type=$(this).val()
-
+            var type = $(this).val()
 
             var array_of_name = [];
-            $(".input").each(function(){
-                $(this).find('#dalar').attr('type','text')
-                $(this).find('#ir').attr('type','text')
-                $(this).find('#af').attr('type','text')
-                $(this).find('#eur').attr('type','text')
-                $(this).find('#'+type).attr('type','hidden')
-                $(this).find('#'+type).val('')
+            $(".input").each(function () {
+                $(this).find('#dalar').attr('type', 'text')
+                $(this).find('#dalar').val('')
+                $(this).find('#ir').attr('type', 'text')
+                $(this).find('#ir').val('')
+                $(this).find('#af').attr('type', 'text')
+                $(this).find('#af').val('')
+                $(this).find('#eur').attr('type', 'text')
+                $(this).find('#eur').val('')
+                $(this).find('#' + type).attr('type', 'hidden')
+                $(this).find('#' + type).val('1')
 
-                array_of_name.push({'dalar':'hi'});
+                // array_of_name.push({'dalar': 'hi'});
             });
         })
 
-        $("#calculate").click(function(){
-            var total;
-            $(".input").each(function(){
-                $(this).find('#dalar').val()
-                $(this).find('#ir').val()
-                $(this).find('#af').val()
-                $(this).find('#eur').val()
+        $("#calculate").click(function () {
+
+            var total=0;
+            var ch_dalar;
+            var mo_dalar;
+            var ch_ir;
+            var mo_ir;
+            var ch_af;
+            var mo_af;
+            var ch_eur;
+            var mo_eur;
+            $(".input").each(function () {
+                ch_dalar= parseInt($(this).find('#dalar').val())
+                ch_ir=parseInt($(this).find('#ir').val())
+                ch_af=parseInt($(this).find('#af').val())
+                ch_eur=parseInt( $(this).find('#eur').val())
             });
 
-            $(".money-amount").each(function(){
-                $(this).find('.dalar').val()
-                $(this).find('.ir').val()
-                $(this).find('.af').val()
-                $(this).find('.eur').val()
-            });
+            // $(".money-amount").each(function () {
+            mo_dalar= parseInt($('.dalar').html())
+            mo_ir=  parseInt($('.ir').html())
+            mo_af= parseInt($('.af').html())
+            mo_eur= parseInt($('.eur').html())
+            // });
+
+            if(!isNaN(mo_dalar)&&!isNaN(ch_dalar)){
+                total+=mo_dalar*ch_dalar;
+            }else {
+                total+=mo_dalar
+            }
+            if(!isNaN(mo_ir) && !isNaN(ch_ir)){
+                total+=mo_ir*ch_ir;
+            }else{
+                total+=mo_ir
+            }
+            if(!isNaN(mo_af) && !isNaN(ch_af)){
+                total+=mo_af*ch_af;
+            }else{
+                total+=mo_af
+            }
+            if(!isNaN(mo_eur) && !isNaN(ch_eur)){
+                total+=mo_eur*ch_eur;
+            }else{
+                total+=mo_eur
+            }
+
+
+            alert(total)
+
         })
-
     });
 </script>
 <!-- CUSTOM SCRIPTS -->

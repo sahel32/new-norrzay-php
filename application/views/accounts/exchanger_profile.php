@@ -74,7 +74,6 @@
                             <thead>
                             <tr>
                                 <th>کد</th>
-
                                 <th>نوع پول</th>
                                 <th>بیلانس (الباقی)</th>
                             </tr>
@@ -82,16 +81,16 @@
                             <tbody>
                             <?php
                             foreach ($type_rows as $key => $type_value) {
+
                                 $this->load->model('cash_model');
                                 //$this->load->model('balance_model');
-
                                 if($type_value->type!="check"){
                                    // $get_balance_date=$this->balance_model->get_balance_datetime(array('table_id'=>$type_value->account_id,'table_name'=>'account','balance_type'=>$type_value->type));
-                                    $all=$this->cash_model->get_balance_credit_debit_mylty_money(array('account_id'=>$type_value->account_id,'type'=>$type_value->type));
-
+                                    $all=$this->cash_model->get_balance_credit_debit_mylty_money(
+                                        $type_value);
+                                    print_r($all);
                                     foreach ($all as $key => $value) {
                                 ?>
-
                                 <tr class="odd gradeX">
                                     <td><?php echo $value->id;?></td>
 
