@@ -1,3 +1,4 @@
+
               <div class="row">
                     <div class="col-md-12">
                         <h2>گدام ها</h2>   
@@ -40,7 +41,7 @@
                                                 <?php if($value->type=="fact"){ ?>
                                                 <td class="center"><?php
                                                     $this->load->model('stock_model');
-                                                    echo  $this->stock_model->get_stock_balance_fact($value->id,$value->type);
+                                                    echo  $oil=$this->stock_model->get_stock_balance_fact($value->id,$value->type);
                                                     $sufix="fact";
 
                                                     ?> تن </td>
@@ -55,7 +56,7 @@
                                                     <td class="center"><?php
                                                 $this->load->model('stock_model');
 
-                                                echo  $this->stock_model->get_stock_balance_pre_buy($value->id);
+                                                echo  $oil=$this->stock_model->get_stock_balance_pre_buy($value->id);
                                                 $sufix="pre";
                                                 ?> تن </td>
                                                 <?php }?>
@@ -76,14 +77,19 @@
                                                 <td class="center">
                                                    <!-- <div data-toggle="modal" data-id="<?php /*echo $value->id;*/?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash">
                                                     </div>-->
-                                                    <a href="#"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
+                                                    <a href="<?php echo site_url('stock/add/'.$value->id); ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
                                                     <a href="<?php echo site_url('stock/profile/'.$value->id.'/'.$sufix); ?>"><span class="fa fa-database" data-toggle="tooltip" title="پروفایل گدام" data-placement="top"></span></a>
                                                      <?php
                                                     if($value->type=="fact") {
                                                         echo ($value->status) ? "<a href='" . site_url('stock/inactive/' . $value->id . '') . "'><span style='color:blue;' class='glyphicon glyphicon-ok-circle' data-toggle='tooltip' title='غیر فعال کردن گدام' data-placement='top'></span>  </a>" : "<a href='" . site_url('stock/active/' . $value->id . '') . "'>
                                                             <span style='color: #f90c05;' class='glyphicon glyphicon-ban-circle' data-toggle='tooltip' title='فعال کردن گدام' data-placement='top'></span>
                                                               </a>";
-                                                    }?>
+                                                    }
+                                                     if($oil==0) {
+                                                     ?>
+                                                    <a href="#" data-toggle="modal" data-target="#myModal" data-id="<?php echo $value->id; ?>"
+                                                    ><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></a>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                             <?php }?>
@@ -98,6 +104,26 @@
                  <!-- /. ROW -->
             </div>
              <!-- /. PAGE INNER  -->
+              <!-- Button trigger modal -->
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="myModalLabel">هشدار برای حذف داده</h4>
+                          </div>
+                          <div class="modal-body">
+                              ایا مطمن هستید که میخواهید حذف کنید؟
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">لغو</button>
+                              <a type="button" class="btn btn-primary"  href="<?php echo site_url('stock/delete/'.$value->id); ?>" >تایید</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
                     <script src="<?php echo asset_url('js/dataTables/jquery.dataTables.js'); ?>"></script>
     <script src="<?php echo asset_url('js/dataTables/dataTables.bootstrap.js'); ?>"></script>

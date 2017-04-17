@@ -62,7 +62,7 @@
                                 </td>
                                 <td class="center">
                                     <a href="<?php echo site_url('oil/pre_set_end/'.$value->id.'/sell') ?>"><span class="glyphicon glyphicon-trash" ata-toggle="tooltip" title="حذف" data-placement="top"></span></a>
-                                    <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" ata-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
+                                    <a href="<?php echo site_url('oil/pre_buy/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
                                     <a href="<?php echo site_url('oil/profile/'.$value->id.'/sell'); ?>"><span class="glyphicon glyphicon-tint" ata-toggle="tooltip" title="مشاهده فاکتور" data-placement="top"></span></a>
                                     <?php if($remain!=0){ ?>
                                     <a data-toggle="modal" data-target="#view-modal"  data-remain="<?php echo $remain;?>" data-id="<?php echo $value->id;?>" id="getUser">

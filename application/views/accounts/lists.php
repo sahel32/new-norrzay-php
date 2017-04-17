@@ -1,4 +1,4 @@
-<?php $this->load->view('accounts/ajax_delete_review');?>
+<?php //$this->load->view('accounts/ajax_delete_review');?>
 <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
@@ -47,10 +47,13 @@
                                             <td><?php echo $value->lname;?></td>
                                             <td><?php echo $value->phone;?></td>
                                             <td class="center" >
-                                                <span data-toggle="modal" data-id="<?php echo $value->id;?>" data-target="#view-modal" id="getUser" class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top">
-                                                </span>
-                                                <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
+                                                <a href="#" data-toggle="modal" data-target="#myModal" data-id="<?php echo $value->id; ?>"
+                                                ><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></a>
+
+                                                <a href="<?php echo site_url('account/add/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
                                                 <a href="<?php echo site_url('account/profile/'.$value->id.'/'.$value->type); ?>"><span class="glyphicon glyphicon-user" data-toggle="tooltip" title="مشاهده پروفایل" data-placement="top"></span></a>
+                                                <a href="#" data-toggle="modal" data-target="#myModal" data-id="<?php echo $value->id; ?>">
+
                                                 <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'><span style='color:blue;' class='glyphicon glyphicon-ok-circle' data-toggle='tooltip' title='غیر فعال کردن فرد' data-placement='top'></span></a>" : "<a href='".site_url('account/active/'.$value->id.'')."'><span style='color: #f90c05;' class='glyphicon glyphicon-ban-circle' data-toggle='tooltip' title='فعال کردن فرد' data-placement='top'></span></a>"
                                                 ; ?>
 <!--                                                <a href="<?php /*echo site_url('balance/get_single_balance/'.$value->id.'/'.$value->type); */?>"><span class="glyphicon glyphicon-asterisk"></span></a>
@@ -72,7 +75,24 @@
             </div>
              <!-- /. PAGE INNER  -->
 
-
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">هشدار برای حذف داده</h4>
+            </div>
+            <div class="modal-body">
+                ایا مطمن هستید که میخواهید حذف کنید؟
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">لغو</button>
+                <a type="button" class="btn btn-primary"  href="<?php echo site_url('account/delete/'.$value->id); ?>" >تایید</a>
+            </div>
+        </div>
+    </div>
+</div>
        <script src="<?php echo asset_url('js/dataTables/jquery.dataTables.js'); ?>"></script>
     <script src="<?php echo asset_url('js/dataTables/dataTables.bootstrap.js'); ?>"></script>
 

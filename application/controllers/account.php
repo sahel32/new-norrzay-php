@@ -46,25 +46,34 @@ class Account extends CI_Controller {
 		$this->account_model->update(array('status'=>1),array('id'=>$id));
 		redirect($_SESSION['url']);
 	}
-	public function add(){
+	public function add($id=null){
+
+
+		$edit_id=$this->db->escape_str($this->input->post('id'));
+		if($id==null){
+			$data['account']=$this->account_model->get_where(array('id' =>$edit_id));
+		}else{
+			$data['account']=$this->account_model->get_where(array('id' =>$id));
+		}
+
 
         $this->form_validation->set_rules('name' , null, 'alpha_int|required',
             array(
-                'required'      => 'You have not provided name in name field',
-                'alpha_int'         =>'please insert just alghabatic charecters'
+                'required'      => 'لطفا اسم را وارد کنید',
+                'alpha_int'         =>'از کارکتر های فارسی استفاده کنید'
         )
             );
        $this->form_validation->set_rules('lname' , null, 'alpha_int|required',
             array(
-                'required'      => 'You have not provided name in name field',
-                'alpha_int'         =>'please insert just alghabatic charecters'
+                'required'      => 'لطفا تخلص را وارد کنید',
+                'alpha_int'         =>'از کارکتر های فارسی استفاده کنید'
         )
             );
 
        $this->form_validation->set_rules('phone' , null, 'is_natural|required|regex_match[/^[0-9]{10}$/]',
             array(
-                'required'      => 'You have not provided name in name field',
-                'is_natural'         =>'Please Use Just numberic charecters'
+                'required'      => 'شماره تلفن را وارد کنید',
+                'is_natural'         =>'شماره تلقن از ده تا کمتر نباشد'
         )
             );
 
@@ -72,7 +81,6 @@ class Account extends CI_Controller {
 		{
 			$ci =& get_instance();
 			$str = (strtolower($ci->config->item('charset')) != 'utf-8') ? utf8_encode($str) : $str;
-
 			return ( ! preg_match("/^[[:alpha:]- چجحخهعغفقثصضشسیبلاتنمکگپظطزرذدئو_.]+$/", $str)) ? FALSE : TRUE;
 		}
 
@@ -89,8 +97,13 @@ class Account extends CI_Controller {
 			'type'=>$this->db->escape_str($this->input->post('type')),
             'phone'=>$this->db->escape_str($this->input->post('phone'))
             );
-
-       $id=$this->account_model->insert($cantact_info);
+			
+			if(!empty($edit_id)){
+				$this->account_model->update($cantact_info,array('id'=>$edit_id));
+				$id=$edit_id;
+			}else{
+				$id = $this->account_model->insert($cantact_info); //reterive the inserted id
+			}
 
         $data['fu_page_title']="Login Form";
         redirect('account/profile/'.$id.'/'.$this->input->post('type'));

@@ -52,12 +52,30 @@
                                       <span class="glyphicon glyphicon-usd"></span>  
                                     </td>
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete/'.$value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
-                                        <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
+                                        <a data-toggle="modal" data-target="#1myModal<?php echo $value->id; ?>" href="#"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="1myModal<?php echo $value->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel">هشدار برای حذف داده</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ایا مطمن هستید که میخواهید حذف کنید؟
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">لغو</button>
+                                                        <a type="button" class="btn btn-primary"  href="<?php echo site_url('account/delete/'.$value->id) ?>"" >تایید</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="<?php echo site_url('account/add/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle='tooltip' title='ویرایش' data-placement='top'></span></a>
                                         <?php echo ($value->status)?  "<a href='".site_url('account/inactive/'.$value->id.'')."'><span style='color:blue;' class='glyphicon glyphicon-ok-circle' data-toggle='tooltip' title='غیر فعال کردن مشتری' data-placement='top'></span></a>" : "<a href='".site_url('account/active/'.$value->id.'')."'><span style='color: #f90c05;' class='glyphicon glyphicon-ban-circle' data-toggle='tooltip' title='فعال کردن مشتری' data-placement='top'></span></a>"
                                         ; ?>
-                                        <a href="#"><span class="glyphicon glyphicon-tasks" data-toggle='tooltip' title='مشاهده گزارشات بردگی و رسیدگی' data-placement='top'></span></a>
-<!--                                        <a href="<?php /*echo site_url('balance/balance_check_out/'.$value->id); */?>"><span class="glyphicon glyphicon-asterisk"></span></a>
+                                        <!--                                         <a href="#"><span class="glyphicon glyphicon-tasks" data-toggle='tooltip' title='مشاهده گزارشات بردگی و رسیدگی' data-placement='top'></span></a>
+                                      <a href="<?php /*echo site_url('balance/balance_check_out/'.$value->id); */?>"><span class="glyphicon glyphicon-asterisk"></span></a>
 -->
                                     </td>
                                 </tr>
@@ -69,7 +87,6 @@
             </div>
         </div>
     </div>
-
 
 
 
@@ -127,7 +144,25 @@
                                         ;?></td>
                                     <td><?php  echo $cash_value->desc;?></td>
                                     <td class="center">
-                                        <a href="<?php echo site_url('account/delete_cash/'.$cash_value->id) ?>"><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
+                                        <a data-toggle="modal" data-target="#2myModal<?php echo $cash_value->id;?>" href="#" ><span class="glyphicon glyphicon-trash" data-toggle='tooltip' title='حذف' data-placement='top'></span></a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="2myModal<?php echo $cash_value->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel">هشدار برای حذف داده</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ایا مطمن هستید که میخواهید حذف کنید؟
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">لغو</button>
+                                                        <a type="button" class="btn btn-primary"  href="<?php echo site_url('account/delete_cash/'.$cash_value->id) ?>"" >تایید</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <a href="<?php echo site_url('account/edit/'.$value->id) ?>"><span class="glyphicon glyphicon-edit"></span></a>
                                     </td>
                                 </tr>
@@ -195,9 +230,26 @@
                                             <td class="center"><?php echo $value->car_count;?></td>
                                             <td class="center"><?php echo $value->unit_price;?></td>
                                             <td class="center">
-                                                <a href="<?php echo site_url('oil/pre_set_end/'.$value->id.'/buy') ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></a>
-
-                                                <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a data-toggle="modal" data-target="#3myModal<?php echo $value->id; ?>" href="#" ><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="حذف" data-placement="top"></span></a>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="3myModal<?php echo $value->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">هشدار برای حذف داده</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ایا مطمن هستید که میخواهید حذف کنید؟
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">لغو</button>
+                                                                <a type="button" class="btn btn-primary"   href="<?php echo site_url('oil/pre_set_end/'.$value->id.'/buy') ?>"" >تایید</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="<?php echo site_url('oil/pre_buy/'.$value->id) ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="ویرایش" data-placement="top"></span></a>
                                                 <a href="<?php echo site_url('oil/profile/'.$value->id.'/buy'); ?>"><span class="glyphicon glyphicon-tint" data-toggle="tooltip" title="مشاهده فاکتور" data-placement="top"></span></a>
                                             </td>
                                         </tr>
@@ -211,6 +263,7 @@
             </div>
         </div>
     </div>
+
     <!-- /. ROW -->
 </div>
 <!-- /. PAGE INNER  -->

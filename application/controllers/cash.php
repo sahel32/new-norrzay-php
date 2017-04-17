@@ -47,7 +47,7 @@ class Cash extends CI_Controller
 
     public function credit_debit($account_type)
     {
-        $this->session->set_userdata('url', $this->router->fetch_class() . '/' . $this->router->fetch_method() . '/' . $this->uri->segment(3));
+        //$this->session->set_userdata('url', $this->router->fetch_class() . '/' . $this->router->fetch_method() . '/' . $this->uri->segment(3));
         switch ($account_type) {
             case "stuff":
                 $money_type = array('af' => 'افغانی');
@@ -120,7 +120,8 @@ class Cash extends CI_Controller
             if ($this->input->post('type') == "check") {
                 $this->check_type($cash_id, $account_type);
             } else {
-                $this->load->template('cash/credit_debit', $data);
+                //$this->load->template('cash/credit_debit', $data);
+                redirect($_SESSION['url']);
             }
         }
 
@@ -128,7 +129,7 @@ class Cash extends CI_Controller
 
     public function profile_credit_debit($account_id, $account_type)
     {
-        $this->session->set_userdata('url', $this->router->fetch_class() . '/' . $this->router->fetch_method() . '/' . $this->uri->segment(3) . '/' . $this->uri->segment(4));
+        //$this->session->set_userdata('url', $this->router->fetch_class() . '/' . $this->router->fetch_method() . '/' . $this->uri->segment(3) . '/' . $this->uri->segment(4));
         switch ($account_type) {
             case "stuff":
                 $money_type = array('af' => 'افغانی');
@@ -189,7 +190,8 @@ class Cash extends CI_Controller
             if ($this->input->post('type') == "check") {
                 $this->check_type($cash_id, $account_type);
             } else {
-                $this->load->template('cash/profile_credit_debit', $data);
+                //$this->load->template('cash/profile_credit_debit', $data);
+                redirect($_SESSION['url']);
             }
         }
 
@@ -197,7 +199,7 @@ class Cash extends CI_Controller
 
     public function oil_credit_debit($account_type)
     {
-        $this->session->set_userdata('url', $this->router->fetch_class() . '/' . $this->router->fetch_method() . '/' . $this->uri->segment(3));
+        //$this->session->set_userdata('url', $this->router->fetch_class() . '/' . $this->router->fetch_method() . '/' . $this->uri->segment(3));
 
         switch ($account_type) {
             case "stuff":
@@ -265,7 +267,8 @@ class Cash extends CI_Controller
             if ($this->input->post('type') == "check") {
                 $this->check_type($cash_id, $account_type);
             } else {
-                $this->load->template('cash/oil_credit_debit', $data);
+                //$this->load->template('cash/oil_credit_debit', $data);
+                redirect($_SESSION['url']);
             }
         }
 
@@ -273,7 +276,7 @@ class Cash extends CI_Controller
 
     public function profile_oil_credit_debit($account_id, $account_type)
     {
-        $this->session->set_userdata('url', $this->router->fetch_class() . '/' . $this->router->fetch_method() . '/' . $this->uri->segment(3) . '/' . $this->uri->segment(4));
+        //$this->session->set_userdata('url', $this->router->fetch_class() . '/' . $this->router->fetch_method() . '/' . $this->uri->segment(3) . '/' . $this->uri->segment(4));
         switch ($account_type) {
             case "stuff":
                 $money_type = array('af' => 'افغانی');
@@ -341,7 +344,8 @@ class Cash extends CI_Controller
             if ($this->input->post('type') == "check") {
                 $this->check_type($cash_id, $account_type);
             } else {
-                $this->load->template('cash/profile_oil_credit_debit', $data);
+               // $this->load->template('cash/profile_oil_credit_debit', $data);
+                redirect($_SESSION['url']);
             }
         }
 
@@ -349,7 +353,7 @@ class Cash extends CI_Controller
 
     public function debit_deal($id, $type)
     {
-        $this->session->set_userdata('url', $this->router->fetch_class() . '/' . $this->router->fetch_method() . '/' . $this->uri->segment(3) . '/' . $this->uri->segment(4));
+        //$this->session->set_userdata('url', $this->router->fetch_class() . '/' . $this->router->fetch_method() . '/' . $this->uri->segment(3) . '/' . $this->uri->segment(4));
 
         $data['id'] = $id;
         $data['type'] = $type;
@@ -470,7 +474,7 @@ class Cash extends CI_Controller
     {
 
         if (isset($_GET['term'])) {
-            $q = strtolower($_GET['term']);
+            $q = $_GET['term'];
             echo $this->account_model->accounts_json($q);
         }
     }
@@ -479,7 +483,7 @@ class Cash extends CI_Controller
     {
 
         if (isset($_GET['term'])) {
-            $q = strtolower($_GET['term']);
+            $q = $_GET['term'];
             echo $this->oil_model->srock_transactions_json($q);
         }
     }
@@ -488,7 +492,7 @@ class Cash extends CI_Controller
     {
 
         if (isset($_GET['term'])) {
-            $q = strtolower($_GET['term']);
+            $q = $_GET['term'];
             echo $this->oil_model->get_real_oil_id_json($q);
         }
     }

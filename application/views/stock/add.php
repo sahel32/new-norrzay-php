@@ -1,3 +1,8 @@
+<?php
+foreach ($edit_data as $key =>$value){
+
+}
+?>
 <div class="row">
                     <div class="col-md-12">
                      <h2>ثبت گدام </h2>   
@@ -19,11 +24,13 @@
                                 <div class="col-md-12">
                                     <form role="form" action="<?php echo site_url('stock/add'); ?>" method="post">
 
+                                        <input type="hidden" value="<?php echo (isset($value->id)) ? $value->id : ''; ?>" name="id" class="form-control" data-trigger="hover"/>
+
                                         <div class="col-md-3 form-group">
 
                                             <label>نام گدام</label>
                                        
-                                            <input type="text"  value="<?php echo set_value('name'); ?>"name="name" class="form-control" data-trigger="hover"/>
+                                            <input type="text" value="<?php echo (isset($value->name)) ? $value->name : set_value('name'); ?>" name="name" class="form-control" data-trigger="hover"/>
                                             <span class="help-inline"><?php echo (form_error('name') ) ? form_error('name') : "<span class='red'>*</span>"; ?></span>
                                 
                                         </div>
@@ -33,7 +40,8 @@
 
                                             <label>ولایت</label>
                                        
-                                            <input type="text"  value="<?php echo set_value('province'); ?>"name="province" class="form-control" data-trigger="hover" />
+                                            <input type="text" value="<?php echo (isset($value->province)) ? $value->province : set_value('name'); ?>"
+                                                  name="province" class="form-control" data-trigger="hover" />
                                             <span class="help-inline"><?php echo (form_error('province') ) ? form_error('province') : "<span class='red'>*</span>"; ?></span>
                                 
                                         </div>
@@ -46,7 +54,8 @@
 
                                                 foreach ($oil_type_rows as $key => $d_value) {?>
 
-                                                    <option value="<?php echo $d_value->oil_type;?>"><?php echo $d_value->oil_type;?></option>
+                                                    <option  <?php echo (isset($value->oil_type) && $value->oil_type==$d_value->oil_type) ? "selected" : ''; ?>
+                                                        value="<?php echo $d_value->oil_type;?>"><?php echo $d_value->oil_type;?></option>
 
                                                 <?php }?>
 

@@ -13,10 +13,18 @@
         $("#datepicker2").datepicker({
             dateFormat: "yy/mm/dd"
         });
-
     });
 </script>
-
+<?php
+$ton="selected";
+$car="";
+foreach ($oil_rows as $key => $edit_value) {
+    if($edit_value->car_count!=0){
+        $each_car=$edit_value->amount/$edit_value->car_count;
+        $ton="";
+        $car="selected";
+    }
+}?>
 <div class="row">
     <div class="col-md-12">
         <h2>پیش فروش</h2>
@@ -37,17 +45,22 @@
                 <div class="row">
                     <div class="col-md-12">
                         <form role="form" action="<?php echo site_url('oil/pre_sell'); ?>" method="post" >
+                            <input type="hidden" value="<?php echo (isset($edit_value->id)) ? $edit_value->id : ''; ?>" name="id" class="form-control" data-trigger="hover"/>
+
                             <div class="col-md-3 form-group">
                                 <label>تاریخ پیش فروش</label>
 
-                                <input type="text"  value="<?php echo set_value('f_date'); ?>" name="f_date" class="form-control"  id="datepicker"/>
+                                <input type="text"
+                                       value="<?php echo (isset($edit_value->f_date)) ? $edit_value->f_date : set_value('f_date'); ?>"
+                                       name="f_date" class="form-control"  id="datepicker"/>
                                 <span class="help-inline"><?php echo (form_error('f_date') ) ? form_error('f_date') : "<span class='red'>*</span>"; ?></span>
 
                             </div>
                             <div class="col-md-3 form-group">
                                 <label>تاریخ تقریبی تحویل</label>
-
-                                <input type="text"  value="<?php echo set_value('s_date'); ?>" name="s_date" class="form-control"  id="datepicker2"/>
+                                <input type="text"
+                                       value="<?php echo (isset($edit_value->s_date)) ? $edit_value->s_date : set_value('s_date'); ?>"
+                                       name="s_date" class="form-control"  id="datepicker2"/>
                                 <span class="help-inline"><?php echo (form_error('s_date') ) ? form_error('s_date') : "<span class='red'>*</span>"; ?></span>
 
                             </div>
@@ -67,8 +80,9 @@
 
                                     foreach ($account_rows as $key => $value) {?>
 
-                                        <option value="<?php echo $value->id;?>"><?php echo $value->name;?></option>
-
+                                        <option
+                                            <?php echo (isset($edit_value->account_id) && $edit_value->account_id==$value->id) ? "selected" : ''; ?>
+                                            value="<?php echo $value->id;?>"><?php echo $value->name;?></option>
                                     <?php }?>
 
                                 </select>
@@ -80,59 +94,47 @@
 
                                     foreach ($stock_buy as $key => $bvalue) {?>
 
-
-                                        <option value="<?php echo $bvalue->id;?>">
-                                            <?php echo $bvalue->oil_type;
-                                            ?></option>
-
+                                        <option
+                                            <?php echo (isset($edit_value->stock_id) && $edit_value->stock_id==$bvalue->id) ? "selected" : ''; ?>
+                                            value="<?php echo $bvalue->id;?>"><?php echo $bvalue->oil_type; ?></option>
 
                                     <?php }?>
                                 </select>
                             </div>
-                            <!--<div class="col-md-3 form-group">
-                                            <label>to stock</label>
-                                            <select class="form-control" name="stock_id" >
-                                                <?php
-                            /*
-                                                                            foreach ($stock_rows as $key => $value) {*/?>
-
-                                                    <option value="<?php /*echo $value->id;*/?>">
-                                                        <?php /*echo $value->name." - ";
-                                                        $this->load->model('stock_model');
-                                                        echo $this->stock_model->get_stock_balance_pre_buy($value->id,$buy_sell)." -Ton";
-                                                        */?></option>
-
-                                                <?php /*}*/?>
-
-                                            </select>
-                                        </div>-->
+                            
                             <div class="clearfix"></div>
                             <div class="col-md-3 form-group">
                                 <label>نوع فروش</label>
                                 <select class="form-control" id="measurement-type" name="unit" >
-                                    <option value="car">بر اساس موتر</option>
-                                    <option value="ton">بر اساس تن</option>
+                                    <option value="car" <?php echo $car; ?>>بر اساس موتر</option>
+                                    <option value="ton" <?php echo $ton; ?>>بر اساس تن</option>
 
                                 </select>
                             </div>
                             <div class="col-md-3 form-group">
                                 <label id="car-ton">تعداد موتر</label>
 
-                                <input type="text"  value="<?php echo set_value('amount'); ?>"name="amount" class="form-control" />
+                                <input type="text"
+                                       value="<?php echo (isset($edit_value->amount)) ? $edit_value->amount : set_value('amount'); ?>"
+                                       name="amount" class="form-control" />
                                 <span class="help-inline"><?php echo (form_error('amount') ) ? form_error('amount') : "<span class='red'>*</span>"; ?></span>
 
                             </div>
                             <div class="col-md-3 form-group">
                                 <label >فی موتر</label>
 
-                                <input type="text" id="car-count" value="<?php echo set_value('car_count'); ?>"name="car_count" class="form-control" />
+                                <input type="text" id="car-count"
+                                       value="<?php echo (isset($edit_value->each_car)) ? $edit_value->each_car : set_value('car_count'); ?>"
+                                       name="car_count" class="form-control" />
                                 <span class="help-inline"><?php echo (form_error('car_count') ) ? form_error('car_count') : "<span class='red'>*</span>"; ?></span>
 
                             </div>
 
                             <div class="col-md-3 form-group">
                                 <label>فی تن</label>
-                                <input type="text"  value="<?php echo set_value('unit_price'); ?>"name="unit_price" class="form-control"  id="car-number"/>
+                                <input type="text"
+                                       value="<?php echo (isset($edit_value->unit_price)) ? $edit_value->unit_price : set_value('unit_price'); ?>"
+                                       name="unit_price" class="form-control"  id="car-number"/>
                                 <span class="help-inline"><?php echo (form_error('unit_price') ) ? form_error('unit_price') : "<span class='red'>*</span>"; ?></span>
 
                             </div>
@@ -147,7 +149,9 @@
                             </div>-->
                             <div class="col-md-6 form-group">
                                 <label>شرح و تفصیلات</label>
-                                <textarea class="form-control" rows="1" name="desc" ></textarea>
+                                <textarea class="form-control" rows="1" name="desc" >
+                                    <?php echo (isset($edit_value->desc)) ? $edit_value->desc : ''; ?>
+                                </textarea>
                             </div>
                             <div class="col-md-3 gaps">
                                 <button type="submit" class="btn btn-default pull-left">تائید</button>
@@ -163,29 +167,30 @@
 
     <script>
 
-        $(document).ready(function(){
+        $( document ).ready(function() {
 
+            $("#measurement-type").change(function (){
+                var value=$(this).val()
+                if(value=="ton"){
+                    $("#car-ton").text('مقدار');
+                    $("#car-count").prop('disabled', true);
+                }else{
+                    $("#car-ton").text('تعداد موتر')
+                    $("#car-count").prop('disabled', false);
+                }
+            })
 
-            //alert("hi")
-        })
-
-
-        $("#measurement-type").change(function (){
-            var value=$(this).val()
-            if(value=="ton"){
-                $("#car-ton").text('مقدار');
-                $("#car-count").prop('disabled', true);
-            }else{
-                $("#car-ton").text('تعداد موتر')
-                $("#car-count").prop('disabled', false);
-            }
-            /*if(value=="ton"){
-             $("#car-number").attr('disabled','disabled');
-             }else{
-             $("#car-number").attr('enabled','enabled');
-             }*/
-
-
-        })
+            $(window).load(function (){
+                var value=$("#measurement-type").val()
+                if(value=="ton"){
+                    $("#car-ton").text('مقدار');
+                    $("#car-count").prop('disabled', true);
+                }else{
+                    $("#car-ton").text('تعداد موتر')
+                    $("#car-count").prop('disabled', false);
+                }
+            })
+            // Handler for .ready() called.
+        });
 
     </script>

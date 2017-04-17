@@ -50,7 +50,6 @@ class Oil extends CI_Controller {
 	}
 	public function lists_pre_buy($buy_sell="buy" ,$type='pre')
 	{
-
 	$this->session->set_userdata('url',$this->router->fetch_class().'/'.$this->router->fetch_method());
 		$data=array(
 			'main_title'=>"pre buy",
@@ -62,11 +61,8 @@ class Oil extends CI_Controller {
 			'pre_date_2'=>'pre sell give date',
 			'stock_label'=>'from stock'
 		);
-
 		$data['oil_rows']=$this->oil_model->get_where(array('type' => $type, 'buy_sell'=>$buy_sell));
-
-			$this->load->template("oil/lists_pre_buy", $data);
-
+		$this->load->template("oil/lists_pre_buy", $data);
 	}
 	public function pre_set_end($id,$buy_sell){
 		$remain=$this->oil_model->get_remain_oil_each_pre($id,$buy_sell);
@@ -75,7 +71,8 @@ class Oil extends CI_Controller {
 		$this->oil_model->update(array('amount'=>$mines),array('id'=>$id));
 		redirect($_SESSION['url']);
 	}
-	public function pre_sell($buy_sell="sell")
+/**/
+	public function pre_sell($id=null)
 		{
 			$data = array(
 				'main_title' => "pre sell",
@@ -91,7 +88,7 @@ class Oil extends CI_Controller {
 				'type'=>'customer'
 			);
 
-
+			$data['oil_rows']=$this->oil_model->get_where(array('id' =>$id));
 			//mines from stock pre
 			$data['stock_buy'] = $this->stock_model->get_where(array('type'=>'buy'));
 			$data['stock_rows'] = $this->stock_model->get_where(array('type'=>$data['buy_sell']));
@@ -163,9 +160,12 @@ class Oil extends CI_Controller {
 
 				);
 
-				$id = $this->oil_model->insert($stock_transaction); //reterive the inserted id
-
-
+				if(!empty($this->db->escape_str($this->input->post('id')))){
+					$this->oil_model->update($stock_transaction,array('id'=>$this->db->escape_str($this->input->post('id'))));
+					$id=$this->input->post('id');
+				}else{
+					$id = $this->oil_model->insert($stock_transaction); //reterive the inserted id
+				}
 
 				$cash_information = array(
 					'cash' =>$cash,
@@ -177,14 +177,19 @@ class Oil extends CI_Controller {
 
 				);
 
-				//$cash_id = $this->cash_model->insert($cash_information);
+				if(!empty($this->db->escape_str($this->input->post('id')))){
+					$this->cash_model->update($cash_information,array('table_id'=>$this->db->escape_str($this->input->post('id'))));
+					$cash_id=$this->input->post('id');
+				}else{
+					$cash_id = $this->cash_model->insert($cash_information);
+				}
 				$data['fu_page_title'] = "Login Form";
 				//echo $cash_id;
 				redirect('oil/pre_sell/'.$data['buy_sell']);
 				// $this->profile($id); 
 			}
 		}
-	public function pre_buy($buy_sell="buy")
+	public function pre_buy($id=null)
 	{
 			$data = array(
 				'main_title' => "pre buy",
@@ -199,11 +204,12 @@ class Oil extends CI_Controller {
 				'transaction_type'=>'debit',
 				'type'=>'seller',
 				'stock'=>0
-
 			);
 
 
 		//mines from stock pre
+		$data['oil_rows']=$this->oil_model->get_where(array('id' =>$id));
+
 		$data['stock_buy'] = $this->stock_model->get_where(array('type'=>'buy'));
 		$data['stock_rows'] = $this->stock_model->get_where(array('type'=>$data['buy_sell']));
 		//$data['account_rows'] = $this->account->get_where(array('type' => 'customer'));
@@ -269,13 +275,15 @@ class Oil extends CI_Controller {
 				'buy_sell' => $data['buy_sell'],
 				'desc' => $this->db->escape_str($this->input->post('desc')),
 				'amount' => $amount,
-
 				'unit' => $this->db->escape_str($this->input->post('unit'))
-
 			);
 
-			$id = $this->oil_model->insert($stock_tramsaction); //reterive the inserted id
-
+			if(!empty($this->db->escape_str($this->input->post('id')))){
+				$this->oil_model->update($stock_tramsaction,array('id'=>$this->db->escape_str($this->input->post('id'))));
+				$id=$this->input->post('id');
+			}else{
+				$id = $this->oil_model->insert($stock_tramsaction); //reterive the inserted id
+			}
 
 
 			$cash_information = array(
@@ -288,7 +296,13 @@ class Oil extends CI_Controller {
 
 			);
 
-			//$cash_id = $this->cash_model->insert($cash_information);
+			if(!empty($this->db->escape_str($this->input->post('id')))){
+				$this->cash_model->update($cash_information,array('table_id'=>$this->db->escape_str($this->input->post('id'))));
+				$cash_id=$this->input->post('id');
+			}else{
+				$cash_id = $this->cash_model->insert($cash_information);
+			}
+
 			$data['fu_page_title'] = "Login Form";
 			//echo $cash_id;
 			redirect('oil/pre_buy/'.$data['buy_sell']);

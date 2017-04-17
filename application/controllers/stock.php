@@ -24,6 +24,9 @@ class Stock extends CI_Controller {
 		// permission();
 	}
 
+	function breadcrumb(){
+
+	}
 	public function index()
 	{
 		 $data['title']="dashboard";
@@ -94,9 +97,10 @@ class Stock extends CI_Controller {
 
 
 	}
-	public function add(){
+	public function add($id=null){
 
-				$data['main_title']="add stock";
+		$data['edit_data']=$this->stock_model->get_where(array('id'=>$id));
+		$data['main_title']="add stock";
 		$data['sub_title']="add stock form ";
 		$data['desc']="add stock decription";
 		$data['oil_type_rows'] = $this->stock_model->get_group_by('oil_type');
@@ -135,15 +139,18 @@ class Stock extends CI_Controller {
         $data['signup_form']="active";
         $this->load->template('stock/add',$data);
         }else{
-
-        $cantact_info=array(
-            'name'=>$this->db->escape_str($this->input->post('name')),
-            'province'=>$this->db->escape_str($this->input->post('province')),
-			'type'=>'fact',
-			'oil_type'=>$this->input->post('oil_type')
-            );
-
-       $id=$this->stock_model->insert($cantact_info);
+			$cantact_info=array(
+				'name'=>$this->db->escape_str($this->input->post('name')),
+				'province'=>$this->db->escape_str($this->input->post('province')),
+				'type'=>'fact',
+				'oil_type'=>$this->input->post('oil_type')
+			);
+		if(!empty($this->db->escape_str($this->input->post('id')))){
+			$this->stock_model->update($cantact_info,array('id'=>$this->db->escape_str($this->input->post('id'))));
+			$id=$this->input->post('id');
+		}else{
+			$id=$this->stock_model->insert($cantact_info);
+		}
 
         $data['fu_page_title']="Login Form";
         redirect('stock/profile/'.$id.'/fact');
@@ -224,7 +231,7 @@ class Stock extends CI_Controller {
 	}
 	public function delete($id){
 
-
+		$this->stock_model->delete(array('id'=>$id));
 		redirect($_SESSION['url']);
 	}
 }

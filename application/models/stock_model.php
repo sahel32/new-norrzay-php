@@ -263,7 +263,7 @@ FROM
         $query=$this->db->get($this->table);
         return $query->result();
     }
-    //deletes data from table by condtion or array of condition
+    //deletes data from table by condition or array of condition
     function delete($wheres){
       $this->db->delete($this->table,$wheres);
     }

@@ -1,16 +1,16 @@
 
 
-<!--<script src="<?php /*echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); */?>"></script>
-<script src="<?php /*echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); */?>"></script>
-<link href="<?php /*echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); */?>" rel="stylesheet" type="text/css" >
--->
-<!--<script type="text/javascript">
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
+<script src="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.fa.min.js'); ?>"></script>
+<link href="<?php echo asset_url('js/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css" >
+
+<script type="text/javascript">
     $(function(){
         $("#datepicker").datepicker({
             dateFormat: "yy/mm/dd"
         });
     });
-</script>-->
+</script>
 
 <style>
     .ui-autocomplete-loading {
